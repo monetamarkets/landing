@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moneta Markets | สร้างขึ้นสำหรับเทรดเดอร์มืออาชีพ รับโบนัส $500 ของคุณทันที</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+Thai:wght@400;500;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --brand-red: #E6333D;
+            --brand-blue: #2855F5;
+            --dark-bg: #101737;
+            --card-bg: rgba(22, 30, 65, 0.7);
+            --border-color: rgba(230, 51, 61, 0.3);
+            --text-primary: #FFFFFF;
+            --text-secondary: #cdd5f0;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans Thai', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+        }
+
+        .main-bg {
+            background-color: var(--dark-bg);
+            background-image:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(230, 51, 61, 0.15), transparent),
+                radial-gradient(ellipse 80% 50% at 50% 120%, rgba(40, 85, 245, 0.1), transparent);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .cta-button-brand {
+            background: linear-gradient(90deg, var(--brand-red), var(--brand-blue));
+            color: white;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(230, 51, 61, 0.5), 0 0 20px rgba(40, 85, 245, 0.3);
+        }
+
+        .cta-button-brand:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 0 30px rgba(230, 51, 61, 0.7), 0 0 30px rgba(40, 85, 245, 0.5);
+        }
+
+        .cta-button-secondary {
+            background-color: transparent;
+            color: var(--text-secondary);
+            font-weight: 700;
+            border-radius: 9999px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .cta-button-secondary:hover {
+            background-color: var(--card-bg);
+            border-color: var(--brand-red);
+            color: white;
+        }
+
+        .gradient-text-brand {
+            background: linear-gradient(90deg, var(--brand-red), var(--brand-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--brand-red);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .section-glow-top::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 100px;
+            background: radial-gradient(circle, rgba(230, 51, 61, 0.15), transparent 70%);
+            filter: blur(50px);
+            z-index: -1;
+        }
+
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        
+        .ceo-signature {
+            font-family: 'Caveat', cursive;
+            color: var(--brand-red);
+        }
+
+        .faq-tag {
+            background: linear-gradient(90deg, var(--brand-red), var(--brand-blue));
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="main-bg">
+
+    <!-- Header -->
+    <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-50 border-b border-[--border-color]">
+        <div class="container mx-auto max-w-7xl px-4">
+            <div class="flex justify-between items-center py-3">
+                <div>
+                    <img src="/logo.png" alt="โลโก้ Moneta Markets" class="h-10 md:h-12">
+                </div>
+                <div>
+                    <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-2 px-6 text-sm md:text-base">
+                        ลงทะเบียนและรับโบนัส
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- =================================================================== -->
+        <!-- 1. Hero Section (Attention) -->
+        <!-- =================================================================== -->
+        <section class="pt-20 pb-24 md:pt-24 md:pb-32 relative">
+            <div class="container mx-auto max-w-7xl px-4 text-center relative z-10">
+                <div class="mb-6" data-aos="fade-down">
+                    <span class="inline-flex items-center bg-gray-800/50 border border-gray-700 rounded-full px-4 py-1 text-sm text-secondary">
+                        <i class="fa-solid fa-users text-green-400 mr-2"></i>
+                        มีผู้เปิดบัญชีแล้ว <span id="dynamic-registrations" class="font-bold text-white mx-1">317</span> คนใน 24 ชั่วโมงที่ผ่านมา
+                    </span>
+                </div>
+
+                <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4 text-white" data-aos="fade-down">
+                    เลือกแพลตฟอร์มที่ใช่ อย่าปล่อยให้เงินทุนของคุณ<br><span class="gradient-text-brand">หลับใหล</span>
+                </h1>
+                <h2 class="text-2xl md:text-4xl font-bold text-white mb-6" data-aos="fade-down" data-aos-delay="100">
+                    เปิดใช้งานโบนัสการเทรด <span class="text-yellow-300">50%</span> สุดพิเศษของคุณทันที
+                </h2>
+                <p class="text-lg md:text-xl text-secondary max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+                    Moneta Markets คือโบรกเกอร์ CFD ชั้นนำระดับโลก ที่ให้บริการผลิตภัณฑ์หลากหลาย เช่น ฟอเร็กซ์, ดัชนี, และสินค้าโภคภัณฑ์ ตอนนี้คุณยังสามารถเทรดคริปโตเคอร์เรนซีอย่างบิตคอยน์ด้วย<strong class="text-white">เลเวอเรจสูงสุด 500 เท่า</strong>ผ่านแพลตฟอร์มของเรา สัมผัสประสบการณ์การเทรดระดับมืออาชีพ
+                </p>
+                
+                <div class="mb-6" data-aos="fade-up" data-aos-delay="300">
+                    <p class="text-lg text-white font-bold"><i class="fa-solid fa-shield-halved text-green-400"></i> ได้รับความไว้วางใจจากเทรดเดอร์มืออาชีพกว่า <span class="text-yellow-300">100,000</span> ราย</p>
+                </div>
+
+                <div class="flex justify-center items-center space-x-4 mb-6" data-aos="fade-up" data-aos-delay="400">
+                    <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-4 px-10 text-lg">
+                        <i class="fa-solid fa-rocket mr-2"></i>เปิดบัญชีจริง (รวดเร็ว)
+                    </a>
+                    <a href="https://www.monetamarkets.com/th/open-demo-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-secondary py-4 px-10 text-lg">
+                       <i class="fa-solid fa-flask mr-2"></i>เปิดบัญชีทดลอง (ฟรี)
+                    </a>
+                </div>
+
+                <div id="countdown-timer" class="text-center text-white mt-8" data-aos="fade-up" data-aos-delay="500">
+                    <p class="text-yellow-300 font-bold text-lg">ข้อเสนอจำกัดเวลา นับถอยหลัง: <span id="countdown"></span></p>
+                </div>
+
+                <p class="text-xs text-slate-500 mt-8 text-center">*คำเตือนความเสี่ยง: สัญญาซื้อขายส่วนต่าง (CFD) เป็นเครื่องมือที่ซับซ้อนและมีความเสี่ยงสูง โปรดตรวจสอบให้แน่ใจว่าคุณเข้าใจวิธีการทำงานและสามารถรับความเสี่ยงในการขาดทุนได้</p>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 2. Trust Section (Interest/Desire) -->
+        <!-- =================================================================== -->
+        <section id="trust" class="py-16 md:py-20 relative section-glow-top">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">ทำไมคุณถึงสามารถ<span class="gradient-text-brand">ไว้วางใจ</span> Moneta Markets ได้อย่างเต็มที่?</h2>
+                    <p class="text-lg text-secondary">เพราะชื่อเสียงของเราสร้างขึ้นจากมาตรฐานที่ได้รับการยอมรับในระดับสากลและการรับรองจากหน่วยงานที่มีอำนาจ</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">ชี้นำโดยมาตรฐานสูงสุดของ FCA</h3>
+                        <p class="text-secondary text-sm">ยึดมั่นในมาตรฐานการกำกับดูแลทางการเงินที่เข้มงวดที่สุดในโลกเพื่อปกป้องเงินทุนของคุณ</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-award"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">โบรกเกอร์ที่ได้รับรางวัลมากมาย</h3>
+                        <p class="text-secondary text-sm">ได้รับรางวัลมากมายในอุตสาหกรรมการเงินระหว่างประเทศ ซึ่งเป็นเครื่องยืนยันถึงความสามารถของเรา</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-futbol"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">พันธมิตรระดับแชมป์</h3>
+                        <p class="text-secondary text-sm">พันธมิตรอย่างเป็นทางการของ Atlético de Madrid ซึ่งแสดงถึงการแสวงหาความเป็นเลิศร่วมกัน</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-globe-americas"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">การดำเนินงานทั่วโลก</h3>
+                        <p class="text-secondary text-sm">ประสบการณ์ 6 ปีในอุตสาหกรรม ให้บริการเทรดเดอร์ทั่วโลกด้วยชื่อเสียงที่โดดเด่น</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 3. Bonus Section (Interest/Desire) -->
+        <!-- =================================================================== -->
+        <section id="bonus" class="py-16 md:py-20">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="glass-card rounded-2xl p-8 md:p-12" data-aos="zoom-in-up">
+                    <div class="grid lg:grid-cols-2 gap-8 items-center">
+                        <div class="text-center lg:text-left">
+                            <span class="text-sm font-bold text-brand-red">พลาดครั้งนี้ ไม่มีโอกาสแบบนี้อีกแล้ว!</span>
+                            <h2 class="text-3xl md:text-5xl font-bold text-white mt-2 mb-4">เงินฝากครั้งแรกของคุณ<br>เราเพิ่มให้อีก <span class="gradient-text-brand">50%</span></h2>
+                            <p class="text-lg text-secondary mb-8">นี่คือเงินทุนเริ่มต้นที่แข็งแกร่งที่สุดที่เราเตรียมไว้สำหรับเทรดเดอร์ใหม่ ตัวอย่างเช่น <strong class="text-white">ฝากเงิน $1,000 คุณจะได้รับโบนัสเพิ่มอีก $500</strong> เริ่มเทรดด้วยเงินทุน $1,500 ทันที!</p>
+                            <div class="flex justify-center lg:justify-start items-center space-x-4">
+                                <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-3 px-8 text-base">
+                                    ล็อคโบนัสของฉันทันที
+                                </a>
+                                <span class="text-yellow-300 font-bold bg-yellow-500/10 px-3 py-1 rounded-full text-sm"><i class="fa-solid fa-fire"></i> จำนวนจำกัด</span>
+                            </div>
+                        </div>
+                        <div class="border-l border-[--border-color] pl-8 hidden lg:block">
+                            <h3 class="text-xl font-bold text-center mb-6">3 ขั้นตอน เริ่มต้นอย่างรวดเร็ว</h3>
+                            <div class="space-y-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-gray-800 text-brand-red h-10 w-10 rounded-full flex items-center justify-center font-bold text-xl border border-[--border-color]">1</div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-white">ลงทะเบียนบัญชีใน 1 นาที</h4>
+                                        <p class="text-secondary">ไปที่เว็บไซต์ทางการ กรอกแบบฟอร์มง่ายๆ เพื่อทำการลงทะเบียนที่ปลอดภัย</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-gray-800 text-brand-red h-10 w-10 rounded-full flex items-center justify-center font-bold text-xl border border-[--border-color]">2</div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-white">ฝากเงิน</h4>
+                                        <p class="text-secondary">เลือกวิธีการชำระเงินที่คุณต้องการ และฝากเงินทุนการเทรดครั้งแรกของคุณอย่างปลอดภัย</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 bg-gray-800 text-brand-red h-10 w-10 rounded-full flex items-center justify-center font-bold text-xl border border-[--border-color]">3</div>
+                                    <div class="ml-4">
+                                        <h4 class="text-lg font-bold text-white">รับโบนัสและเริ่มเทรด</h4>
+                                        <p class="text-secondary">โบนัสการเทรด 50% จะเข้าบัญชีของคุณโดยอัตโนมัติ เริ่มสำรวจตลาดโลกได้เลย!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-8 text-center">* โปรโมชั่นโบนัสใช้ได้กับลูกค้าที่ฝากเงินครั้งแรกตั้งแต่ $500 ขึ้นไป และอยู่ภายใต้ข้อกำหนดและเงื่อนไข</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 4a. For Newbies Section (Desire) -->
+        <!-- =================================================================== -->
+        <section id="for-newbies" class="py-16 md:py-20">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div data-aos="fade-right">
+                        <span class="text-sm font-bold text-brand-red">สร้างขึ้นสำหรับเทรดเดอร์มือใหม่</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">คุณไม่ต้องสู้เพียงลำพัง</h2>
+                        <p class="text-lg text-secondary mb-6">บอกลากราฟที่ซับซ้อน <span class="font-bold text-white">ระบบ Copy Trading ที่เราพัฒนาขึ้นเอง</span> ช่วยให้คุณคัดลอกกลยุทธ์ของผู้เชี่ยวชาญด้านการเทรดชั้นนำของโลกได้ในคลิกเดียว ด้วยเงินลงทุนขั้นต่ำเพียง <strong class="text-yellow-300">$50</strong> ก็สามารถสัมผัสประสบการณ์กลยุทธ์การลงทุนของเทรดเดอร์ชั้นนำได้</p>
+                        <ul class="space-y-3 text-secondary mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-brand-red mr-3"></i> <strong class="text-white">ติดตามง่าย:</strong> เรียกดูผลงานที่โปร่งใส และเลือกผู้เชี่ยวชาญที่คุณไว้วางใจ</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-brand-red mr-3"></i> <strong class="text-white">ดำเนินการอัตโนมัติ:</strong> เมื่อผู้เชี่ยวชาญเปิดออเดอร์ บัญชีของคุณจะซิงค์โดยอัตโนมัติ ไม่พลาดทุกโอกาส</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-brand-red mr-3"></i> <strong class="text-white">ควบคุมความเสี่ยงได้:</strong> คุณสามารถตั้งค่าพารามิเตอร์หรือหยุดติดตามได้ตลอดเวลา</li>
+                        </ul>
+                        <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-3 px-8 text-base">
+                           <i class="fa-solid fa-user-plus mr-2"></i> รับของขวัญต้อนรับมือใหม่ทันที
+                        </a>
+                    </div>
+                    <div data-aos="fade-left" class="glass-card p-6 rounded-2xl">
+                        <div class="space-y-4">
+                            <!-- Mockup UI -->
+                            <div class="bg-gray-800/50 p-4 rounded-lg flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <img src="https://placehold.co/50x50/2855F5/FFFFFF?text=A" alt="Avatar" class="w-12 h-12 rounded-full">
+                                    <div class="ml-4">
+                                        <p class="font-bold text-white">Alex "The Eagle"</p>
+                                        <p class="text-xs text-secondary">ผลตอบแทน: <span class="text-green-400">+128%</span> | ความเสี่ยง: 4/10</p>
+                                    </div>
+                                </div>
+                                <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full text-sm hover:bg-blue-500 transition">คัดลอก</button>
+                            </div>
+                            <div class="bg-gray-800/50 p-4 rounded-lg flex items-center justify-between">
+                                <img src="https://placehold.co/50x50/2855F5/FFFFFF?text=S" alt="Avatar" class="w-12 h-12 rounded-full">
+                                <div class="ml-4 flex-grow">
+                                    <p class="font-bold text-white">Sarah "Momentum"</p>
+                                    <p class="text-xs text-secondary">ผลตอบแทน: <span class="text-green-400">+92%</span> | ความเสี่ยง: 6/10</p>
+                                </div>
+                                <button class="bg-blue-600 text-white font-bold py-2 px-4 rounded-full text-sm hover:bg-blue-500 transition">คัดลอก</button>
+                            </div>
+                        </div>
+                        <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="block text-center mt-6 text-brand-red font-bold hover:text-red-400 transition">
+                            <i class="fa-solid fa-play-circle mr-2"></i>ลงทะเบียนฟรี สัมผัสประสบการณ์ Copy Trading ทันที
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 4b. For Pros Section (Desire) -->
+        <!-- =================================================================== -->
+        <section id="for-pros" class="py-16 md:py-20 relative section-glow-top">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1" data-aos="fade-right">
+                        <span class="text-sm font-bold text-brand-red">ออกแบบมาสำหรับเทรดเดอร์ผู้มีประสบการณ์</span>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">สิ่งที่คุณต้องการ คือสิ่งที่เราเชี่ยวชาญ</h2>
+                        <p class="text-lg text-secondary mb-6">สำหรับคุณที่ต้องการประสิทธิภาพสูงสุด เรามีบัญชี <span class="font-bold text-white">STP/ECN (Straight Through Processing)</span> ที่แท้จริง ไม่มีการแทรกแซงจากดีลเลอร์ ไม่มีผลประโยชน์ทับซ้อน มีเพียงราคาเสนอซื้อขายจากผู้ให้บริการสภาพคล่องชั้นนำและความเร็วในการดำเนินการที่รวดเร็วปานสายฟ้า</p>
+                        <p class="text-lg text-secondary mb-8 bg-gray-800/50 border-l-4 border-brand-red p-4 rounded-r-lg">
+                            <i class="fa-solid fa-chart-line text-green-400 mr-2"></i> จากสถิติพบว่า <strong class="text-white">95% ของเทรดเดอร์มืออาชีพ</strong>ที่ย้ายจากแพลตฟอร์มอื่นมายัง Moneta Markets สามารถ<strong class="text-white">ลดต้นทุนการเทรดได้มากกว่า 20%</strong>
+                        </p>
+                        <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-3 px-8 text-base">
+                           <i class="fa-solid fa-bolt mr-2"></i> ขอคำปรึกษาจากที่ปรึกษามืออาชีพ
+                        </a>
+                    </div>
+                    <div class="order-1 lg:order-2" data-aos="fade-left">
+                        <div class="glass-card p-6 rounded-2xl">
+                            <h4 class="text-lg font-bold text-white mb-4 text-center">เปรียบเทียบต้นทุนสเปรด (EUR/USD)</h4>
+                            <div class="space-y-4">
+                                <div class="w-full">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-secondary">Moneta ECN</span>
+                                        <span class="font-bold text-green-400">0.1 Pips</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                        <div class="bg-gradient-to-r from-green-500 to-green-400 h-2.5 rounded-full" style="width: 10%"></div>
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-secondary">คู่แข่ง A</span>
+                                        <span class="font-bold text-yellow-400">0.6 Pips</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                        <div class="bg-gradient-to-r from-yellow-500 to-yellow-400 h-2.5 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <span class="text-secondary">คู่แข่ง B</span>
+                                        <span class="font-bold text-red-500">1.2 Pips</span>
+                                    </div>
+                                    <div class="w-full bg-gray-700 rounded-full h-2.5">
+                                        <div class="bg-gradient-to-r from-red-600 to-red-500 h-2.5 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 5. Multi-Asset Section (Desire) -->
+        <!-- =================================================================== -->
+        <section id="multi-asset" class="py-16 md:py-20">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">ทำไมต้องเลือก<span class="gradient-text-brand">แพลตฟอร์มเทรดแบบครบวงจร</span>?</h2>
+                    <p class="text-lg text-secondary max-w-3xl mx-auto">หมดปัญหากับการสลับไปมาระหว่างแพลตฟอร์มต่างๆ ไม่ว่าจะเป็นตลาดการเงินแบบดั้งเดิมหรือตลาดเกิดใหม่ ทุกโอกาสอยู่ในมือคุณ</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-cubes-stacked"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">การจัดสรรสินทรัพย์ที่หลากหลาย</h3>
+                        <p class="text-secondary text-sm">เทรดฟอเร็กซ์, ทองคำ, น้ำมันดิบ, ดัชนี และคริปโตเคอร์เรนซีในบัญชีเดียว เพื่อกระจายความเสี่ยงและคว้าโอกาสที่มากขึ้น</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-microchip"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">สภาพแวดล้อมการเทรดระดับมืออาชีพ</h3>
+                        <p class="text-secondary text-sm">สัมผัสประสบการณ์สเปรดต่ำและการดำเนินการที่รวดเร็วของบัญชี ECN/STP ไม่มีการแทรกแซงจากดีลเลอร์ การเทรดจึงยุติธรรมและโปร่งใส</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-rocket"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">เลเวอเรจที่ทรงพลัง</h3>
+                        <p class="text-secondary text-sm">เพลิดเพลินกับเลเวอเรจสูงสำหรับผลิตภัณฑ์หลัก และเลเวอเรจสูงถึง <strong class="text-yellow-300">500 เท่า</strong> สำหรับคริปโตเคอร์เรนซีอย่างบิตคอยน์ เพื่อการใช้เงินทุนอย่างมีประสิทธิภาพ</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
+                        <div class="text-5xl mb-4 text-brand-red"><i class="fa-solid fa-shield-heart"></i></div>
+                        <h3 class="text-xl font-bold text-white mb-2">การรักษาความปลอดภัยระดับสูงสุด</h3>
+                        <p class="text-secondary text-sm">ชี้นำโดยมาตรฐาน FCA เงินทุนของลูกค้าจะถูกเก็บแยกไว้ต่างหาก เพื่อปกป้องทุกการลงทุนของคุณ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- =================================================================== -->
+        <!-- 6. Account Types Section (Action) -->
+        <!-- =================================================================== -->
+        <section id="accounts" class="py-16 md:py-20">
+            <div class="container mx-auto max-w-7xl px-4">
+                <div class="text-center mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">ค้นหาบัญชีเทรดที่เหมาะกับคุณที่สุด</h2>
+                    <p class="text-lg text-secondary">ไม่ว่าประสบการณ์หรือสไตล์ของคุณจะเป็นอย่างไร เรามีโซลูชันที่สร้างขึ้นเพื่อคุณโดยเฉพาะ</p>
+                     <div class="mt-6">
+                        <a href="#faq" class="cta-button-secondary py-3 px-6 text-base">
+                            <i class="fa-solid fa-circle-question mr-2"></i>ไม่แน่ใจว่าจะเลือกอันไหน? ดูคำถามที่พบบ่อย
+                        </a>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
+                        <h3 class="text-2xl font-bold text-white">STP</h3>
+                        <p class="text-secondary mb-4">ประสบการณ์โดยรวมที่ดีที่สุด</p>
+                        <p class="text-4xl font-black my-4">1.2<span class="text-lg"> Pips</span></p>
+                        <ul class="space-y-2 text-secondary mb-6 flex-grow">
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">0 ค่าคอมมิชชั่น</span></li>
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">ไม่มี Dealing Desk</span></li>
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">เหมาะสำหรับเทรดเดอร์ส่วนใหญ่</span></li>
+                        </ul>
+                        <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="mt-auto w-full text-center bg-gray-700/50 text-white font-bold py-3 px-6 rounded-full hover:bg-gray-600/50 transition-colors">เลือกบัญชีนี้</a>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl flex flex-col border-2 border-[--brand-red] relative" data-aos="fade-up" data-aos-delay="200">
+                        <span class="absolute top-0 -translate-y-1/2 bg-gradient-to-r from-[--brand-red] to-[--brand-blue] text-white text-sm font-bold px-4 py-1 rounded-full">แนะนำ</span>
+                        <h3 class="text-2xl font-bold text-white">ECN</h3>
+                        <p class="text-secondary mb-4">สำหรับผู้ที่ต้องการสเปรดต่ำสุด</p>
+                        <p class="text-4xl font-black my-4">0.0<span class="text-lg"> Pips</span></p>
+                        <ul class="space-y-2 text-secondary mb-6 flex-grow">
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">ค่าคอมมิชชั่นต่ำ $3/Lot</span></li>
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">สภาพคล่องสูง</span></li>
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">การดำเนินการรวดเร็ว</span></li>
+                        </ul>
+                        <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="mt-auto w-full text-center cta-button-brand font-bold py-3 px-6 rounded-full">เลือกบัญชีนี้</a>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
+                        <h3 class="text-2xl font-bold text-white">PRIME</h3>
+                        <p class="text-secondary mb-4">สำหรับลูกค้าระดับสถาบัน</p>
+                        <p class="text-4xl font-black my-4">0.4<span class="text-lg"> Pips</span></p>
+                        <ul class="space-y-2 text-secondary mb-6 flex-grow">
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">ค่าคอมมิชชั่นต่ำสุด $1/Lot</span></li>
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">ผู้จัดการบัญชีส่วนตัว</span></li>
+                            <li><i class="fa-solid fa-check text-brand-red mr-2"></i> <span class="text-primary">การเชื่อมต่อ API</span></li>
+                        </ul>
+                        <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="mt-auto w-full text-center bg-gray-700/50 text-white font-bold py-3 px-6 rounded-full hover:bg-gray-600/50 transition-colors">เลือกบัญชีนี้</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 7. CEO Section (Soft Trust) -->
+        <!-- =================================================================== -->
+        <section id="ceo" class="py-16 md:py-20">
+            <div class="container mx-auto max-w-4xl px-4">
+                <div class="glass-card rounded-2xl p-8 md:p-12 text-center" data-aos="fade-up">
+                    <blockquote class="text-xl md:text-2xl text-white italic max-w-3xl mx-auto mb-6">
+                        "เราก่อตั้ง Moneta Markets ด้วยความตั้งใจที่จะสร้างแพลตฟอร์มที่ให้ความสำคัญกับเทรดเดอร์เป็นอันดับแรก เรามุ่งมั่นที่จะมอบเทคโนโลยีชั้นนำ สภาพแวดล้อมที่ปลอดภัย และบริการที่จริงใจ เพื่อเป็นแบรนด์ที่น่าเชื่อถือที่สุดในภูมิภาคเอเชียแปซิฟิก"
+                    </blockquote>
+                    <div class="flex items-center justify-center">
+                        <p class="ceo-signature text-4xl mr-4">David Bily</p>
+                        <div>
+                            <p class="text-white font-bold">David Bily, CEO และผู้ก่อตั้งกลุ่มบริษัท</p>
+                            <a href="https://www.linkedin.com/in/david-bily-01785237/" class="text-blue-400 hover:text-blue-300 transition">
+                                <i class="fab fa-linkedin"></i> ติดตามเขาบน LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- =================================================================== -->
+        <!-- 8. FAQ Section (Action) -->
+        <!-- =================================================================== -->
+        <section id="faq" class="py-16 md:py-20 relative section-glow-top">
+            <div class="container mx-auto max-w-4xl px-4">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">ขจัดทุกข้อสงสัยของคุณ</h2>
+                    <p class="text-lg text-secondary">ตอบทุกคำถามที่คุณมีเกี่ยวกับ Moneta Markets</p>
+                </div>
+                <div class="space-y-4" data-aos="fade-up">
+                    <details class="glass-card rounded-lg p-6">
+                        <summary class="font-bold text-lg text-white cursor-pointer flex items-center"><span class="faq-tag">ยอดนิยม</span>Moneta Markets ปลอดภัยหรือไม่? <strong class="mx-1">เงินทุนของฉัน</strong>ปลอดภัยหรือไม่?</summary>
+                        <p class="text-secondary mt-4 pl-4 border-l-2 border-gray-700">ปลอดภัยอย่างแน่นอน กลุ่มบริษัท Moneta Markets ปฏิบัติตามมาตรฐานการกำกับดูแลของ FCA แห่งสหราชอาณาจักรที่เข้มงวดที่สุด เพื่อให้แน่ใจว่าเงินทุนของลูกค้าทั้งหมดจะถูกเก็บไว้ในบัญชีทรัสต์ที่แยกต่างหากกับธนาคารชั้นนำ และแยกออกจากเงินทุนดำเนินงานของบริษัทโดยสิ้นเชิง ความปลอดภัยของเงินทุนของคุณคือสิ่งสำคัญสูงสุดของเรา</p>
+                    </details>
+                    <details class="glass-card rounded-lg p-6">
+                        <summary class="font-bold text-lg text-white cursor-pointer flex items-center"><span class="faq-tag">ยอดฮิต</span><strong class="mx-1">โบนัส 50%</strong> ทำงานอย่างไร?</summary>
+                        <p class="text-secondary mt-4 pl-4 border-l-2 border-gray-700">ง่ายมาก! เมื่อคุณเป็นลูกค้าใหม่และฝากเงินครั้งแรกตั้งแต่ $500 ขึ้นไป เราจะเพิ่มโบนัสการเทรด 50% ของจำนวนเงินฝากเข้าบัญชีของคุณโดยอัตโนมัติ โบนัสนี้สามารถใช้ในการเทรดได้โดยตรงเพื่อเพิ่มกำลังซื้อของคุณ แต่ไม่สามารถถอนออกได้โดยตรง โปรดดูรายละเอียดเพิ่มเติมในข้อกำหนดและเงื่อนไขของโปรโมชั่น</p>
+                    </details>
+                     <details class="glass-card rounded-lg p-6">
+                        <summary class="font-bold text-lg text-white cursor-pointer flex items-center">รองรับวิธีการ<strong class="mx-1">ฝาก-ถอนเงิน</strong>แบบใดบ้าง? รวดเร็วหรือไม่?</summary>
+                        <p class="text-secondary mt-4 pl-4 border-l-2 border-gray-700">เรารองรับวิธีการฝาก-ถอนเงินที่สะดวกสบายหลากหลายช่องทาง รวมถึง <strong class="text-white">การโอนเงินผ่านธนาคาร, บัตรเครดิต/เดบิต (Visa, MasterCard) และ e-wallets หลายประเภท</strong> เรามุ่งมั่นให้บริการที่มีประสิทธิภาพ โดยการฝากเงินมักจะเข้าบัญชีทันที และคำขอถอนเงินจะดำเนินการภายใน 1-2 วันทำการ</p>
+                    </details>
+                    <details class="glass-card rounded-lg p-6">
+                        <summary class="font-bold text-lg text-white cursor-pointer">ฉันสามารถใช้<strong class="mx-1">แพลตฟอร์มการเทรด</strong>ใดได้บ้าง?</summary>
+                        <p class="text-secondary mt-4 pl-4 border-l-2 border-gray-700">เรามีแพลตฟอร์มที่ได้รับความนิยมสูงสุดในอุตสาหกรรมอย่าง <strong class="text-white">MetaTrader 4 (MT4)</strong> และ <strong class="text-white">MetaTrader 5 (MT5)</strong> พร้อมทั้ง <strong class="text-white">WebTrader</strong> ที่ทรงพลัง ซึ่งคุณสามารถเทรดได้ทุกที่ทุกเวลาโดยไม่ต้องดาวน์โหลดซอฟต์แวร์ใดๆ นอกจากนี้ ระบบ Copy Trading ของเรายังถูกรวมเข้าไว้อย่างราบรื่น</p>
+                    </details>
+                    <details class="glass-card rounded-lg p-6">
+                        <summary class="font-bold text-lg text-white cursor-pointer">บัญชี ECN และ STP แตกต่างกันอย่างไร? ฉันควรเลือกแบบไหน?</summary>
+                        <p class="text-secondary mt-4 pl-4 border-l-2 border-gray-700">ทั้งสองประเภทเป็นรูปแบบการประมวลผลโดยตรง (Straight Through Processing) ที่ไม่มีการแทรกแซงจากดีลเลอร์ เพื่อให้มั่นใจในความเป็นธรรมของการเทรด ความแตกต่างหลักอยู่ที่โครงสร้างต้นทุน:<br> - <strong class="text-white">บัญชี STP</strong>: สเปรดสูงกว่าเล็กน้อย แต่ไม่มีค่าคอมมิชชั่นเลย ทำให้ต้นทุนการเทรดชัดเจน เหมาะสำหรับเทรดเดอร์ส่วนใหญ่<br> - <strong class="text-white">บัญชี ECN</strong>: ให้สเปรดดิบที่ใกล้เคียง 0 แต่จะมีการคิดค่าคอมมิชชั่นต่ำคงที่ รูปแบบนี้เป็นที่นิยมในหมู่เทรดเดอร์รายวันและ Scalper ที่ต้องการสเปรดต่ำที่สุด</p>
+                    </details>
+                    <details class="glass-card rounded-lg p-6">
+                        <summary class="font-bold text-lg text-white cursor-pointer">การเทรด<strong class="mx-1">บิตคอยน์</strong>บนแพลตฟอร์มของคุณมีข้อได้เปรียบพิเศษอะไรบ้าง?</summary>
+                        <p class="text-secondary mt-4 pl-4 border-l-2 border-gray-700">มีแน่นอน ความแตกต่างที่ใหญ่ที่สุดคือ<strong class="text-white">เลเวอเรจและความยืดหยุ่น</strong> บนแพลตฟอร์มของเรา คุณเทรดสัญญาซื้อขายส่วนต่าง (CFD) ของบิตคอยน์ ซึ่งหมายความว่า:<br>1) <strong class="text-white">เลเวอเรจสูงมาก</strong>: คุณสามารถดำเนินการด้วยเลเวอเรจสูงสุด 500 เท่า ซึ่งสูงกว่าตลาดแลกเปลี่ยนทั่วไปมาก เพิ่มประสิทธิภาพเงินทุนของคุณ<br>2) <strong class="text-white">เทรดได้สองทิศทาง</strong>: ไม่ว่าตลาดจะขึ้นหรือลง คุณสามารถทำกำไรได้ทั้งจากการซื้อ (Long) และการขาย (Short)<br>3) <strong class="text-white">การกำกับดูแลชั้นนำ</strong>: การเทรดทั้งหมดของคุณอยู่ภายใต้กรอบการกำกับดูแลทางการเงินที่มั่นคง ทำให้เงินทุนของคุณปลอดภัยยิ่งขึ้น<br>และทั้งหมดนี้มาพร้อมกับ<span class="text-yellow-300">โบนัสเงินฝาก 50%</span> ของเรา!</p>
+                    </details>
+                    <details class="glass-card rounded-lg p-6">
+                        <summary class="font-bold text-lg text-white cursor-pointer flex items-center">หากฉันพบปัญหา ฉันจะได้รับ<strong class="mx-1">การสนับสนุนลูกค้า</strong>หรือไม่?</summary>
+                        <p class="text-secondary mt-4 pl-4 border-l-2 border-gray-700">แน่นอน เรามีบริการสนับสนุนลูกค้าหลายภาษาแบบมืออาชีพ <strong class="text-white">24/5</strong> คุณสามารถติดต่อทีมงานของเราได้ตลอดเวลาผ่าน <strong class="text-white">แชทสด, อีเมล หรือโทรศัพท์</strong> เรามุ่งมั่นที่จะแก้ไขข้อสงสัยของคุณเพื่อให้คุณมีประสบการณ์การเทรดที่ราบรื่น</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 9. Final CTA Section (Action) -->
+        <!-- =================================================================== -->
+        <section id="final-cta" class="py-20">
+            <div class="container mx-auto max-w-4xl px-4 text-center">
+                <div class="mb-6" data-aos="zoom-in">
+                    <div class="inline-block bg-red-500/10 border border-red-500/30 text-red-300 font-bold rounded-full px-6 py-3">
+                        <i class="fa-solid fa-hourglass-half fa-spin mr-3"></i>
+                        เปิดรับสิทธิ์เพียง 100 ท่านต่อวัน เหลือเพียง <span id="remaining-slots" class="text-white text-xl">15</span> สิทธิ์เท่านั้น!
+                    </div>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-4" data-aos="fade-up">ถึงเวลาแล้ว ที่จะตัดสินใจอย่างมืออาชีพ</h2>
+                <p class="text-lg text-secondary max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+                    อย่าพลาดโอกาสที่จำกัดเวลานี้ เข้าร่วมแพลตฟอร์มการเทรดระดับโลกที่อยู่ภายใต้การกำกับดูแลมาตรฐานสูงสุดและได้รับความไว้วางใจจากแชมเปี้ยน เส้นทางการเทรดของคุณจะแตกต่างจากที่เคยเป็นมา เริ่มต้นที่นี่
+                </p>
+                <div class="flex justify-center items-center space-x-4" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand font-bold py-4 px-12 text-lg inline-block">
+                        เปิดบัญชีทันที เพื่อรับสิทธิ์ของคุณ
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-slate-400 text-sm border-t border-[--border-color]">
+        <div class="container mx-auto max-w-7xl px-4 py-12">
+            <div class="text-center mb-8">
+                <img src="/logo.png" alt="โลโก้ Moneta Markets" class="h-10 mx-auto mb-4">
+                <p>Moneta Markets เป็นโบรกเกอร์ฟอเร็กซ์และสัญญาซื้อขายส่วนต่าง (CFD) ออนไลน์ชั้นนำระดับโลก</p>
+            </div>
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-center">
+                    <span class="font-bold text-white">คำเตือนความเสี่ยง:</span> สัญญาซื้อขายส่วนต่าง (CFD) เป็นเครื่องมือที่ซับซ้อนและมีความเสี่ยงสูงที่จะขาดทุนอย่างรวดเร็วเนื่องจากเลเวอเรจ บัญชีนักลงทุนรายย่อยส่วนใหญ่ขาดทุนเมื่อทำการเทรด CFD ในฟอเร็กซ์, คริปโตเคอร์เรนซี และสินทรัพย์อื่นๆ คุณควรพิจารณาว่าคุณเข้าใจวิธีการทำงานของ CFD หรือไม่ และคุณสามารถรับความเสี่ยงสูงในการขาดทุนเงินของคุณได้หรือไม่
+                </p>
+                <p class="text-center mt-4">
+                    &copy; 2024 Moneta Markets. สงวนลิขสิทธิ์.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA -->
+    <div class="floating-cta">
+        <a href="https://www.monetamarkets.com/th/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-3 px-5 flex items-center shadow-2xl">
+            <i class="fa-solid fa-gift fa-beat mr-2"></i>
+            <div>
+                <p class="font-bold text-sm leading-tight">รับโบนัส</p>
+                <p class="text-xs leading-tight">ข้อเสนอจำกัดเวลา</p>
+            </div>
+        </a>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            duration: 800,
+            once: true,
+        });
+
+        // --- Dynamic Elements JavaScript ---
+
+        // 1. Offer Countdown Timer
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            if (!countdownElement) return;
+
+            // Set offer end time to 24 hours from now
+            let endTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+
+            const timer = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                if (distance < 0) {
+                    clearInterval(timer);
+                    countdownElement.innerHTML = "ข้อเสนอสิ้นสุดแล้ว";
+                    return;
+                }
+
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = `${hours.toString().padStart(2, '0')} : ${minutes.toString().padStart(2, '0')} : ${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // 2. Dynamic Registration Numbers
+        function updateDynamicNumbers() {
+            const registrationsEl = document.getElementById('dynamic-registrations');
+            const slotsEl = document.getElementById('remaining-slots');
+            
+            if (registrationsEl) {
+                let currentRegs = 317;
+                setInterval(() => {
+                    currentRegs += Math.floor(Math.random() * 3) + 1;
+                    registrationsEl.textContent = currentRegs;
+                }, 5000); // Increase every 5 seconds
+            }
+
+            if (slotsEl) {
+                let currentSlots = 15;
+                 setInterval(() => {
+                    if (currentSlots > 3) {
+                       currentSlots--;
+                       slotsEl.textContent = currentSlots;
+                    }
+                }, 30000); // Decrease every 30 seconds
+            }
+        }
+
+        // Start all JS functions after page load
+        document.addEventListener('DOMContentLoaded', () => {
+            startCountdown();
+            updateDynamicNumbers();
+        });
+    </script>
+	<!-- POWERED BY Alan Lin, an All In One SEO expert -->
+</body>
+</html>
