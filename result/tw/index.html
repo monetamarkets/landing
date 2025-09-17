@@ -14,6 +14,7 @@
     <style>
         :root {
             --brand-red: #E6333D;
+            --brand-purple: #8A2BE2; /* New color for enhanced CTA */
             --brand-blue: #2855F5;
             --dark-bg: #101737;
             --card-bg: rgba(22, 30, 65, 0.7);
@@ -22,11 +23,8 @@
             --text-secondary: #cdd5f0;
         }
 
-        body {
-            font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-primary);
-        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', 'Noto Sans TC', sans-serif; background-color: var(--dark-bg); color: var(--text-primary); }
 
         .main-bg {
             background-color: var(--dark-bg);
@@ -36,92 +34,90 @@
             position: relative;
             overflow-x: hidden;
         }
-
-        .cta-button-brand {
-            background: linear-gradient(90deg, var(--brand-red), var(--brand-blue));
+        
+        /* --- Enhanced CTA Button --- */
+        .cta-button-enhanced {
+            background: linear-gradient(90deg, var(--brand-red), var(--brand-purple));
             color: white;
-            font-weight: 700;
+            font-weight: 900;
             border-radius: 9999px;
             transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(230, 51, 61, 0.5), 0 0 20px rgba(40, 85, 245, 0.3);
+            box-shadow: 0 5px 25px rgba(230, 51, 61, 0.6), 0 5px 25px rgba(138, 43, 226, 0.4);
+            animation: pulse-glow-cta 3s infinite ease-in-out;
+            display: inline-block; /* Make sure <a> tags behave like buttons */
+            text-decoration: none;
         }
 
-        .cta-button-brand:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 0 30px rgba(230, 51, 61, 0.7), 0 0 30px rgba(40, 85, 245, 0.5);
+        .cta-button-enhanced:hover {
+            transform: translateY(-4px) scale(1.08);
+            box-shadow: 0 8px 40px rgba(230, 51, 61, 0.8), 0 8px 40px rgba(138, 43, 226, 0.6);
         }
         
-        .gradient-text-brand {
-            background: linear-gradient(90deg, var(--brand-red), var(--brand-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-        }
+        @keyframes pulse-glow-cta { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
 
-        .glass-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            border-color: var(--brand-red);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .section-glow-top::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80%;
-            height: 100px;
-            background: radial-gradient(circle, rgba(230, 51, 61, 0.15), transparent 70%);
-            filter: blur(50px);
-            z-index: -1;
-        }
+        .cta-button-secondary { background-color: transparent; border: 2px solid var(--brand-red); color: var(--brand-red); text-decoration: none; }
+        .cta-button-secondary:hover { background-color: var(--brand-red); color: white; }
         
-        .text-secondary {
-            color: var(--text-secondary);
+        .gradient-text-brand { background: linear-gradient(90deg, var(--brand-red), var(--brand-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .glass-card { background: var(--card-bg); border: 1px solid var(--border-color); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: all 0.3s ease; }
+        .section-glow-top::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 80%; height: 100px; background: radial-gradient(circle, rgba(230, 51, 61, 0.15), transparent 70%); filter: blur(50px); z-index: -1; }
+        .text-secondary { color: var(--text-secondary); }
+        
+        /* --- NEW: FAQ Button Spacing Fix --- */
+        .faq-answer-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
-        .text-brand-red {
+        .faq-answer-wrapper p {
+             flex: 1 1 0; /* Allow text to grow and shrink */
+             min-width: 200px; /* Prevent text from getting too squished */
+        }
+        .cta-mini { 
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: rgba(230, 51, 61, 0.2);
             color: var(--brand-red);
+            border-radius: 9999px;
+            font-weight: bold;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            flex-shrink: 0; /* Prevent button from shrinking */
         }
+        .cta-mini:hover { background-color: var(--brand-red); color: white; transform: translateX(5px); }
 
-        .recommended-card {
-            background: linear-gradient(90deg, rgba(230, 51, 61, 0.15), rgba(40, 85, 245, 0.15));
-            border: 2px solid var(--brand-red);
-            animation: background-gradient-shift 10s infinite alternate ease-in-out;
-            background-size: 400% 100%;
-        }
-        
-        @keyframes background-gradient-shift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-
-        @keyframes pulse-glow {
-            0% {
-                box-shadow: 0 0 5px rgba(230, 51, 61, 0.6);
-                transform: scale(1);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(230, 51, 61, 0.9), 0 0 10px rgba(40, 85, 245, 0.5);
-                transform: scale(1.05);
-            }
-            100% {
-                box-shadow: 0 0 5px rgba(230, 51, 61, 0.6);
-                transform: scale(1);
-            }
-        }
-        .icon-pulse {
-            animation: pulse-glow 2.5s infinite ease-in-out;
-        }
+        /* --- NEW: Imported Card Styles --- */
+        .mm-cards{max-width:960px;margin:0 auto;padding:24px; color: var(--text-primary);}
+        .mm-cards__header {text-align: center; margin-bottom: 2rem;}
+        .mm-cards__title{font-size:2rem;font-weight: 900;margin:0 0 10px}
+        .mm-cards__subtitle{color: var(--text-secondary);opacity:.8;margin:0 0 20px; font-size: 1.125rem;}
+        .mm-cards__viewport{position:relative; min-height: 500px;} /* Set min-height to reduce layout shift */
+        .mm-card{display:none;background:rgba(22, 30, 65, 0.7);border:1px solid var(--border-color);border-radius:16px;padding:24px 32px;}
+        .mm-card.active{display:block;animation:fade .4s ease}
+        .mm-card__badge{display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(138, 43, 226, 0.15);border:1px solid rgba(138, 43, 226, 0.35);font-size:14px; margin-bottom:16px; font-weight: bold;}
+        .mm-card__title{font-size:26px;margin:0 0 12px; font-weight: 900;}
+        .mm-card__meta{margin:0 0 24px;padding-left:0; list-style-type: none; color: var(--text-secondary); line-height: 1.6;}
+        .mm-card__meta li { margin-bottom: 8px; }
+        .mm-card__section{margin:24px 0 10px;font-size:16px;opacity:.9; font-weight: bold; border-left: 3px solid var(--brand-red); padding-left: 10px;}
+        .mm-card__list{margin:0 0 24px;padding-left:18px; color: var(--text-secondary); line-height: 1.8;}
+        .mm-card__list li { margin-bottom: 8px; }
+        .mm-card__goal{background:rgba(16, 23, 55, 0.5);border:1px dashed var(--border-color);padding:16px;border-radius:10px; margin-top: 24px;}
+        .mm-card__ctas{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px}
+        .mm-btn{padding:12px 24px;border-radius:999px;text-decoration:none;border:1px solid transparent;display:inline-block; font-weight: bold; transition: all 0.3s ease;}
+        .mm-btn--primary{background:linear-gradient(90deg, var(--brand-red), var(--brand-purple));color:#fff;border-color:transparent}
+        .mm-btn--primary:hover{transform: translateY(-3px) scale(1.05);}
+        .mm-btn--ghost{background:transparent;border-color:rgba(255,255,255,.25);color:#fff}
+        .mm-btn--ghost:hover{border-color:#fff; background-color: rgba(255,255,255,0.1);}
+        .mm-cards__controls{display:flex;align-items:center;justify-content:space-between;margin-top:24px;gap:12px}
+        .mm-nav{background:transparent;border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:999px;padding:10px 18px;cursor:pointer; font-weight: bold;}
+        .mm-nav:hover{border-color:#fff; background-color: var(--brand-red);}
+        .mm-dots{display:flex;gap:8px;align-items:center;justify-content:center;flex:1}
+        .mm-dot{background:transparent;border:2px solid rgba(255,255,255,.25);color:var(--text-secondary); width: 12px; height: 12px; border-radius: 50%; padding: 0; cursor:pointer; font-size:0; opacity:.8}
+        .mm-dot[aria-selected="true"]{border-color:var(--brand-red); background-color: var(--brand-red); opacity:1}
+        @keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
     </style>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
@@ -133,10 +129,10 @@
         <div class="container mx-auto max-w-7xl px-4">
             <div class="flex justify-between items-center py-3">
                 <div>
-                    <img src="https://mon-ta-public.s3.ap-southeast-2.amazonaws.com/logo-new-dark.svg" alt="Moneta Markets 億匯 Logo" class="h-10 md:h-12">
+                    <img src="logo.png" alt="Moneta Markets 億匯 Logo" class="h-10 md:h-12">
                 </div>
                 <div>
-                    <a href="https://www.monetamarkets.com/cn/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-2 px-6 text-sm md:text-base">
+                    <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced py-2 px-6 text-sm md:text-base">
                         立即免費註冊
                     </a>
                 </div>
@@ -153,144 +149,154 @@
                 <h2 class="text-2xl md:text-4xl font-bold text-white mb-6" data-aos="fade-down" data-aos-delay="100">
                     三大投資人風格全解析與實戰建議
                 </h2>
-                <p class="text-lg md:text-xl text-secondary max-w-3xl mx-auto mb-10" data-aos="fade-up" data-aos-delay="200">
-                    在外匯與 CFD 市場裡，每位投資人起點與目標都不同。成功的關鍵，不是找最賺錢的方法，而是找到最適合自己的投資風格與工具。
+                <p class="text-lg md:text-xl text-secondary max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
+                    成功的關鍵，不是找最賺錢的方法，而是找到最適合自己的投資風格與工具。
                 </p>
-                <a href="#investor-types" class="cta-button-brand py-4 px-12 text-lg" data-aos="zoom-in" data-aos-delay="400">
-                    探索你的投資風格
-                </a>
+                <p class="text-yellow-300 font-bold mb-8" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fa-solid fa-clock-rotate-left mr-2"></i> 只需 3 分鐘，立即開啟您的模擬或真實帳戶
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="zoom-in" data-aos-delay="400">
+                    <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced py-4 px-10 text-lg w-full sm:w-auto">
+                        <i class="fa-solid fa-gift mr-2"></i> 立即註冊，領取 50% 贈金
+                    </a>
+                    <a href="#investor-cards" class="cta-button-secondary py-4 px-10 text-lg font-bold rounded-full w-full sm:w-auto transition-all duration-300">
+                        查看我的投資風格 <i class="fa-solid fa-arrow-down ml-2"></i>
+                    </a>
+                </div>
             </div>
         </section>
 
-        <section id="investor-types" class="py-16 md:py-20">
-            <div class="container mx-auto max-w-7xl px-4">
-                <div class="text-center mb-16" data-aos="fade-up">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">你是哪一種類型？</h2>
-                    <p class="text-lg text-secondary">從我們的分析中找到最適合你的起點與工具，打造專屬投資之路。</p>
+        <section id="investor-cards" class="mm-cards" data-aos="fade-up">
+            <div class="mm-cards__header">
+              <h2 class="mm-cards__title">你的投資人型態建議</h2>
+              <p class="mm-cards__subtitle">專屬於你的學習與投資計畫，現在就開設帳戶，啟動第一筆交易！</p>
+            </div>
+          
+            <div class="mm-cards__viewport" aria-live="polite">
+              <article class="mm-card" id="beginner" data-index="0" aria-labelledby="beginner-title" role="group">
+                <div class="mm-card__badge">Beginner｜穩健新手型</div>
+                <h3 class="mm-card__title" id="beginner-title">安全起步，打好投資基礎</h3>
+                <ul class="mm-card__meta">
+                  <li><strong>適合族群：</strong>完全沒接觸過外匯/CFD，或剛接觸金融市場的新手</li>
+                  <li><strong>投資目標：</strong>穩定累積資產、建立正確觀念與風險意識</li>
+                </ul>
+                <h4 class="mm-card__section">學習與投資重點</h4>
+                <ul class="mm-card__list">
+                  <li>從低風險商品入門：指數型 ETF、黃金存摺、主要貨幣對（如 EUR/USD）</li>
+                  <li>熟悉基本名詞與下單流程，理解槓桿與保證金概念</li>
+                  <li>建立「開戶 → 入金 → 下單 → 設止損 → 平倉」完整流程</li>
+                  <li>每週固定 30 分鐘以上學習，養成交易日誌習慣</li>
+                </ul>
+                <h4 class="mm-card__section">善用 Moneta Markets 功能</h4>
+                <ul class="mm-card__list">
+                  <li>免費模擬帳戶（Demo）：零風險練習下單與平台操作</li>
+                  <li>中文教學中心與基礎交易影片：技術分析/基本面/平台教學</li>
+                  <li>24/5 中文客服：開戶、入金、下單過程即時協助</li>
+                  <li>低門檻入金（最低 50 美元）：適合小額練習</li>
+                </ul>
+                <p class="mm-card__goal">📌 目標：降低學習門檻，從模擬實戰中建立信心，避免新手常見錯誤（過度槓桿、無止損、重倉）。</p>
+                <div class="mm-card__ctas">
+                  <a class="mm-btn mm-btn--primary" href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" aria-label="立即註冊 開始使用模擬帳戶">立即註冊｜開啟模擬帳戶</a>
+                  <a class="mm-btn mm-btn--ghost" href="#why-us">先看平台優勢</a>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                        <h3 class="text-2xl font-bold text-white">穩健新手型</h3>
-                        <p class="text-secondary mb-4">安全起步，打好投資基礎</p>
-                        <div class="text-left space-y-4 text-secondary mb-6 flex-grow">
-                            <p><strong><i class="fa-solid fa-bullseye text-brand-red mr-2"></i> 投資目標：</strong>穩定累積資產，建立正確觀念與風險意識。</p>
-                            <div>
-                                <h4 class="font-bold text-white mb-2">學習與投資重點：</h4>
-                                <ul class="space-y-2 pl-4 text-sm">
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 從低風險商品入門</li>
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 熟悉基本名詞與下單流程</li>
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 每週投入時間學習，養成習慣</li>
-                                </ul>
-                            </div>
-                             <div>
-                                <h4 class="font-bold text-white mb-2">善用 Moneta Markets 功能：</h4>
-                                <ul class="space-y-2 pl-4 text-sm">
-                                    <li><i class="fa-solid fa-desktop text-brand-blue mr-2"></i> <strong>免費模擬帳戶：</strong>無風險練習操作</li>
-                                    <li><i class="fa-solid fa-book-open text-brand-blue mr-2"></i> <strong>中文教學中心：</strong>從零開始學習</li>
-                                    <li><i class="fa-solid fa-headset text-brand-blue mr-2"></i> <strong>24/5 中文客服：</strong>隨時解答疑問</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <a href="https://www.monetamarkets.com/cn/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="mt-auto w-full text-center bg-gray-700/50 text-white font-bold py-3 px-6 rounded-full hover:bg-gray-600/50 transition-colors">從模擬帳戶開始</a>
-                    </div>
-
-                    <div class="glass-card recommended-card p-8 rounded-2xl flex flex-col relative" data-aos="fade-up" data-aos-delay="200">
-                        <span class="absolute top-0 -translate-y-1/2 bg-gradient-to-r from-[--brand-red] to-[--brand-blue] text-white text-sm font-bold px-4 py-1 rounded-full">推薦</span>
-                        <h3 class="text-2xl font-bold text-white">進取學習型</h3>
-                        <p class="text-secondary mb-4">邊學邊做，小額練兵</p>
-                        <div class="text-left space-y-4 text-secondary mb-6 flex-grow">
-                             <p><strong><i class="fa-solid fa-bullseye text-brand-red mr-2"></i> 投資目標：</strong>建立交易節奏與判斷邏輯，逐步擴大交易規模。</p>
-                            <div>
-                                <h4 class="font-bold text-white mb-2">學習與投資重點：</h4>
-                                <ul class="space-y-2 pl-4 text-sm">
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 設定小額練習資金，控制風險</li>
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 學習技術分析，如 K 線、趨勢線</li>
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 規劃資金控管，單筆風險不超過 2%</li>
-                                </ul>
-                            </div>
-                             <div>
-                                <h4 class="font-bold text-white mb-2">善用 Moneta Markets 功能：</h4>
-                                <ul class="space-y-2 pl-4 text-sm">
-                                    <li><i class="fa-solid fa-users text-brand-blue mr-2"></i> <strong>跟單交易：</strong>跟隨專家，邊看邊學</li>
-                                    <li><i class="fa-solid fa-chart-line text-brand-blue mr-2"></i> <strong>MT4/MT5 平台：</strong>豐富技術指標練習分析</li>
-                                    <li><i class="fa-solid fa-calendar-days text-brand-blue mr-2"></i> <strong>經濟日曆：</strong>建立基本面判斷</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <a href="https://www.monetamarkets.com/cn/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="mt-auto w-full text-center cta-button-brand font-bold py-3 px-6 rounded-full">開始小額實戰</a>
-                    </div>
-
-                    <div class="glass-card p-8 rounded-2xl flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                        <h3 class="text-2xl font-bold text-white">積極實戰型</h3>
-                        <p class="text-secondary mb-4">提升效率，追求穩定獲利</p>
-                          <div class="text-left space-y-4 text-secondary mb-6 flex-grow">
-                             <p><strong><i class="fa-solid fa-bullseye text-brand-red mr-2"></i> 投資目標：</strong>建立完整交易系統，穩定長期獲利。</p>
-                            <div>
-                                <h4 class="font-bold text-white mb-2">學習與投資重點：</h4>
-                                <ul class="space-y-2 pl-4 text-sm">
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 學習進階策略，如 FVG、SMC</li>
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 建立交易紀律，持續優化策略</li>
-                                    <li><i class="fa-solid fa-check text-brand-red mr-2"></i> 善用槓桿，提升資金效率</li>
-                                </ul>
-                            </div>
-                             <div>
-                                <h4 class="font-bold text-white mb-2">善用 Moneta Markets 功能：</h4>
-                                <ul class="space-y-2 pl-4 text-sm">
-                                    <li><i class="fa-solid fa-bolt text-brand-blue mr-2"></i> <strong>ECN 零點差帳戶：</strong>極低點差與閃電執行</li>
-                                    <li><i class="fa-solid fa-server text-brand-blue mr-2"></i> <strong>免費 VPS：</strong>支援 EA 24 小時交易</li>
-                                    <li><i class="fa-solid fa-arrow-up-right-dots text-brand-blue mr-2"></i> <strong>高槓桿：</strong>最高 1000:1 提升資金效率</li>
-                                </ul>
-                            </div>
-                            <div class="mt-4 p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-center">
-                                <p class="font-bold text-white"><i class="fa-solid fa-gift mr-2"></i>專屬福利</p>
-                                <p class="text-sm">入金滿 $500 即享 <strong class="text-yellow-300">50% 贈金</strong>，讓起始資金更勝一籌！</p>
-                            </div>
-                        </div>
-                        <a href="https://www.monetamarkets.com/cn/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="mt-auto w-full text-center bg-gray-700/50 text-white font-bold py-3 px-6 rounded-full hover:bg-gray-600/50 transition-colors">選擇 ECN 專業帳戶</a>
-                    </div>
+              </article>
+          
+              <article class="mm-card" id="learner" data-index="1" aria-labelledby="learner-title" role="group">
+                <div class="mm-card__badge">Learner｜進取學習型</div>
+                <h3 class="mm-card__title" id="learner-title">邊學邊做，小額練兵</h3>
+                <ul class="mm-card__meta">
+                  <li><strong>適合族群：</strong>有模擬帳戶經驗，願意投入時間學習，開始少量實單操作</li>
+                  <li><strong>投資目標：</strong>建立交易節奏與判斷邏輯，逐步擴大規模</li>
+                </ul>
+                <h4 class="mm-card__section">學習與投資重點</h4>
+                <ul class="mm-card__list">
+                  <li>設定練習資金（100–300 美元），小額實單、嚴控風險</li>
+                  <li>學習技術分析：K 線、趨勢線、支撐壓力、移動平均線</li>
+                  <li>練習短線或波段策略，設定合理停利/停損</li>
+                  <li>單筆風險不超過總資金 1–2%</li>
+                </ul>
+                <h4 class="mm-card__section">善用 Moneta Markets 功能</h4>
+                <ul class="mm-card__list">
+                  <li>跟單交易（CopyTrader）：跟隨專業交易員，邊看邊學進出場邏輯</li>
+                  <li>MT4/MT5 圖表與指標：完整技術分析工具</li>
+                  <li>經濟日曆與市場分析：每日數據/觀點建立基本面判斷</li>
+                  <li>風險管理工具：止損/止盈、移動保本等</li>
+                </ul>
+                <p class="mm-card__goal">📌 目標：以小額實戰＋專業工具，培養交易判斷力並形成個人策略框架。</p>
+                <div class="mm-card__ctas">
+                  <a class="mm-btn mm-btn--primary" href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" aria-label="立即註冊 開始小額練兵">立即註冊｜開始小額練兵</a>
+                  <a class="mm-btn mm-btn--ghost" href="#why-us">了解跟單交易優勢</a>
                 </div>
+              </article>
+          
+              <article class="mm-card" id="pro" data-index="2" aria-labelledby="pro-title" role="group">
+                <div class="mm-card__badge">Pro｜積極實戰型</div>
+                <h3 class="mm-card__title" id="pro-title">提升效率，追求穩定獲利</h3>
+                <ul class="mm-card__meta">
+                  <li><strong>適合族群：</strong>已有實單經驗，熟悉技術面與風控，追求效率與報酬</li>
+                  <li><strong>投資目標：</strong>建立完整交易系統，穩定長期獲利</li>
+                </ul>
+                <h4 class="mm-card__section">學習與投資重點</h4>
+                <ul class="mm-card__list">
+                  <li>進階策略：型態學、波浪、量價、FVG、SMC 等</li>
+                  <li>紀律化紀錄：進出理由、風報比、勝率，持續優化</li>
+                  <li>善用槓桿與保證金配置提升資金效率，並嚴控風險</li>
+                  <li>建立自動化策略（EA）與回測流程</li>
+                </ul>
+                <h4 class="mm-card__section">善用 Moneta Markets 功能</h4>
+                <ul class="mm-card__list">
+                  <li>ECN 帳戶：極低點差、毫秒成交，適合高頻/自動化</li>
+                  <li>VPS 伺服器：24 小時穩定運行 EA</li>
+                  <li>50% 入金禮：入金 ≥ $500 享 50% 加碼（例：入金 $1000 → 額外 $500）</li>
+                  <li>多平台：MT4/MT5/Pro Trader/TradingView 自由切換</li>
+                </ul>
+                <p class="mm-card__goal">📌 目標：以高效率工具與紀律，優化勝率與風報比，達成穩定獲利。</p>
+                <div class="mm-card__ctas">
+                  <a class="mm-btn mm-btn--primary" href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" aria-label="立即申請 ECN 專業帳戶">立即申請｜ECN 專業帳戶</a>
+                  <a class="mm-btn mm-btn--ghost" href="https://monetamarkets.github.io/landing/tw/">了解 50% 入金禮</a>
+                </div>
+              </article>
+            </div>
+          
+            <div class="mm-cards__controls">
+              <button class="mm-nav mm-nav--prev" type="button" aria-label="上一類型（←）">‹ 上一類型</button>
+              <div class="mm-dots" role="tablist" aria-label="投資人型態分頁">
+                <button class="mm-dot" data-target="#beginner" role="tab" aria-controls="beginner" aria-selected="false"></button>
+                <button class="mm-dot" data-target="#learner" role="tab" aria-controls="learner" aria-selected="false"></button>
+                <button class="mm-dot" data-target="#pro" role="tab" aria-controls="pro" aria-selected="false"></button>
+              </div>
+              <button class="mm-nav mm-nav--next" type="button" aria-label="下一類型（→）">下一類型 ›</button>
             </div>
         </section>
 
 
         <section id="why-us" class="py-16 md:py-20 relative section-glow-top">
-            <div class="container mx-auto max-w-7xl px-4">
+             <div class="container mx-auto max-w-7xl px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">為什麼選擇 <span class="gradient-text-brand">Moneta Markets 億匯</span>？</h2>
                     <p class="text-lg text-secondary">我們提供專業環境與強大工具，陪你一起在投資市場穩健前進。</p>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="100">
-                        <div class="mx-auto h-20 w-20 flex items-center justify-center rounded-full bg-brand-red/20 text-brand-red mb-4 icon-pulse">
-                            <i class="fas fa-cubes-stacked text-3xl"></i>
-                        </div>
+                        <div class="text-4xl mb-4 text-brand-red"><i class="fas fa-cubes-stacked"></i></div>
                         <h3 class="text-xl font-bold text-white mb-2">多平台與專業帳戶</h3>
                         <p class="text-secondary text-sm">支援 MT4/MT5/Pro Trader/App，提供 ECN 與標準帳戶，滿足不同交易風格。</p>
                     </div>
                     <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="200">
-                        <div class="mx-auto h-20 w-20 flex items-center justify-center rounded-full bg-brand-red/20 text-brand-red mb-4 icon-pulse">
-                            <i class="fas fa-rocket text-3xl"></i>
-                        </div>
+                        <div class="text-4xl mb-4 text-brand-red"><i class="fas fa-rocket"></i></div>
                         <h3 class="text-xl font-bold text-white mb-2">高效率交易環境</h3>
                         <p class="text-secondary text-sm">體驗閃電般的執行速度，與低至 0.0 點差的極致交易成本。</p>
                     </div>
                     <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="300">
-                        <div class="mx-auto h-20 w-20 flex items-center justify-center rounded-full bg-brand-red/20 text-brand-red mb-4 icon-pulse">
-                            <i class="fa-solid fa-shield-halved text-3xl"></i>
-                        </div>
+                        <div class="text-4xl mb-4 text-brand-red"><i class="fa-solid fa-shield-halved"></i></div>
                         <h3 class="text-xl font-bold text-white mb-2">頂級安全資金管理</h3>
                         <p class="text-secondary text-sm">受多國嚴格監管，客戶資金存放於 AA 級銀行信託帳戶，安全無虞。</p>
                     </div>
                     <div class="glass-card p-6 rounded-2xl text-center" data-aos="fade-up" data-aos-delay="400">
-                        <div class="mx-auto h-20 w-20 flex items-center justify-center rounded-full bg-brand-red/20 text-brand-red mb-4 icon-pulse">
-                            <i class="fa-solid fa-book-open text-3xl"></i>
-                        </div>
+                        <div class="text-4xl mb-4 text-brand-red"><i class="fa-solid fa-book-open"></i></div>
                         <h3 class="text-xl font-bold text-white mb-2">豐富教育與資源</h3>
                         <p class="text-secondary text-sm">提供海量教學影片、交易指南與網路研討會，助您持續成長。</p>
                     </div>
-                </div>
-                <div class="text-center mt-12" data-aos="fade-up">
-                    <p class="text-lg text-secondary">全球超過 <strong class="text-white">70,000</strong> 位活躍用戶，月交易量逾 <strong class="text-white">1000</strong> 億美元</p>
                 </div>
             </div>
         </section>
@@ -299,28 +305,28 @@
             <div class="container mx-auto max-w-4xl px-4">
                 <div class="text-center mb-16" data-aos="fade-up">
                     <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">常見問題</h2>
-                    <p class="text-lg text-secondary">為您解答關於投資入門的一切疑問。</p>
                 </div>
                 <div class="space-y-4" data-aos="fade-up">
                     <details class="glass-card rounded-lg p-6">
                         <summary class="font-bold text-lg text-white cursor-pointer">我是新手，該選擇哪種投資風格？</summary>
-                        <p class="text-secondary mt-4">我們強烈建議您從「穩健新手型」開始。最重要的一步是註冊一個免費的模擬帳戶，用虛擬資金來熟悉平台操作與市場波動，完全沒有風險。這是打好基礎、建立信心的最佳方式。</p>
-                    </details>
-                    <details class="glass-card rounded-lg p-6">
-                        <summary class="font-bold text-lg text-white cursor-pointer">Moneta Markets 如何幫助我學習交易？</summary>
-                        <p class="text-secondary mt-4">我們提供全方位的學習資源！您可以利用我們的中文教學中心、基礎交易影片來系統化學習。當您準備好小額實戰時，「跟單交易」功能可以讓您直接觀摩並複製專家的策略，是絕佳的實戰學習工具。</p>
+                        <div class="faq-answer-wrapper text-secondary mt-4">
+                            <p>我們強烈建議您從「穩健新手型」開始。最重要的一步是註冊一個免費的模擬帳戶，用虛擬資金來熟悉平台操作與市場波動，完全沒有風險。這是打好基礎、建立信心的最佳方式。</p>
+                            <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-mini">前往註冊 →</a>
+                        </div>
                     </details>
                     <details class="glass-card rounded-lg p-6">
                         <summary class="font-bold text-lg text-white cursor-pointer">50% 入金禮物是什麼？</summary>
-                        <p class="text-secondary mt-4">這是我們為準備好投入市場的交易者提供的強力支持。當您首次入金達到或超過 $500 美元時，我們會將您入金額度的 50% 作為交易贈金存入您的帳戶。例如，入金 $1000，您將額外獲得 $500 贈金，讓您的交易本金更充足。</p>
-                    </details>
-                    <details class="glass-card rounded-lg p-6">
-                        <summary class="font-bold text-lg text-white cursor-pointer">ECN 帳戶適合誰？</summary>
-                        <p class="text-secondary mt-4">ECN 帳戶專為「積極實戰型」交易者設計。它提供接近 0 的原始點差和閃電般的執行速度，交易成本極低，特別適合需要頻繁進出場的短線交易、日內交易或使用自動化交易（EA）的專業投資者。</p>
+                        <div class="faq-answer-wrapper text-secondary mt-4">
+                            <p>這是我們為準備好投入市場的交易者提供的強力支持。當您首次入金達到或超過 $500 美元時，我們會將您入金額度的 50% 作為交易贈金存入您的帳戶。</p>
+                            <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-mini">前往註冊領取 →</a>
+                        </div>
                     </details>
                     <details class="glass-card rounded-lg p-6">
                         <summary class="font-bold text-lg text-white cursor-pointer">Moneta Markets 安全嗎？我的資金有保障嗎？</summary>
-                        <p class="text-secondary mt-4">絕對安全。Moneta Markets 集團公司受全球多個頂級機構嚴格監管，確保所有客戶的資金都存放在頂級銀行的隔離信託帳戶中，與公司營運資金完全分離。您的資金安全是我們的最高優先級。</p>
+                        <div class="faq-answer-wrapper text-secondary mt-4">
+                            <p>絕對安全。Moneta Markets 集團公司受全球多個頂級機構嚴格監管，確保所有客戶的資金都存放在頂級銀行的隔離信託帳戶中，與公司營運資金完全分離。</p>
+                            <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-mini">立即安全開戶 →</a>
+                        </div>
                     </details>
                 </div>
             </div>
@@ -328,12 +334,12 @@
 
         <section id="final-cta" class="py-20">
             <div class="container mx-auto max-w-4xl px-4 text-center">
-                <h2 class="text-3xl md:text-4xl font-black text-white mb-4" data-aos="fade-up">是時候，開啟你的專屬投資之旅</h2>
-                <p class="text-lg text-secondary max-w-2xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
-                    立即加入全球超過 70,000 名交易者的行列，享受專業、安全、高效的交易環境。
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-4" data-aos="fade-up">準備好，開啟你的專屬投資之旅</h2>
+                 <p class="text-yellow-300 font-bold mb-8" data-aos="fade-up" data-aos-delay="250">
+                    <i class="fa-solid fa-rocket mr-2"></i> 現在註冊，僅需 3 步驟，還可領取高達 50% 開戶贈金！
                 </p>
-                <a href="https://www.monetamarkets.com/cn/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand font-bold py-4 px-12 text-lg inline-block" data-aos="zoom-in" data-aos-delay="400">
-                    立即註冊，從模擬帳戶開始
+                <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced font-bold py-4 px-12 text-lg inline-block" data-aos="zoom-in" data-aos-delay="400">
+                    立即註冊，領取您的專屬福利
                 </a>
             </div>
         </section>
@@ -342,129 +348,131 @@
     <footer class="bg-black text-slate-400 text-sm border-t border-[--border-color]">
         <div class="container mx-auto max-w-7xl px-4 py-12">
             <div class="text-center mb-8">
-                <img src="https://mon-ta-public.s3.ap-southeast-2.amazonaws.com/logo-new-dark.svg" alt="Moneta Markets 億匯 Logo" class="h-10 mx-auto mb-4">
+                <img src="logo.png" alt="Moneta Markets 億匯 Logo" class="h-10 mx-auto mb-4">
                 <p>Moneta Markets 億匯是一家全球領先的線上外匯和差價合約(CFD)經紀商。</p>
             </div>
             <div class="border-t border-gray-800 pt-8">
-                <p class="text-center">
-                    <span class="font-bold text-white">風險警告：</span>差價合約 (CFD) 是高度槓桿工具，損失可能超出初始投入資金。請務必審慎評估風險。
-                </p>
-                <p class="text-center mt-4">
-                    &copy; 2024 Moneta Markets 億匯. All Rights Reserved.
-                </p>
+                <p class="text-center"><span class="font-bold text-white">風險警告：</span>差價合約 (CFD) 是高度槓桿工具，損失可能超出初始投入資金。請務必審慎評估風險。</p>
+                <p class="text-center mt-4">&copy; 2025 Moneta Markets 億匯. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
     <div class="fixed bottom-4 right-4 z-50" data-aos="fade-left" data-aos-delay="600">
-        <a href="https://www.monetamarkets.com/cn/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-brand py-3 px-6 shadow-xl animate-bounce">
-            免費開設帳戶
-        </a>
+        <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced py-3 px-6 shadow-xl"><i class="fa-solid fa-gift mr-2"></i> 領取開戶贈金</a>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true,
-        });
-
-        // FAQ區塊互動性提升：只允許打開一個問題
-        document.querySelectorAll('details').forEach(detail => {
-            detail.addEventListener('click', (event) => {
-                if (!detail.hasAttribute('open')) {
-                    event.preventDefault();
-                    document.querySelectorAll('details').forEach(d => {
-                        d.removeAttribute('open');
-                    });
-                    detail.setAttribute('open', '');
+        // NEW: Self-contained card switcher logic from user
+        (function () {
+            // Wait for the DOM to be fully loaded
+            document.addEventListener('DOMContentLoaded', function() {
+                const order = ['#beginner', '#learner', '#pro'];
+                const cards = order.map(sel => document.querySelector(sel));
+                // Check if cards exist before proceeding
+                if (cards.some(c => c === null)) {
+                    console.error("One or more investor cards not found. Aborting card switcher script.");
+                    return;
                 }
+                const dots  = Array.from(document.querySelectorAll('.mm-dot'));
+                const prev  = document.querySelector('.mm-nav--prev');
+                const next  = document.querySelector('.mm-nav--next');
+
+                function idxFromHash() {
+                    const h = (location.hash || '').toLowerCase();
+                    const i = order.indexOf(h);
+                    return i >= 0 ? i : 1; // default to learner (index 1)
+                }
+
+                function show(i) {
+                    if (i < 0) i = order.length - 1;
+                    if (i >= order.length) i = 0;
+
+                    cards.forEach((c, n) => c.classList.toggle('active', n === i));
+                    dots.forEach((d, n) => d.setAttribute('aria-selected', String(n === i)));
+                    
+                    if (location.hash.toLowerCase() !== order[i]) {
+                        history.replaceState(null, '', order[i]);
+                    }
+                }
+
+                // Initial load
+                show(idxFromHash());
+
+                // Event Listeners
+                window.addEventListener('hashchange', () => show(idxFromHash()));
+                prev.addEventListener('click', () => show(idxFromHash() - 1));
+                next.addEventListener('click', () => show(idxFromHash() + 1));
+                dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
+                document.addEventListener('keydown', (e) => {
+                    if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
+                    if (e.key === 'ArrowLeft') { e.preventDefault(); show(idxFromHash() - 1); }
+                    if (e.key === 'ArrowRight') { e.preventDefault(); show(idxFromHash() + 1); }
+                });
+            });
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 800, once: true });
+
+            // FAQ accordion logic
+            document.querySelectorAll('details').forEach(detail => {
+                detail.addEventListener('click', (event) => {
+                    if (!detail.hasAttribute('open')) {
+                        event.preventDefault();
+                        document.querySelectorAll('details').forEach(d => { d.removeAttribute('open'); });
+                        detail.setAttribute('open', '');
+                    }
+                });
             });
         });
 
-        // Three.js 動態金融科技網路動畫
-        let scene, camera, renderer, particles, particleSystem, linesGroup;
-
+        // Three.js Background Animation
+        let scene, camera, renderer, particles, particleSystem;
         function init() {
             scene = new THREE.Scene();
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000);
             camera.position.z = 200;
-
             renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('finance-bg'), alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(window.devicePixelRatio);
-
             particles = new THREE.BufferGeometry();
-            const particleCount = 1000;
-            const positions = new Float32Array(particleCount * 3);
-            const colors = new Float32Array(particleCount * 3);
-            const colorRed = new THREE.Color(0xE6333D);
-            const colorBlue = new THREE.Color(0x2855F5);
-
+            const particleCount = 1000, positions = new Float32Array(particleCount * 3), colors = new Float32Array(particleCount * 3);
+            const colorRed = new THREE.Color(0xE6333D), colorBlue = new THREE.Color(0x2855F5);
             for (let i = 0; i < particleCount; i++) {
                 positions[i * 3] = (Math.random() - 0.5) * 600;
                 positions[i * 3 + 1] = (Math.random() - 0.5) * 600;
                 positions[i * 3 + 2] = (Math.random() - 0.5) * 600;
-
                 const color = (Math.random() > 0.5) ? colorRed : colorBlue;
-                colors[i * 3] = color.r;
-                colors[i * 3 + 1] = color.g;
-                colors[i * 3 + 2] = color.b;
+                colors[i * 3] = color.r; colors[i * 3 + 1] = color.g; colors[i * 3 + 2] = color.b;
             }
-            
             particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
             particles.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-            const particleMaterial = new THREE.PointsMaterial({
-                size: 1.5,
-                transparent: true,
-                opacity: 0.7,
-                vertexColors: true
-            });
+            const particleMaterial = new THREE.PointsMaterial({ size: 1.5, transparent: true, opacity: 0.7, vertexColors: true });
             particleSystem = new THREE.Points(particles, particleMaterial);
             scene.add(particleSystem);
-
-            linesGroup = new THREE.Group();
-            scene.add(linesGroup);
-
-            const numLines = 300;
-            const lineMaterial = new THREE.LineBasicMaterial({
-                color: 0xCCCCCC,
-                transparent: true,
-                opacity: 0.1
-            });
-
-            for (let i = 0; i < numLines; i++) {
-                const startParticleIndex = Math.floor(Math.random() * particleCount);
-                let endParticleIndex = Math.floor(Math.random() * particleCount);
-                while (endParticleIndex === startParticleIndex) {
-                    endParticleIndex = Math.floor(Math.random() * particleCount);
-                }
-
-                const p1 = new THREE.Vector3(positions[startParticleIndex * 3], positions[startParticleIndex * 3 + 1], positions[startParticleIndex * 3 + 2]);
-                const p2 = new THREE.Vector3(positions[endParticleIndex * 3], positions[endParticleIndex * 3 + 1], positions[endParticleIndex * 3 + 2]);
-
-                const lineGeometry = new THREE.BufferGeometry().setFromPoints([p1, p2]);
-                const line = new THREE.Line(lineGeometry, lineMaterial);
-                linesGroup.add(line);
-            }
-
             animate();
         }
-
         function animate() {
             requestAnimationFrame(animate);
-            particleSystem.rotation.y += 0.0005;
-            particleSystem.rotation.x += 0.0002;
-            linesGroup.rotation.copy(particleSystem.rotation);
-            renderer.render(scene, camera);
+            if (particleSystem) {
+                particleSystem.rotation.y += 0.0005;
+                particleSystem.rotation.x += 0.0002;
+            }
+            if (renderer && scene && camera) {
+                renderer.render(scene, camera);
+            }
         }
-
         window.addEventListener('load', init);
         window.addEventListener('resize', function(){
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            if(camera) {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+            }
+            if(renderer) {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
         });
     </script>
 </body>
