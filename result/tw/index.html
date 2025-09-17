@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF1531R30Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MF1531R30Y');
+    </script>
+    
     <style>
         :root {
             --brand-red: #E6333D;
@@ -129,7 +138,9 @@
                     <img src="logo.png" alt="Moneta Markets 億匯 Logo" class="h-10 md:h-12">
                 </div>
                 <div>
-                    <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced py-2 px-6 text-sm md:text-base">
+                    <a href="https://monetamarkets.github.io/landing/tw/" target="_blank" class="cta-button-enhanced py-2 px-6 text-sm md:text-base"
+                       data-ga-name="header_signup"
+                       data-ga-section="header">
                         立即免費註冊
                     </a>
                 </div>
@@ -153,10 +164,14 @@
                     <i class="fa-solid fa-clock-rotate-left mr-2"></i> 只需 3 分鐘，立即開啟您的模擬或真實帳戶
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center items-center gap-4" data-aos="zoom-in" data-aos-delay="400">
-                    <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced py-4 px-10 text-lg w-full sm:w-auto">
+                    <a href="https://monetamarkets.github.io/landing/tw/" target="_blank" class="cta-button-enhanced py-4 px-10 text-lg w-full sm:w-auto"
+                       data-ga-name="hero_signup_main"
+                       data-ga-section="hero">
                         <i class="fa-solid fa-gift mr-2"></i> 立即註冊，領取 50% 贈金
                     </a>
-                    <a href="#investor-cards" class="cta-button-secondary py-4 px-10 text-lg font-bold rounded-full w-full sm:w-auto transition-all duration-300">
+                    <a href="#investor-cards" class="cta-button-secondary py-4 px-10 text-lg font-bold rounded-full w-full sm:w-auto transition-all duration-300"
+                       data-ga-name="hero_scroll_to_cards"
+                       data-ga-section="hero">
                         查看我的投資風格 <i class="fa-solid fa-arrow-down ml-2"></i>
                     </a>
                 </div>
@@ -193,8 +208,14 @@
                 </ul>
                 <p class="mm-card__goal">📌 目標：降低學習門檻，從模擬實戰中建立信心，避免新手常見錯誤（過度槓桿、無止損、重倉）。</p>
                 <div class="mm-card__ctas">
-                  <a class="mm-btn mm-btn--primary" href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" aria-label="立即註冊 開始使用模擬帳戶">立即註冊｜開啟模擬帳戶</a>
-                  <a class="mm-btn mm-btn--ghost" href="#why-us">先看平台優勢</a>
+                  <a class="mm-btn mm-btn--primary" href="https://monetamarkets.github.io/landing/tw/" target="_blank" aria-label="立即註冊 開始使用模擬帳戶"
+                     data-ga-name="card_signup_beginner" data-ga-section="investor_cards">
+                     立即註冊｜開啟模擬帳戶
+                  </a>
+                  <a class="mm-btn mm-btn--ghost" href="#why-us"
+                     data-ga-name="card_view_features_beginner" data-ga-section="investor_cards">
+                     先看平台優勢
+                  </a>
                 </div>
               </article>
           
@@ -221,8 +242,14 @@
                 </ul>
                 <p class="mm-card__goal">📌 目標：以小額實戰＋專業工具，培養交易判斷力並形成個人策略框架。</p>
                 <div class="mm-card__ctas">
-                  <a class="mm-btn mm-btn--primary" href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" aria-label="立即註冊 開始小額練兵">立即註冊｜開始小額練兵</a>
-                  <a class="mm-btn mm-btn--ghost" href="#why-us">了解跟單交易優勢</a>
+                  <a class="mm-btn mm-btn--primary" href="https://monetamarkets.github.io/landing/tw/" target="_blank" aria-label="立即註冊 開始小額練兵"
+                     data-ga-name="card_signup_learner" data-ga-section="investor_cards">
+                     立即註冊｜開始小額練兵
+                  </a>
+                  <a class="mm-btn mm-btn--ghost" href="#why-us"
+                     data-ga-name="card_view_features_learner" data-ga-section="investor_cards">
+                     了解跟單交易優勢
+                  </a>
                 </div>
               </article>
           
@@ -249,20 +276,35 @@
                 </ul>
                 <p class="mm-card__goal">📌 目標：以高效率工具與紀律，優化勝率與風報比，達成穩定獲利。</p>
                 <div class="mm-card__ctas">
-                  <a class="mm-btn mm-btn--primary" href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" aria-label="立即申請 ECN 專業帳戶">立即申請｜ECN 專業帳戶</a>
-                  <a class="mm-btn mm-btn--ghost" href="https://monetamarkets.github.io/landing/tw/">了解 50% 入金禮</a>
+                  <a class="mm-btn mm-btn--primary" href="https://monetamarkets.github.io/landing/tw/" target="_blank" aria-label="立即申請 ECN 專業帳戶"
+                     data-ga-name="card_signup_pro" data-ga-section="investor_cards">
+                     立即申請｜ECN 專業帳戶
+                  </a>
+                  <a class="mm-btn mm-btn--ghost" href="#faq"
+                     data-ga-name="card_view_faq_pro" data-ga-section="investor_cards">
+                     了解 50% 入金禮
+                  </a>
                 </div>
               </article>
             </div>
           
             <div class="mm-cards__controls">
-              <button class="mm-nav mm-nav--prev" type="button" aria-label="上一類型（←）">‹ 上一類型</button>
+              <button class="mm-nav mm-nav--prev" type="button" aria-label="上一類型（←）"
+                      data-ga-name="card_nav_prev" data-ga-section="investor_cards">
+                      ‹ 上一類型
+              </button>
               <div class="mm-dots" role="tablist" aria-label="投資人型態分頁">
-                <button class="mm-dot" data-target="#beginner" role="tab" aria-controls="beginner" aria-selected="false"></button>
-                <button class="mm-dot" data-target="#learner" role="tab" aria-controls="learner" aria-selected="false"></button>
-                <button class="mm-dot" data-target="#pro" role="tab" aria-controls="pro" aria-selected="false"></button>
+                <button class="mm-dot" data-target="#beginner" role="tab" aria-controls="beginner" aria-selected="false"
+                        data-ga-name="card_nav_dot_beginner" data-ga-section="investor_cards"></button>
+                <button class="mm-dot" data-target="#learner" role="tab" aria-controls="learner" aria-selected="false"
+                        data-ga-name="card_nav_dot_learner" data-ga-section="investor_cards"></button>
+                <button class="mm-dot" data-target="#pro" role="tab" aria-controls="pro" aria-selected="false"
+                        data-ga-name="card_nav_dot_pro" data-ga-section="investor_cards"></button>
               </div>
-              <button class="mm-nav mm-nav--next" type="button" aria-label="下一類型（→）">下一類型 ›</button>
+              <button class="mm-nav mm-nav--next" type="button" aria-label="下一類型（→）"
+                      data-ga-name="card_nav_next" data-ga-section="investor_cards">
+                      下一類型 ›
+              </button>
             </div>
         </section>
 
@@ -308,21 +350,30 @@
                         <summary class="font-bold text-lg text-white cursor-pointer">我是新手，該選擇哪種投資風格？</summary>
                         <div class="faq-answer-wrapper text-secondary mt-4">
                             <p>我們強烈建議您從「穩健新手型」開始。最重要的一步是註冊一個免費的模擬帳戶，用虛擬資金來熟悉平台操作與市場波動，完全沒有風險。這是打好基礎、建立信心的最佳方式。</p>
-                            <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-mini">前往註冊 →</a>
+                            <a href="https://monetamarkets.github.io/landing/tw/" target="_blank" class="cta-mini"
+                               data-ga-name="faq_signup_for_beginner" data-ga-section="faq">
+                               前往註冊 →
+                            </a>
                         </div>
                     </details>
                     <details class="glass-card rounded-lg p-6">
                         <summary class="font-bold text-lg text-white cursor-pointer">50% 入金禮物是什麼？</summary>
                         <div class="faq-answer-wrapper text-secondary mt-4">
                             <p>這是我們為準備好投入市場的交易者提供的強力支持。當您首次入金達到或超過 $500 美元時，我們會將您入金額度的 50% 作為交易贈金存入您的帳戶。</p>
-                            <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-mini">前往註冊領取 →</a>
+                            <a href="https://monetamarkets.github.io/landing/tw/" target="_blank" class="cta-mini"
+                               data-ga-name="faq_signup_for_bonus" data-ga-section="faq">
+                               前往註冊領取 →
+                            </a>
                         </div>
                     </details>
                     <details class="glass-card rounded-lg p-6">
                         <summary class="font-bold text-lg text-white cursor-pointer">Moneta Markets 安全嗎？我的資金有保障嗎？</summary>
                         <div class="faq-answer-wrapper text-secondary mt-4">
                             <p>絕對安全。Moneta Markets 集團公司受全球多個頂級機構嚴格監管，確保所有客戶的資金都存放在頂級銀行的隔離信託帳戶中，與公司營運資金完全分離。</p>
-                            <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-mini">立即安全開戶 →</a>
+                            <a href="https://monetamarkets.github.io/landing/tw/" target="_blank" class="cta-mini"
+                               data-ga-name="faq_signup_for_security" data-ga-section="faq">
+                               立即安全開戶 →
+                            </a>
                         </div>
                     </details>
                 </div>
@@ -335,7 +386,9 @@
                  <p class="text-yellow-300 font-bold mb-8" data-aos="fade-up" data-aos-delay="250">
                     <i class="fa-solid fa-rocket mr-2"></i> 現在註冊，僅需 3 步驟，還可領取高達 50% 開戶贈金！
                 </p>
-                <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced font-bold py-4 px-12 text-lg inline-block" data-aos="zoom-in" data-aos-delay="400">
+                <a href="https://monetamarkets.github.io/landing/tw/" target="_blank" class="cta-button-enhanced font-bold py-4 px-12 text-lg inline-block" data-aos="zoom-in" data-aos-delay="400"
+                   data-ga-name="final_cta_signup"
+                   data-ga-section="final_cta">
                     立即註冊，領取您的專屬福利
                 </a>
             </div>
@@ -356,18 +409,22 @@
     </footer>
 
     <div class="fixed bottom-4 right-4 z-50" data-aos="fade-left" data-aos-delay="600">
-        <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-enhanced py-3 px-6 shadow-xl"><i class="fa-solid fa-gift mr-2"></i> 領取開戶贈金</a>
+        <a href="https://monetamarkets.github.io/landing/tw/" target="_blank" class="cta-button-enhanced py-3 px-6 shadow-xl"
+           data-ga-name="floating_cta_signup"
+           data-ga-section="floating_cta">
+           <i class="fa-solid fa-gift mr-2"></i> 領取開戶贈金
+        </a>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Card Switcher Logic
         (function () {
             document.addEventListener('DOMContentLoaded', function() {
                 // MODIFIED: Smart scroll logic
                 if (location.hash) {
                     const targetElement = document.getElementById('investor-cards');
                     if (targetElement) {
-                        // Use timeout to ensure it runs after initial browser jump attempt
                         setTimeout(() => {
                             targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }, 100);
@@ -376,23 +433,24 @@
 
                 const order = ['#beginner', '#learner', '#pro'];
                 const cards = order.map(sel => document.querySelector(sel));
-                if (cards.some(c => c === null)) {
-                    console.error("One or more investor cards not found. Aborting card switcher script.");
-                    return;
-                }
+                if (cards.some(c => c === null)) { return; }
                 const dots  = Array.from(document.querySelectorAll('.mm-dot'));
                 const prev  = document.querySelector('.mm-nav--prev');
                 const next  = document.querySelector('.mm-nav--next');
+                const pageVariant = 'tw'; // Define page variant for GA
 
                 function idxFromHash() {
                     const h = (location.hash || '').toLowerCase();
                     const i = order.indexOf(h);
-                    return i >= 0 ? i : 1; // default to learner (index 1)
+                    return i >= 0 ? i : 1; // default to learner
                 }
 
-                function show(i) {
+                function show(i, triggerMethod = 'direct') {
                     if (i < 0) i = order.length - 1;
                     if (i >= order.length) i = 0;
+
+                    const currentCardId = order[i].substring(1);
+                    const previousCardId = (location.hash || order[1]).substring(1);
 
                     cards.forEach((c, n) => c.classList.toggle('active', n === i));
                     dots.forEach((d, n) => d.setAttribute('aria-selected', String(n === i)));
@@ -400,22 +458,41 @@
                     if (location.hash.toLowerCase() !== order[i]) {
                         history.replaceState(null, '', order[i]);
                     }
+
+                    // --- GA Event Tracking ---
+                    if (typeof gtag === 'function') {
+                        // 1. view_investor_card: Fires when any card is shown
+                        gtag('event', 'view_investor_card', {
+                            'card_name': currentCardId,
+                            'page_variant': pageVariant
+                        });
+
+                        // 2. switch_investor_card: Fires only on user interaction, not direct load
+                        if (triggerMethod !== 'direct' && currentCardId !== previousCardId) {
+                             gtag('event', 'switch_investor_card', {
+                                'card_name': currentCardId,
+                                'trigger_method': triggerMethod,
+                                'page_variant': pageVariant
+                            });
+                        }
+                    }
                 }
 
-                show(idxFromHash());
+                show(idxFromHash(), 'direct'); // Initial load
 
-                window.addEventListener('hashchange', () => show(idxFromHash()));
-                prev.addEventListener('click', () => show(idxFromHash() - 1));
-                next.addEventListener('click', () => show(idxFromHash() + 1));
-                dots.forEach((d, n) => d.addEventListener('click', () => show(n)));
+                window.addEventListener('hashchange', () => show(idxFromHash(), 'direct'));
+                prev.addEventListener('click', () => show(idxFromHash() - 1, 'arrow_nav'));
+                next.addEventListener('click', () => show(idxFromHash() + 1, 'arrow_nav'));
+                dots.forEach((d, n) => d.addEventListener('click', () => show(n, 'dot_nav')));
                 document.addEventListener('keydown', (e) => {
                     if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA') return;
-                    if (e.key === 'ArrowLeft') { e.preventDefault(); show(idxFromHash() - 1); }
-                    if (e.key === 'ArrowRight') { e.preventDefault(); show(idxFromHash() + 1); }
+                    if (e.key === 'ArrowLeft') { e.preventDefault(); show(idxFromHash() - 1, 'keyboard_nav'); }
+                    if (e.key === 'ArrowRight') { e.preventDefault(); show(idxFromHash() + 1, 'keyboard_nav'); }
                 });
             });
         })();
 
+        // General Page Scripts
         document.addEventListener('DOMContentLoaded', function() {
             AOS.init({ duration: 800, once: true });
 
@@ -430,6 +507,7 @@
             });
         });
 
+        // Three.js Background Animation
         let scene, camera, renderer, particles, particleSystem;
         function init() {
             scene = new THREE.Scene();
@@ -475,6 +553,63 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
             }
         });
+    </script>
+
+    <script>
+    (function() {
+      // Wait for DOM to be ready to ensure all elements are available
+      document.addEventListener('DOMContentLoaded', function() {
+        const VIS_THRESHOLD = 0.5;
+      
+        const pageVariant = 'tw'; // Hardcoded for this page version
+      
+        // Select all trackable elements, now including buttons
+        const trackableElements = Array.from(document.querySelectorAll('a[data-ga-name], button[data-ga-name]'));
+        
+        if (!trackableElements.length || typeof gtag !== 'function') return;
+      
+        // Impression Tracking
+        const impressed = new WeakSet();
+        const observer = ('IntersectionObserver' in window)
+          ? new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= VIS_THRESHOLD && !impressed.has(entry.target)) {
+                  impressed.add(entry.target);
+                  const el = entry.target;
+                  gtag('event', 'cta_impression', {
+                    'button_name': el.dataset.gaName || '(not-set)',
+                    'section': el.dataset.gaSection || '(not-set)',
+                    'link_url': el.href || '(not-set)', // Will be undefined for buttons, which is fine
+                    'page_variant': pageVariant,
+                    'page_name': 'investor_type_result'
+                  });
+                }
+              });
+            }, { threshold: [VIS_THRESHOLD] })
+          : null;
+      
+        // Bind Click & Impression Tracking
+        trackableElements.forEach(el => {
+          if (observer) {
+            observer.observe(el);
+          }
+      
+          el.addEventListener('click', () => {
+            try {
+              gtag('event', 'cta_click', {
+                'button_name': el.dataset.gaName || '(not-set)',
+                'section': el.dataset.gaSection || '(not-set)',
+                'link_url': el.href || '(not-set)',
+                'page_variant': pageVariant,
+                'page_name': 'investor_type_result'
+              });
+            } catch(e) {
+              console.error('GA event tracking failed:', e);
+            }
+          });
+        });
+      });
+    })();
     </script>
 </body>
 </html>
