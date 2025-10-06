@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你的專屬投資之路 | Moneta Markets 億匯</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF1531R30Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MF1531R30Y');
+    </script>
+    
+    <style>
+        :root {
+            --brand-red: #ff3b3b;
+            --brand-purple: #8A2BE2;
+            --brand-blue: #2855F5;
+            --dark-bg: #101737;
+            --dark-card-bg: #0c0c1a;
+
+            /* Default background gradients (Beginner) */
+            --bg-gradient-top: rgba(40, 85, 245, 0.15);
+            --bg-gradient-bottom: rgba(138, 43, 226, 0.15);
+        }
+
+        /* Profile-specific background gradients */
+        body.profile-learner {
+            --bg-gradient-top: rgba(0, 150, 255, 0.15);
+            --bg-gradient-bottom: rgba(0, 200, 150, 0.1);
+        }
+        body.profile-pro {
+            --bg-gradient-top: rgba(255, 59, 59, 0.2);
+            --bg-gradient-bottom: rgba(255, 100, 0, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', 'Noto Sans TC', sans-serif; 
+            background-color: var(--dark-bg); 
+            color: #FFFFFF; 
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        .main-bg {
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, var(--bg-gradient-top), transparent),
+                radial-gradient(ellipse 80% 50% at 50% 120%, var(--bg-gradient-bottom), transparent);
+            position: relative; overflow-x: hidden;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 59, 59, 0.4), 0 0 25px rgba(255, 59, 59, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 59, 59, 0.7), 0 0 40px rgba(255, 59, 59, 0.4); }
+        }
+        .cta-button-primary {
+            background-color: var(--brand-red);
+            color: white; font-weight: 700; border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(255, 59, 59, 0.5);
+            display: inline-block; text-decoration: none;
+            padding: 0.75rem 2rem;
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        .cta-button-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 59, 59, 0.8);
+            filter: brightness(1.1);
+        }
+        
+        .cta-button-secondary {
+            background-color: transparent; color: #f3f4f6; border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 600; border-radius: 9999px; transition: all 0.3s ease;
+            padding: 0.625rem 1.5rem; display: inline-block; text-decoration: none;
+        }
+        .cta-button-secondary:hover { background-color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+        .result-card {
+            display: none; background-color: var(--dark-card-bg); border-radius: 16px;
+            padding: 2.5rem; color: #ffffff; text-align: center; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .result-card.active { display: block; animation:fade .4s ease }
+        @keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+        
+        .advice-card { margin-top: 2.5rem; background-color: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px; text-align: left; }
+        .advice-card__title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem; }
+        .advice-card__list { list-style-type: none; padding: 0; margin: 0; color: #d1d5db; }
+        .advice-card__list li { padding-left: 1.75rem; position: relative; margin-bottom: 0.75rem; line-height: 1.6; }
+        .advice-card__list li::before { content: "✓"; color: var(--brand-red); position: absolute; left: 0; font-size: 1.25rem; }
+        .advice-card__tip { margin-top: 1.5rem; padding: 0.75rem 1rem; background-color: rgba(255, 59, 59, 0.1); color: #ffb8b8; border-left: 3px solid var(--brand-red); font-size: 0.9rem; border-radius: 0 8px 8px 0; }
+        
+        .main-cta-section { text-align: center; background: linear-gradient(180deg, rgba(255, 59, 59, 0.15) 0%, rgba(255, 59, 59, 0) 100%); padding: 4rem 1rem; }
+        .testimonial-card { background-color: var(--dark-card-bg); border: 1px solid rgba(255,255,255,0.1); }
+        .faq-item details { background-color: var(--dark-card-bg); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body class="main-bg">
+
+    <canvas id="finance-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></canvas>
+    <div class="relative z-10">
+
+    <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-50 border-b border-[var(--brand-red)]/30">
+        <div class="container mx-auto max-w-7xl px-4 flex justify-between items-center py-3">
+            <img src="logo.png" alt="Moneta Markets 億匯 Logo" class="h-8 md:h-10">
+            <div>
+                <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" 
+                   target="_blank" 
+                   class="cta-button-primary text-sm !py-2 !px-4 !animation-none"
+                   data-cta-id="header_signup"> 立即免費註冊
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-16 md:py-24">
+        <section id="result-section" class="px-4" data-aos="fade-up">
+            <div class="max-w-4xl mx-auto">
+              <article class="result-card" id="result-card-container">
+                </article>
+            </div>
+        </section>
+
+        <section id="main-cta-section" data-aos="fade-up">
+            </section>
+
+        <section class="py-16">
+            <div class="container mx-auto max-w-6xl px-4">
+                <h2 id="testimonials-title" class="text-3xl font-bold text-center mb-12" data-aos="fade-up"></h2>
+                <div id="testimonials-grid" class="grid md:grid-cols-3 gap-8">
+                    </div>
+            </div>
+        </section>
+
+        <section id="brand-introduction" class="py-16 md:py-24 space-y-20 md:space-y-28">
+            <div class="container mx-auto max-w-6xl px-4 text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold">為什麼全球超過 <span class="text-[var(--brand-red)]">1,000,000+</span> 位投資者選擇 Moneta Markets？</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+                    Moneta Markets 是受監管的國際外匯與 CFD 經紀商，提供快速、安全、透明的交易體驗。
+                    無論你是新手還是專業交易者，都能在這裡找到屬於你的交易節奏。
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 text-left">
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">雙重監管保護</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">受 FCA（英國）與 FSCA（南非）監管，嚴格遵守全球金融合規要求。</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">資金安全信託</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">所有客戶資金皆存放於 AA 級銀行信託帳戶，完全隔離運作，保障每一筆交易資金。</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">閃電執行速度</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">採用 ECN 架構，平均執行速度低於 30 毫秒，交易體驗流暢穩定。</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">🌍</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">全球化交易環境</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">支援 MT4、MT5 與 Pro Trader 平台，提供外匯、黃金、指數、加密貨幣等超過 1000 種商品。</p>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <a href="https://www.monetamarkets.com/hant/" target="_blank" class="cta-button-secondary">👉 了解更多 Moneta Markets</a>
+                </div>
+            </div>
+            <div class="container mx-auto max-w-6xl px-4" data-aos="fade-up">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold">一個帳戶，交易全球資產</h2>
+                    <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+                        Moneta Markets 提供完整的投資產品與工具，讓你隨時掌握市場脈動，靈活配置資金。
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">💹</div>
+                        <h3 class="font-bold text-xl mb-2 text-white">外匯與差價合約</h3>
+                        <p class="text-gray-300">超過 1000 種商品可交易，包括主要貨幣對、黃金、原油、指數、加密貨幣等。</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">💻</div>
+                        <h3 class="font-bold text-xl mb-2 text-white">先進交易平台</h3>
+                        <p class="text-gray-300">MT4、MT5、Pro Trader 全面支援桌機與手機端，操作直覺。</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">🎓</div>
+                        <h3 class="font-bold text-xl mb-2 text-white">教育與資源</h3>
+                        <p class="text-gray-300">提供每日市場分析、交易教學與專業網路研討會，幫助你不斷成長。</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-lg text-gray-300">📈 不論你是剛起步或準備升級策略，Moneta Markets 都是你的可靠夥伴。</p>
+            </div>
+            <div class="container mx-auto max-w-4xl px-4" data-aos="fade-up">
+                 <div class="text-center bg-gradient-to-t from-[var(--brand-red)]/20 to-transparent p-8 md:p-12 rounded-2xl border border-[var(--brand-red)]/30">
+                     <h2 class="text-3xl md:text-4xl font-bold">限時活動 🔥 立即領取 <span class="text-[var(--brand-red)]">50% 入金獎勵</span></h2>
+                     <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+                         新開戶並完成首次入金，即可獲得高達 50% 的交易贈金，放大你的資金運用空間。
+                     </p>
+                     <div class="mt-8">
+                         <a href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-primary py-3 px-8 text-lg">🚀 立即開戶領取入金獎勵</a>
+                     </div>
+                     <p class="mt-4 text-sm text-yellow-300/80">⏰ 限時優惠進行中 ｜ 已有 13,247 位投資者成功領取</p>
+                 </div>
+            </div>
+        </section>
+
+        <section id="faq" class="pb-16">
+            <div class="container mx-auto max-w-4xl px-4">
+                <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">常見疑問</h2>
+                <div id="faq-container" class="space-y-4" data-aos="fade-up">
+                   </div>
+                <div class="bg-[#0c0c1a] p-8 rounded-lg mt-12 text-center" data-aos="fade-up">
+                    <p class="text-white text-2xl font-bold mb-4">還沒開始你的專屬策略嗎？</p>
+                    <p class="text-gray-300 mb-6">立即註冊帳戶，享受 50% 入金獎勵或模擬體驗！</p>
+                    <a class="cta-button-primary py-3 px-8 text-lg" 
+                       href="https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1"
+                       data-cta-id="faq_cta_signup">💡 立即開戶
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-gray-400 text-sm border-t border-gray-800/50">
+        <div class="container mx-auto max-w-7xl px-4 py-12">
+            <div id="footer-points-container" class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-12">
+                </div>
+            <div class="border-t border-gray-800/50 pt-8 text-center">
+                <p class="mt-4">差價合約（CFD）屬高風險產品，交易前請充分了解風險。</p>
+                <p class="text-gray-500 mt-4">&copy; 2025 Moneta Markets 億匯. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Dynamic Content Injection Engine
+        (function () {
+            document.addEventListener('DOMContentLoaded', function() {
+                const PROFILES = ['beginner', 'learner', 'pro'];
+                const DEFAULT_PROFILE = 'beginner';
+                
+                const PROFILE_DATA = {
+                    beginner: {
+                        hero_title: '你屬於「穩健新手型投資人」',
+                        hero_subtitle: '你傾向謹慎觀察、重視風險管理，適合循序漸進地熟悉市場。<br>Moneta Markets 是受監管的國際外匯與 CFD 經紀商，能讓你以最低門檻開始安全體驗真實市場。',
+                        hero_emotional_cue: '「你的投資風格穩健可靠，這正是專業交易者長期獲利的關鍵起點。」',
+                        hero_cta_justification: '✅ 根據你的測驗結果，這是最適合新手起步的安全路徑。',
+                        hero_cta_text: '🚀 免費開立模擬帳戶，熟悉市場操作',
+                        hero_cta_supplement: '💡 你的資金將受 FCA 與 FSCA 監管保護，交易更安心。',
+                        advice_title: '你的穩健投資入門建議',
+                        advice_list: ['建議從模擬帳戶開始，熟悉下單流程與市場波動', '初期投入資金建議：$100–300', '每筆交易風險控制在 2% 以內', '先以外匯主流貨幣、黃金等高流動性商品為主', '建議使用止損單與追蹤停利機制'],
+                        advice_tip: '📘 穩健不是保守，而是為長期勝率打下基礎。',
+                        main_cta_text: '<h2>開始你的第一步，建立穩定交易節奏！</h2><p>立即開立模擬帳戶，安心熟悉市場。</p>',
+                        main_cta_button: '🚀 免費體驗模擬交易',
+                        main_cta_hint: '<div class="mt-4 text-green-300">🎁 無需入金 · 完全免費體驗</div>',
+                        testimonials_title: '從新手到穩健投資者，他們的真實故事',
+                        testimonials: [
+                            { quote: '模擬帳戶真的幫了我很多，讓我練習風控觀念再進入實戰！', name: 'Amber', type: 'Beginner', location: '台灣', date: '2025年3月' },
+                            { quote: '剛開始只投入 200 美元，用 Moneta Markets 平台操作很順，信心慢慢建立。', name: 'Ivan', type: 'Beginner', location: '香港', date: '2025年2月' },
+                            { quote: '以前亂下單虧錢，現在懂得控制風險後報酬反而更穩！', name: 'Lily', type: 'Beginner', location: '台灣', date: '2025年1月' }
+                        ],
+                        faqs: [
+                             { q: 'Moneta Markets 安全嗎？我的資金有保障嗎？', a: '絕對安全。Moneta Markets 集團公司以全球最嚴格的英國FCA監管為指導標準，確保所有客戶的資金都存放在頂級銀行的隔離信託帳戶中，與公司營運資金完全分離。您的資金安全是我們的最高優先級。' },
+                            { q: '我沒交易經驗可以開戶嗎？', a: '可以！Moneta Markets 提供模擬帳戶，讓你在安全環境下練習交易。' },
+                            { q: '模擬帳戶要綁卡或入金嗎？', a: '完全不需要，註冊即可開始體驗。' },
+                            { q: '我是一個完全的新手，跟單交易適合我嗎？', a: '非常適合！跟單交易是為新手量身打造的最佳入門工具。您無需自己分析市場，只需選擇我們平台上的頂尖交易專家，系統就會自動為您複製他們的交易。這讓您在學習的同時，也有機會獲得回報。' },
+                            { q: '50% 贈金活動具體是如何運作的？', a: '非常簡單！當您作為新客戶，首次存款達到或超過 $500 美元時，我們將會自動將您存款金額的 50% 作為交易贈金存入您的帳戶。這筆贈金可以直接用於交易，放大您的資金實力，但不能直接提取。詳情請參考我們的活動條款與細則。' }
+                        ],
+                        footer_points: ['🏦 受 FCA 與 FSCA 監管', '💰 資金存放於 AA 級銀行信託帳戶', '📊 ECN 點差低至 0.0', '🌍 全球 1,000,000+ 投資者信任 Moneta Markets']
+                    },
+                    learner: {
+                        hero_title: '你屬於「學習進取型投資人」',
+                        hero_subtitle: '你具備明確的成長動機與策略意識，願意從模擬進入真實市場，逐步累積經驗。<br>Moneta Markets 提供教育、分析、策略工具，幫助你在安全環境中提升實戰力。',
+                        hero_emotional_cue: '「你擁有強烈的學習動能與策略意識，掌握交易技巧將是你前進的關鍵。」',
+                        hero_cta_justification: '📊 根據你的測驗結果，這是能快速提升實戰經驗的方案。',
+                        hero_cta_text: '📈 開立真實帳戶，開始累積你的交易經驗',
+                        hero_cta_supplement: '🎓 Moneta Markets 提供每日市場分析與專業教學資源。',
+                        advice_title: '你的進階學習與實戰建議',
+                        advice_list: ['模擬帳戶練習完成後，逐步轉入真實帳戶', '採用分散策略（外匯 + 黃金 + 指數）', '使用技術分析與 K 線圖判斷入場時機', '控制單筆風險在 2% 以內', '每週檢視交易日誌，持續優化策略'],
+                        advice_tip: '📊 交易是一場持續學習的旅程，紀律才是關鍵。',
+                        main_cta_text: '<h2>強化你的策略，讓交易更有系統！</h2><p>立即開戶，啟動專屬 50% 入金獎勵。</p>',
+                        main_cta_button: '🎯 立即開戶領取獎勵',
+                        main_cta_hint: '<div id="countdown-wrapper" class="mt-4 text-yellow-300">⏰ 限時優惠：剩餘 <span id="countdown">14:43</span> ｜ 已有 1,347 位投資者參加</div>',
+                        countdown_duration: 883, // 14 minutes and 43 seconds
+                        testimonials_title: '從學習到實戰，他們都選擇 Moneta Markets！',
+                        testimonials: [
+                            { quote: '用了模擬帳戶練習兩週後轉真實帳戶，策略更穩定！', name: 'Sean', type: 'Learner', location: '台灣', date: '2025年3月' },
+                            { quote: 'Moneta Markets 的交易教育影片超實用，讓我快速了解市場運作！', name: 'Nicky', type: 'Learner', location: '香港', date: '2025年2月' },
+                            { quote: '我喜歡平台的簡潔介面，對新手與進階者都很友好。', name: 'June', type: 'Learner', location: '新加坡', date: '2025年1月' }
+                        ],
+                        faqs: [
+                             { q: 'Moneta Markets 安全嗎？我的資金有保障嗎？', a: '絕對安全。Moneta Markets 集團公司以全球最嚴格的英國FCA監管為指導標準，確保所有客戶的資金都存放在頂級銀行的隔離信託帳戶中，與公司營運資金完全分離。您的資金安全是我們的最高優先級。' },
+                            { q: '50% 入金獎勵要怎麼領？', a: '當您作為新客戶，首次存款達到或超過 $500 美元時，我們將會自動將您存款金額的 50% 作為交易贈金存入您的帳戶。這筆贈金可以直接用於交易，放大您的資金實力，但不能直接提取。詳情請參考我們的活動條款與細則。' },
+                            { q: '我可以邊學邊交易嗎？', a: '可以，Moneta Markets 提供免費教學與每日市場分析。' },
+                            { q: '要先用模擬還是真實帳戶？', a: '建議先用模擬帳戶熟悉策略，再轉真實帳戶操作。' }
+                        ],
+                        footer_points: ['🎓 免費交易教育資源', '🏦 雙重監管保障', '📈 ECN 超低點差', '🌍 全球 1,000,000+ 交易者信任']
+                    },
+                    pro: {
+                        hero_title: '你屬於「積極實戰型投資人」',
+                        hero_subtitle: '你具備果斷的判斷力與強烈目標導向，偏好掌握市場節奏、追求高效表現。<br>Moneta Markets 為專業交易者打造高性能平台與極低交易成本，助你在實戰中發揮優勢。',
+                        hero_emotional_cue: '「你重視市場節奏與效率，具備果斷行動力與策略敏銳度，已準備好迎接更高級別的挑戰。」',
+                        hero_cta_justification: '⚡ 根據你的測驗結果，你已具備開展真實投資策略的條件。',
+                        hero_cta_text: '🔥 立即開戶領取 50% 入金獎勵，放大你的操作空間',
+                        hero_cta_supplement: '🏦 Moneta Markets ECN 架構、閃電執行、0.0 點差，讓你在市場中掌握先機。',
+                        advice_title: '你的進階策略與高效交易建議',
+                        advice_list: ['專注於短線波段與突破策略', '合理運用槓桿 200–500 倍，提升資金效率', '採用技術指標與市場結構判斷', '控制最大回撤不超過 5%', '每日檢視績效，持續優化交易紀律'],
+                        advice_tip: '⚙️ 技術 + 紀律 + 速度，就是你的核心優勢。',
+                        main_cta_text: '<h2>市場瞬息萬變，機會不等人。</h2><p>立即開戶，把握每一次波段！</p>',
+                        main_cta_button: '🔥 立即開戶交易',
+                        main_cta_hint: '<div id="countdown-wrapper" class="mt-4 text-yellow-300">⏰ 限時 <span id="countdown">14:43</span> ｜ 已有 2,847 位交易者參加</div>',
+                        countdown_duration: 883, // 14 minutes and 43 seconds
+                        testimonials_title: '專業交易者最信任的選擇',
+                        testimonials: [
+                            { quote: 'Moneta Markets 執行速度超快，幾乎零滑價！', name: 'Jason', type: 'Pro', location: '台灣', date: '2025年3月' },
+                            { quote: '高槓桿操作空間大，策略自由度很高。', name: 'Vicky', type: 'Pro', location: '香港', date: '2025年2月' },
+                            { quote: 'ECN 點差穩定又低，短線交易體驗超順！', name: 'Mark', type: 'Pro', location: '新加坡', date: '2025年1月' }
+                        ],
+                        faqs: [
+                             { q: 'Moneta Markets 安全嗎？我的資金有保障嗎？', a: '絕對安全。Moneta Markets 集團公司以全球最嚴格的英國FCA監管為指導標準，確保所有客戶的資金都存放在頂級銀行的隔離信託帳戶中，與公司營運資金完全分離。您的資金安全是我們的最高優先級。' },
+                            { q: '高槓桿會不會風險太高？', a: 'Moneta Markets 提供負債保護與自動止損機制，保障帳戶安全。' },
+                            { q: '入金獎勵怎麼用？', a: '當您作為新客戶，首次存款達到或超過 $500 美元時，我們將會自動將您存款金額的 50% 作為交易贈金存入您的帳戶。這筆贈金可以直接用於交易，放大您的資金實力，但不能直接提取。詳情請參考我們的活動條款與細則。' },
+                            { q: '平台執行速度真的這麼快？', a: 'Moneta Markets 使用 ECN 技術與多伺服器路由，平均執行時間低於 30 毫秒。' }
+                        ],
+                        footer_points: ['⚡ ECN 極速執行環境', '📈 槓桿最高可達 1000:1', '🏦 受 FCA 與 FSCA 監管', '🌍 全球 1,000,000+ 專業交易者信任']
+                    }
+                };
+
+                const containers = {
+                    resultCard: document.getElementById('result-card-container'),
+                    mainCtaSection: document.getElementById('main-cta-section'),
+                    testimonialsTitle: document.getElementById('testimonials-title'),
+                    testimonialsGrid: document.getElementById('testimonials-grid'),
+                    faqContainer: document.getElementById('faq-container'),
+                    footerPoints: document.getElementById('footer-points-container'),
+                    mainSection: document.getElementById('result-section')
+                };
+
+                let countdownInterval;
+
+                function startCountdown(duration, displayElementId, wrapperElementId) {
+                    if (countdownInterval) {
+                        clearInterval(countdownInterval);
+                    }
+
+                    let timer = duration;
+                    const display = document.getElementById(displayElementId);
+                    const wrapper = document.getElementById(wrapperElementId);
+
+                    if (!display || !wrapper) {
+                        return;
+                    }
+                    
+                    wrapper.style.display = 'block';
+                    wrapper.style.opacity = '1';
+
+                    countdownInterval = setInterval(function () {
+                        const minutes = Math.floor(timer / 60).toString().padStart(2, '0');
+                        const seconds = (timer % 60).toString().padStart(2, '0');
+
+                        display.textContent = `${minutes}:${seconds}`;
+
+                        if (--timer < 0) {
+                            clearInterval(countdownInterval);
+                            wrapper.style.transition = 'opacity 0.5s ease';
+                            wrapper.style.opacity = '0';
+                            setTimeout(() => {
+                                wrapper.style.display = 'none';
+                            }, 500); // Hide after transition
+                        }
+                    }, 1000);
+                }
+
+
+                function renderPage(profileId) {
+                    profileId = PROFILES.includes(profileId) ? profileId : DEFAULT_PROFILE;
+                    const data = PROFILE_DATA[profileId];
+
+                    document.body.className = `main-bg profile-${profileId}`;
+
+                    const adviceListHtml = data.advice_list.map(item => `<li>${item}</li>`).join('');
+                    const ctaLink = `https://www.monetamarkets.com/hant/open-live-account/?affid=NBMjA0OTk1`;
+
+                    containers.resultCard.innerHTML = `
+                        <h1 class="text-4xl md:text-5xl font-black mb-4">${data.hero_title}</h1>
+                        <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">${data.hero_subtitle}</p>
+                        <p class="text-lg text-yellow-200/90 italic my-6 max-w-3xl mx-auto">${data.hero_emotional_cue}</p>
+                        <div class="mt-8 bg-black/20 p-6 rounded-lg">
+                            <p class="mb-4 font-semibold text-gray-100">${data.hero_cta_justification}</p>
+                            <a href="${ctaLink}" target="_blank" class="cta-button-primary py-4 px-8 text-lg w-full sm:w-auto" data-cta-id="hero_cta_${profileId}">${data.hero_cta_text}</a>
+                            <p class="text-sm text-gray-400 mt-4">${data.hero_cta_supplement}</p>
+                        </div>
+                        <div class="advice-card">
+                            <h3 class="advice-card__title">${data.advice_title}</h3>
+                            <ul class="advice-card__list">${adviceListHtml}</ul>
+                            <p class="advice-card__tip">${data.advice_tip}</p>
+                        </div>
+                    `;
+
+                    containers.mainCtaSection.innerHTML = `
+                        <div class="container mx-auto max-w-3xl px-4">
+                            <div class="text-3xl font-bold mb-4">${data.main_cta_text}</div>
+                            <a href="${ctaLink}" target="_blank" class="cta-button-primary py-3 px-8 text-lg" data-cta-id="main_cta_${profileId}">${data.main_cta_button}</a>
+                            ${data.main_cta_hint}
+                        </div>
+                    `;
+                    
+                    if (data.countdown_duration) {
+                        startCountdown(data.countdown_duration, 'countdown', 'countdown-wrapper');
+                    }
+
+                    containers.testimonialsTitle.textContent = data.testimonials_title;
+                    containers.testimonialsGrid.innerHTML = data.testimonials.map(t => `
+                        <div class="testimonial-card p-6 rounded-lg shadow-lg" data-aos="fade-up">
+                            <div class="text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
+                            <p class="italic text-lg my-4 text-gray-200">"${t.quote}"</p>
+                            <p class="font-bold mt-4 text-white">— ${t.name} · ${t.type} · ${t.location} · ${t.date}</p>
+                        </div>
+                    `).join('');
+
+                    containers.faqContainer.innerHTML = data.faqs.map(faq => `
+                        <details class="faq-item p-6 rounded-lg">
+                            <summary class="text-lg text-white cursor-pointer font-bold list-none flex justify-between items-center">
+                                ${faq.q}
+                                <span class="text-xl text-red-400 transform transition-transform duration-300 open:rotate-45">+</span>
+                            </summary>
+                            <div class="text-gray-300 mt-4 pt-4 border-t border-white/10">
+                                <p>${faq.a}</p>
+                            </div>
+                        </details>
+                    `).join('');
+
+                    containers.footerPoints.innerHTML = data.footer_points.map(point => `
+                        <div class="opacity-80">${point}</div>
+                    `).join('');
+
+                    containers.resultCard.classList.add('active');
+                    const url = new URL(window.location);
+                    url.searchParams.set('profile', profileId);
+                    history.replaceState({ profile: profileId }, '', url.toString());
+                }
+                
+                function initialize() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const profileFromUrl = urlParams.get('profile');
+                    renderPage(profileFromUrl);
+                    if (profileFromUrl) {
+                        setTimeout(() => {
+                            containers.mainSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    }
+                }
+                initialize();
+            });
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() { AOS.init({ duration: 800, once: true }); });
+        
+        let scene, camera, renderer, particles, particleSystem; function init(){ scene = new THREE.Scene(); camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 1000); camera.position.z = 200; renderer = new THREE.WebGLRenderer({canvas: document.getElementById('finance-bg'), alpha: true}); renderer.setSize(window.innerWidth, window.innerHeight); renderer.setPixelRatio(window.devicePixelRatio); particles = new THREE.BufferGeometry(); const particleCount = 1000, positions = new Float32Array(particleCount * 3); for (let i = 0; i < particleCount; i++) { positions[i*3] = (Math.random() - 0.5) * 600; positions[i*3+1] = (Math.random() - 0.5) * 600; positions[i*3+2] = (Math.random() - 0.5) * 600; } particles.setAttribute('position', new THREE.BufferAttribute(positions, 3)); const particleMaterial = new THREE.PointsMaterial({size: 1.5, transparent: true, opacity: 0.7, color: 0x444444}); particleSystem = new THREE.Points(particles, particleMaterial); scene.add(particleSystem); animate(); } function animate(){ requestAnimationFrame(animate); if(particleSystem){ particleSystem.rotation.y += 0.0005; particleSystem.rotation.x += 0.0002; } if(renderer && scene && camera){ renderer.render(scene, camera); } } window.addEventListener('load', init); window.addEventListener('resize', function(){ if(camera){ camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); } if(renderer){ renderer.setSize(window.innerWidth, window.innerHeight); } });
+    </script>
+</body>
+</html>

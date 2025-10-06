@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personalized Investing Journey | Moneta Markets</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MF1531R30Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MF1531R30Y');
+    </script>
+    
+    <style>
+        :root {
+            --brand-red: #ff3b3b;
+            --brand-purple: #8A2BE2;
+            --brand-blue: #2855F5;
+            --dark-bg: #101737;
+            --dark-card-bg: #0c0c1a;
+
+            /* Default background gradients (Beginner) */
+            --bg-gradient-top: rgba(40, 85, 245, 0.15);
+            --bg-gradient-bottom: rgba(138, 43, 226, 0.15);
+        }
+
+        /* Profile-specific background gradients */
+        body.profile-learner {
+            --bg-gradient-top: rgba(0, 150, 255, 0.15);
+            --bg-gradient-bottom: rgba(0, 200, 150, 0.1);
+        }
+        body.profile-pro {
+            --bg-gradient-top: rgba(255, 59, 59, 0.2);
+            --bg-gradient-bottom: rgba(255, 100, 0, 0.1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--dark-bg); 
+            color: #FFFFFF; 
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        .main-bg {
+            background-color: var(--dark-bg);
+            background-image: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, var(--bg-gradient-top), transparent),
+                radial-gradient(ellipse 80% 50% at 50% 120%, var(--bg-gradient-bottom), transparent);
+            position: relative; overflow-x: hidden;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 59, 59, 0.4), 0 0 25px rgba(255, 59, 59, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 59, 59, 0.7), 0 0 40px rgba(255, 59, 59, 0.4); }
+        }
+        .cta-button-primary {
+            background-color: var(--brand-red);
+            color: white; font-weight: 700; border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 25px rgba(255, 59, 59, 0.5);
+            display: inline-block; text-decoration: none;
+            padding: 0.75rem 2rem;
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        .cta-button-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 59, 59, 0.8);
+            filter: brightness(1.1);
+        }
+        
+        .cta-button-secondary {
+            background-color: transparent; color: #f3f4f6; border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 600; border-radius: 9999px; transition: all 0.3s ease;
+            padding: 0.625rem 1.5rem; display: inline-block; text-decoration: none;
+        }
+        .cta-button-secondary:hover { background-color: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); }
+
+        .result-card {
+            display: none; background-color: var(--dark-card-bg); border-radius: 16px;
+            padding: 2.5rem; color: #ffffff; text-align: center; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .result-card.active { display: block; animation:fade .4s ease }
+        @keyframes fade{from{opacity:.5;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+        
+        .advice-card { margin-top: 2.5rem; background-color: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px; text-align: left; }
+        .advice-card__title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.75rem; }
+        .advice-card__list { list-style-type: none; padding: 0; margin: 0; color: #d1d5db; }
+        .advice-card__list li { padding-left: 1.75rem; position: relative; margin-bottom: 0.75rem; line-height: 1.6; }
+        .advice-card__list li::before { content: "✓"; color: var(--brand-red); position: absolute; left: 0; font-size: 1.25rem; }
+        .advice-card__tip { margin-top: 1.5rem; padding: 0.75rem 1rem; background-color: rgba(255, 59, 59, 0.1); color: #ffb8b8; border-left: 3px solid var(--brand-red); font-size: 0.9rem; border-radius: 0 8px 8px 0; }
+        
+        .main-cta-section { text-align: center; background: linear-gradient(180deg, rgba(255, 59, 59, 0.15) 0%, rgba(255, 59, 59, 0) 100%); padding: 4rem 1rem; }
+        .testimonial-card { background-color: var(--dark-card-bg); border: 1px solid rgba(255,255,255,0.1); }
+        .faq-item details { background-color: var(--dark-card-bg); border: 1px solid rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body class="main-bg">
+
+    <canvas id="finance-bg" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;"></canvas>
+    <div class="relative z-10">
+
+    <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-50 border-b border-[var(--brand-red)]/30">
+        <div class="container mx-auto max-w-7xl px-4 flex justify-between items-center py-3">
+            <img src="logo.png" alt="Moneta Markets Logo" class="h-8 md:h-10">
+            <div>
+                <a href="https://www.monetamarkets.com/open-live-account/?affid=NBMjA0OTk1" 
+                   target="_blank" 
+                   class="cta-button-primary text-sm !py-2 !px-4 !animation-none"
+                   data-cta-id="header_signup"> Sign Up Free
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-16 md:py-24">
+        <section id="result-section" class="px-4" data-aos="fade-up">
+            <div class="max-w-4xl mx-auto">
+              <article class="result-card" id="result-card-container">
+                </article>
+            </div>
+        </section>
+
+        <section id="main-cta-section" data-aos="fade-up">
+            </section>
+
+        <section class="py-16">
+            <div class="container mx-auto max-w-6xl px-4">
+                <h2 id="testimonials-title" class="text-3xl font-bold text-center mb-12" data-aos="fade-up"></h2>
+                <div id="testimonials-grid" class="grid md:grid-cols-3 gap-8">
+                    </div>
+            </div>
+        </section>
+
+        <section id="brand-introduction" class="py-16 md:py-24 space-y-20 md:space-y-28">
+            <div class="container mx-auto max-w-6xl px-4 text-center" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold">Why Do Over <span class="text-[var(--brand-red)]">1,000,000+</span> Investors Worldwide Choose Moneta Markets?</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+                    Moneta Markets is a regulated international Forex and CFD broker, offering a fast, secure, and transparent trading experience.
+                    Whether you're a beginner or a professional trader, you'll find your rhythm here.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12 text-left">
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">🛡️</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Dual Regulatory Protection</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Regulated by the FCA (UK) and FSCA (South Africa), strictly adhering to global financial compliance requirements.</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">💰</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Fund Security Trust</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">All client funds are held in segregated trust accounts with AA-rated banks, ensuring the security of every transaction.</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">⚡</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Lightning-Fast Execution</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Utilizing an ECN framework, our average execution speed is under 30ms for a smooth and stable trading experience.</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-6 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">🌍</div>
+                        <h3 class="font-bold text-lg mb-2 text-white">Global Trading Environment</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Supporting MT4, MT5, and Pro Trader platforms, we offer over 1000+ instruments including Forex, Gold, Indices, and Cryptocurrencies.</p>
+                    </div>
+                </div>
+                <div class="mt-12">
+                    <a href="https://www.monetamarkets.com/" target="_blank" class="cta-button-secondary">👉 Learn More About Moneta Markets</a>
+                </div>
+            </div>
+            <div class="container mx-auto max-w-6xl px-4" data-aos="fade-up">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold">One Account, Trade Global Assets</h2>
+                    <p class="mt-4 text-lg text-gray-300 max-w-3xl mx-auto">
+                        Moneta Markets provides a comprehensive suite of investment products and tools, allowing you to stay on top of market trends and allocate your capital flexibly.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">💹</div>
+                        <h3 class="font-bold text-xl mb-2 text-white">Forex & CFDs</h3>
+                        <p class="text-gray-300">Trade over 1000+ instruments, including major currency pairs, gold, crude oil, indices, cryptocurrencies, and more.</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">💻</div>
+                        <h3 class="font-bold text-xl mb-2 text-white">Advanced Trading Platforms</h3>
+                        <p class="text-gray-300">Full support for MT4, MT5, and Pro Trader on desktop and mobile, with an intuitive user interface.</p>
+                    </div>
+                    <div class="bg-[var(--dark-card-bg)]/50 border border-white/10 p-8 rounded-xl backdrop-blur-sm">
+                        <div class="text-4xl mb-4">🎓</div>
+                        <h3 class="font-bold text-xl mb-2 text-white">Education & Resources</h3>
+                        <p class="text-gray-300">We provide daily market analysis, trading tutorials, and professional webinars to help you grow continuously.</p>
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-lg text-gray-300">📈 Whether you're just starting out or ready to upgrade your strategy, Moneta Markets is your reliable partner.</p>
+            </div>
+            <div class="container mx-auto max-w-4xl px-4" data-aos="fade-up">
+                 <div class="text-center bg-gradient-to-t from-[var(--brand-red)]/20 to-transparent p-8 md:p-12 rounded-2xl border border-[var(--brand-red)]/30">
+                     <h2 class="text-3xl md:text-4xl font-bold">Limited-Time Offer 🔥 Claim Your <span class="text-[var(--brand-red)]">50% Deposit Bonus</span> Now</h2>
+                     <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+                         Open a new account and make your first deposit to receive a trading bonus of up to 50%, amplifying your trading capital.
+                     </p>
+                     <div class="mt-8">
+                         <a href="https://www.monetamarkets.com/open-live-account/?affid=NBMjA0OTk1" target="_blank" class="cta-button-primary py-3 px-8 text-lg">🚀 Open Account & Claim Bonus Now</a>
+                     </div>
+                     <p class="mt-4 text-sm text-yellow-300/80">⏰ Limited-Time Offer | 13,247 investors have already claimed!</p>
+                 </div>
+            </div>
+        </section>
+
+        <section id="faq" class="pb-16">
+            <div class="container mx-auto max-w-4xl px-4">
+                <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">Frequently Asked Questions</h2>
+                <div id="faq-container" class="space-y-4" data-aos="fade-up">
+                   </div>
+                <div class="bg-[#0c0c1a] p-8 rounded-lg mt-12 text-center" data-aos="fade-up">
+                    <p class="text-white text-2xl font-bold mb-4">Haven't started your personalized strategy yet?</p>
+                    <p class="text-gray-300 mb-6">Register now to enjoy a 50% deposit bonus or a demo experience!</p>
+                    <a class="cta-button-primary py-3 px-8 text-lg" 
+                       href="https://www.monetamarkets.com/open-live-account/?affid=NBMjA0OTk1"
+                       data-cta-id="faq_cta_signup">💡 Open Account Now
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-gray-400 text-sm border-t border-gray-800/50">
+        <div class="container mx-auto max-w-7xl px-4 py-12">
+            <div id="footer-points-container" class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-12">
+                </div>
+            <div class="border-t border-gray-800/50 pt-8 text-center">
+                <p class="mt-4">Trading CFDs involves a significant risk of loss and may not be suitable for all investors. Please fully understand the risks before trading.</p>
+                <p class="text-gray-500 mt-4">&copy; 2025 Moneta Markets. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Dynamic Content Injection Engine
+        (function () {
+            document.addEventListener('DOMContentLoaded', function() {
+                const PROFILES = ['beginner', 'learner', 'pro'];
+                const DEFAULT_PROFILE = 'beginner';
+                
+                const PROFILE_DATA = {
+                    beginner: {
+                        hero_title: 'You Are a "Cautious Beginner Investor"',
+                        hero_subtitle: 'You tend to observe cautiously and prioritize risk management, making you well-suited for a gradual approach to the market.<br>Moneta Markets is a regulated international Forex and CFD broker that allows you to safely experience the real market with a low barrier to entry.',
+                        hero_emotional_cue: '"Your steady and reliable investment style is the critical starting point for long-term profitability, just like the pros."',
+                        hero_cta_justification: '✅ Based on your quiz results, this is the safest path for a beginner to start.',
+                        hero_cta_text: '🚀 Open a Free Demo Account to Practice Trading',
+                        hero_cta_supplement: '💡 Your funds are protected under FCA & FSCA regulations for peace of mind.',
+                        advice_title: 'Your Starter Guide to Cautious Investing',
+                        advice_list: ['Start with a demo account to get familiar with order execution and market volatility.', 'Suggested initial deposit: $100–$300.', 'Keep risk per trade under 2% of your capital.', 'Focus on high-liquidity assets like major forex pairs and gold first.', 'Use stop-loss and trailing-stop orders to manage risk.'],
+                        advice_tip: '📘 Being cautious isn\'t about being timid; it\'s about building a foundation for long-term success.',
+                        main_cta_text: '<h2>Take your first step and build a consistent trading rhythm!</h2><p>Open a demo account now and get comfortable with the markets, risk-free.</p>',
+                        main_cta_button: '🚀 Try a Free Demo',
+                        main_cta_hint: '<div class="mt-4 text-green-300">🎁 No Deposit Required · Completely Free to Try</div>',
+                        testimonials_title: 'From Novices to Confident Traders: Their Real Stories',
+                        testimonials: [
+                            { quote: 'The demo account was a huge help, letting me practice risk management before trading with real money!', name: 'Amber', type: 'Beginner', location: 'USA', date: 'March 2025' },
+                            { quote: 'I started with just $200. The Moneta Markets platform was so smooth, it really helped build my confidence.', name: 'Ivan', type: 'Beginner', location: 'USA', date: 'Feb 2025' },
+                            { quote: 'I used to lose money with random trades. Now that I understand risk control, my returns are much more stable!', name: 'Lily', type: 'Beginner', location: 'USA', date: 'Jan 2025' }
+                        ],
+                        faqs: [
+                             { q: 'Is Moneta Markets safe? Are my funds protected?', a: 'Absolutely. Moneta Markets operates under the guidance of the world\'s strictest regulatory standards, including the UK\'s FCA, ensuring all client funds are held in segregated trust accounts with top-tier banks, completely separate from company funds. Your financial security is our highest priority.' },
+                            { q: 'Can I open an account with no trading experience?', a: 'Yes! Moneta Markets offers a demo account so you can practice trading in a risk-free environment.' },
+                            { q: 'Does the demo account require a credit card or deposit?', a: 'Not at all. Just sign up and you can start practicing immediately.' },
+                            { q: 'I am a complete beginner. Is copy trading suitable for me?', a: 'It\'s a perfect fit! Copy trading is the ideal starting tool for beginners. You don\'t need to analyze the market yourself; simply choose from our top-performing traders, and the system will automatically replicate their trades for you. It allows you to potentially earn while you learn.' },
+                            { q: 'How does the 50% deposit bonus work?', a: 'It\'s simple! When you, as a new client, make a first-time deposit of $500 or more, we will automatically credit your account with a trading bonus equal to 50% of your deposit amount. This bonus can be used for trading to increase your capital, but it cannot be withdrawn directly. For full details, please refer to our promotion\'s Terms & Conditions.' }
+                        ],
+                        footer_points: ['🏦 Regulated by FCA & FSCA', '💰 Funds in AA-Rated Bank Trust Accounts', '📊 ECN Spreads from 0.0 Pips', '🌍 Trusted by 1,000,000+ Investors Worldwide']
+                    },
+                    learner: {
+                        hero_title: 'You Are a "Proactive Learner Investor"',
+                        hero_subtitle: 'You have clear motivation for growth and a strategic mindset, ready to move from demo to the live markets to build experience.<br>Moneta Markets provides the educational resources, analysis, and strategic tools to help you level up in a secure environment.',
+                        hero_emotional_cue: '"You have strong learning momentum and strategic awareness. Mastering trading techniques will be the key to your advancement."',
+                        hero_cta_justification: '📊 Based on your quiz results, this plan is designed to rapidly accelerate your practical experience.',
+                        hero_cta_text: '📈 Open a Live Account and Start Building Your Experience',
+                        hero_cta_supplement: '🎓 Moneta Markets provides daily market analysis and professional educational resources.',
+                        advice_title: 'Your Guide to Advanced Learning & Live Trading',
+                        advice_list: ['After practicing with a demo account, gradually transition to a live account.', 'Adopt a diversified strategy (e.g., Forex + Gold + Indices).', 'Use technical analysis and candlestick patterns to time your entries.', 'Control risk to under 2% of your capital on any single trade.', 'Review your trading journal weekly to continuously refine your strategy.'],
+                        advice_tip: '📊 Trading is a journey of continuous learning, and discipline is the key.',
+                        main_cta_text: '<h2>Strengthen your strategy and make your trading more systematic!</h2><p>Open an account now to activate your exclusive 50% deposit bonus.</p>',
+                        main_cta_button: '🎯 Open Account & Get Bonus',
+                        main_cta_hint: '<div id="countdown-wrapper" class="mt-4 text-yellow-300">⏰ Limited-Time Offer: <span id="countdown">14:43</span> Remaining | 1,347 investors have joined!</div>',
+                        countdown_duration: 883, // 14 minutes and 43 seconds
+                        testimonials_title: 'From Learning to Live Trading, They Chose Moneta Markets!',
+                        testimonials: [
+                            { quote: 'After two weeks on the demo, I switched to a live account. My strategy is so much more stable now!', name: 'Sean', type: 'Learner', location: 'USA', date: 'March 2025' },
+                            { quote: 'The educational videos from Moneta Markets are super practical. They helped me understand how the market works—fast!', name: 'Nicky', type: 'Learner', location: 'USA', date: 'Feb 2025' },
+                            { quote: 'I love the clean interface. It\'s friendly for both beginners and more advanced traders.', name: 'June', type: 'Learner', location: 'USA', date: 'Jan 2025' }
+                        ],
+                        faqs: [
+                             { q: 'Is Moneta Markets safe? Are my funds protected?', a: 'Absolutely. Moneta Markets operates under the guidance of the world\'s strictest regulatory standards, including the UK\'s FCA, ensuring all client funds are held in segregated trust accounts with top-tier banks, completely separate from company funds. Your financial security is our highest priority.' },
+                            { q: 'How do I claim the 50% deposit bonus?', a: 'It\'s simple! When you, as a new client, make a first-time deposit of $500 or more, we will automatically credit your account with a trading bonus equal to 50% of your deposit amount. This bonus can be used for trading to increase your capital, but it cannot be withdrawn directly. For full details, please refer to our promotion\'s Terms & Conditions.' },
+                            { q: 'Can I learn and trade at the same time?', a: 'Yes, Moneta Markets offers free educational resources and daily market analysis.' },
+                            { q: 'Should I start with a demo or a live account?', a: 'We recommend starting with a demo account to get comfortable with your strategy before moving to a live account.' }
+                        ],
+                        footer_points: ['🎓 Free Trading Educational Resources', '🏦 Dual Regulatory Protection', '📈 Ultra-Low ECN Spreads', '🌍 Trusted by 1,000,000+ Traders Worldwide']
+                    },
+                    pro: {
+                        hero_title: 'You Are an "Aggressive Pro Trader"',
+                        hero_subtitle: 'You possess decisive judgment and are strongly goal-oriented, preferring to master market rhythms and pursue high-efficiency performance.<br>Moneta Markets offers professional traders a high-performance platform with extremely low trading costs to maximize your edge.',
+                        hero_emotional_cue: '"You value market rhythm and efficiency, possess decisive execution and strategic sharpness, and are ready for the next level of challenge."',
+                        hero_cta_justification: '⚡ Based on your quiz results, you are ready to implement real trading strategies.',
+                        hero_cta_text: '🔥 Open an Account Now, Get a 50% Bonus, and Amplify Your Trading Power',
+                        hero_cta_supplement: '🏦 Moneta Markets\' ECN infrastructure, lightning execution, and 0.0 pip spreads give you a competitive edge.',
+                        advice_title: 'Your Guide to Advanced Strategies & High-Efficiency Trading',
+                        advice_list: ['Focus on short-term swing and breakout strategies.', 'Utilize leverage (e.g., 200:1–500:1) to enhance capital efficiency.', 'Rely on technical indicators and market structure for analysis.', 'Keep maximum drawdown below 5%.', 'Review performance daily to continuously improve trading discipline.'],
+                        advice_tip: '⚙️ Skill + Discipline + Speed. This is your core advantage.',
+                        main_cta_text: '<h2>The market moves fast, and opportunities wait for no one.</h2><p>Open an account now and seize every swing!</p>',
+                        main_cta_button: '🔥 Open Account & Trade Now',
+                        main_cta_hint: '<div id="countdown-wrapper" class="mt-4 text-yellow-300">⏰ Limited Time <span id="countdown">14:43</span> | 2,847 traders have joined!</div>',
+                        countdown_duration: 883, // 14 minutes and 43 seconds
+                        testimonials_title: 'The Top Choice for Professional Traders',
+                        testimonials: [
+                            { quote: 'Moneta Markets has incredibly fast execution with almost zero slippage!', name: 'Jason', type: 'Pro', location: 'USA', date: 'March 2025' },
+                            { quote: 'The high leverage gives you a lot of room to maneuver. Great strategic freedom.', name: 'Vicky', type: 'Pro', location: 'USA', date: 'Feb 2025' },
+                            { quote: 'The ECN spreads are stable and low, which makes for a super smooth short-term trading experience!', name: 'Mark', type: 'Pro', location: 'USA', date: 'Jan 2025' }
+                        ],
+                        faqs: [
+                             { q: 'Is Moneta Markets safe? Are my funds protected?', a: 'Absolutely. Moneta Markets operates under the guidance of the world\'s strictest regulatory standards, including the UK\'s FCA, ensuring all client funds are held in segregated trust accounts with top-tier banks, completely separate from company funds. Your financial security is our highest priority.' },
+                            { q: 'Isn\'t high leverage too risky?', a: 'Moneta Markets provides negative balance protection and automated stop-loss mechanisms to safeguard your account.' },
+                            { q: 'How can I use the deposit bonus?', a: 'It\'s simple! When you, as a new client, make a first-time deposit of $500 or more, we will automatically credit your account with a trading bonus equal to 50% of your deposit amount. This bonus can be used for trading to increase your capital, but it cannot be withdrawn directly. For full details, please refer to our promotion\'s Terms & Conditions.' },
+                            { q: 'Is the platform\'s execution speed really that fast?', a: 'Yes. Moneta Markets uses ECN technology and multi-server routing to achieve an average execution time of under 30ms.' }
+                        ],
+                        footer_points: ['⚡ Lightning-Fast ECN Execution', '📈 Leverage Up to 1000:1', '🏦 Regulated by FCA & FSCA', '🌍 Trusted by 1,000,000+ Pro Traders Worldwide']
+                    }
+                };
+
+                const containers = {
+                    resultCard: document.getElementById('result-card-container'),
+                    mainCtaSection: document.getElementById('main-cta-section'),
+                    testimonialsTitle: document.getElementById('testimonials-title'),
+                    testimonialsGrid: document.getElementById('testimonials-grid'),
+                    faqContainer: document.getElementById('faq-container'),
+                    footerPoints: document.getElementById('footer-points-container'),
+                    mainSection: document.getElementById('result-section')
+                };
+
+                let countdownInterval;
+
+                function startCountdown(duration, displayElementId, wrapperElementId) {
+                    if (countdownInterval) {
+                        clearInterval(countdownInterval);
+                    }
+
+                    let timer = duration;
+                    const display = document.getElementById(displayElementId);
+                    const wrapper = document.getElementById(wrapperElementId);
+
+                    if (!display || !wrapper) {
+                        return;
+                    }
+                    
+                    wrapper.style.display = 'block';
+                    wrapper.style.opacity = '1';
+
+                    countdownInterval = setInterval(function () {
+                        const minutes = Math.floor(timer / 60).toString().padStart(2, '0');
+                        const seconds = (timer % 60).toString().padStart(2, '0');
+
+                        display.textContent = `${minutes}:${seconds}`;
+
+                        if (--timer < 0) {
+                            clearInterval(countdownInterval);
+                            wrapper.style.transition = 'opacity 0.5s ease';
+                            wrapper.style.opacity = '0';
+                            setTimeout(() => {
+                                wrapper.style.display = 'none';
+                            }, 500); // Hide after transition
+                        }
+                    }, 1000);
+                }
+
+
+                function renderPage(profileId) {
+                    profileId = PROFILES.includes(profileId) ? profileId : DEFAULT_PROFILE;
+                    const data = PROFILE_DATA[profileId];
+
+                    document.body.className = `main-bg profile-${profileId}`;
+
+                    const adviceListHtml = data.advice_list.map(item => `<li>${item}</li>`).join('');
+                    const ctaLink = `https://www.monetamarkets.com/open-live-account/?affid=NBMjA0OTk1`;
+
+                    containers.resultCard.innerHTML = `
+                        <h1 class="text-4xl md:text-5xl font-black mb-4">${data.hero_title}</h1>
+                        <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">${data.hero_subtitle}</p>
+                        <p class="text-lg text-yellow-200/90 italic my-6 max-w-3xl mx-auto">${data.hero_emotional_cue}</p>
+                        <div class="mt-8 bg-black/20 p-6 rounded-lg">
+                            <p class="mb-4 font-semibold text-gray-100">${data.hero_cta_justification}</p>
+                            <a href="${ctaLink}" target="_blank" class="cta-button-primary py-4 px-8 text-lg w-full sm:w-auto" data-cta-id="hero_cta_${profileId}">${data.hero_cta_text}</a>
+                            <p class="text-sm text-gray-400 mt-4">${data.hero_cta_supplement}</p>
+                        </div>
+                        <div class="advice-card">
+                            <h3 class="advice-card__title">${data.advice_title}</h3>
+                            <ul class="advice-card__list">${adviceListHtml}</ul>
+                            <p class="advice-card__tip">${data.advice_tip}</p>
+                        </div>
+                    `;
+
+                    containers.mainCtaSection.innerHTML = `
+                        <div class="container mx-auto max-w-3xl px-4">
+                            <div class="text-3xl font-bold mb-4">${data.main_cta_text}</div>
+                            <a href="${ctaLink}" target="_blank" class="cta-button-primary py-3 px-8 text-lg" data-cta-id="main_cta_${profileId}">${data.main_cta_button}</a>
+                            ${data.main_cta_hint}
+                        </div>
+                    `;
+                    
+                    if (data.countdown_duration) {
+                        startCountdown(data.countdown_duration, 'countdown', 'countdown-wrapper');
+                    }
+
+                    containers.testimonialsTitle.textContent = data.testimonials_title;
+                    containers.testimonialsGrid.innerHTML = data.testimonials.map(t => `
+                        <div class="testimonial-card p-6 rounded-lg shadow-lg" data-aos="fade-up">
+                            <div class="text-yellow-400 mb-4">⭐⭐⭐⭐⭐</div>
+                            <p class="italic text-lg my-4 text-gray-200">"${t.quote}"</p>
+                            <p class="font-bold mt-4 text-white">— ${t.name} · ${t.type} · ${t.location} · ${t.date}</p>
+                        </div>
+                    `).join('');
+
+                    containers.faqContainer.innerHTML = data.faqs.map(faq => `
+                        <details class="faq-item p-6 rounded-lg">
+                            <summary class="text-lg text-white cursor-pointer font-bold list-none flex justify-between items-center">
+                                ${faq.q}
+                                <span class="text-xl text-red-400 transform transition-transform duration-300 open:rotate-45">+</span>
+                            </summary>
+                            <div class="text-gray-300 mt-4 pt-4 border-t border-white/10">
+                                <p>${faq.a}</p>
+                            </div>
+                        </details>
+                    `).join('');
+
+                    containers.footerPoints.innerHTML = data.footer_points.map(point => `
+                        <div class="opacity-80">${point}</div>
+                    `).join('');
+
+                    containers.resultCard.classList.add('active');
+                    const url = new URL(window.location);
+                    url.searchParams.set('profile', profileId);
+                    history.replaceState({ profile: profileId }, '', url.toString());
+                }
+                
+                function initialize() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const profileFromUrl = urlParams.get('profile');
+                    renderPage(profileFromUrl);
+                    if (profileFromUrl) {
+                        setTimeout(() => {
+                            containers.mainSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    }
+                }
+                initialize();
+            });
+        })();
+
+        document.addEventListener('DOMContentLoaded', function() { AOS.init({ duration: 800, once: true }); });
+        
+        let scene, camera, renderer, particles, particleSystem; function init(){ scene = new THREE.Scene(); camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 1, 1000); camera.position.z = 200; renderer = new THREE.WebGLRenderer({canvas: document.getElementById('finance-bg'), alpha: true}); renderer.setSize(window.innerWidth, window.innerHeight); renderer.setPixelRatio(window.devicePixelRatio); particles = new THREE.BufferGeometry(); const particleCount = 1000, positions = new Float32Array(particleCount * 3); for (let i = 0; i < particleCount; i++) { positions[i*3] = (Math.random() - 0.5) * 600; positions[i*3+1] = (Math.random() - 0.5) * 600; positions[i*3+2] = (Math.random() - 0.5) * 600; } particles.setAttribute('position', new THREE.BufferAttribute(positions, 3)); const particleMaterial = new THREE.PointsMaterial({size: 1.5, transparent: true, opacity: 0.7, color: 0x444444}); particleSystem = new THREE.Points(particles, particleMaterial); scene.add(particleSystem); animate(); } function animate(){ requestAnimationFrame(animate); if(particleSystem){ particleSystem.rotation.y += 0.0005; particleSystem.rotation.x += 0.0002; } if(renderer && scene && camera){ renderer.render(scene, camera); } } window.addEventListener('load', init); window.addEventListener('resize', function(){ if(camera){ camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); } if(renderer){ renderer.setSize(window.innerWidth, window.innerHeight); } });
+    </script>
+</body>
+</html>
