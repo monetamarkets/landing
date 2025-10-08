@@ -7,7 +7,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700;800&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --primary-color: #e10600;
@@ -29,698 +28,98 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Prompt', 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--accent-color);
-            font-feature-settings: 'kern' 1;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: var(--transition);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: var(--primary-color);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Modern Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 28px;
-            border: none;
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            text-align: center;
-            cursor: pointer;
-            transition: var(--transition);
-            font-family: inherit;
-            position: relative;
-            overflow: hidden;
-            min-height: 48px;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: var(--transition);
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #c50500 100%);
-            color: var(--accent-color);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: var(--accent-color);
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Modern Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            padding: 6rem 0;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="30" cy="30" r="1"/></g></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            color: var(--accent-color);
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 400;
-        }
-
-        .countdown-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            margin: 3rem auto;
-            max-width: 500px;
-            box-shadow: var(--shadow-xl);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .countdown-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 1.5rem;
-        }
-
-        .countdown-timer {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .countdown-item {
-            text-align: center;
-            background: var(--bg-light);
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            min-width: 80px;
-        }
-
-        .countdown-number {
-            display: block;
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: var(--secondary-color);
-            line-height: 1;
-        }
-
-        .countdown-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            margin-top: 0.5rem;
-        }
-
-        /* Modern Sections */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            font-size: 2.75rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--secondary-color);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%);
-            border-radius: 2px;
-        }
-
-        /* Modern Session Cards */
-        .sessions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .session-card {
-            background: var(--accent-color);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .session-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%);
-        }
-
-        .session-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .session-date {
-            color: var(--primary-color);
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .session-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-            line-height: 1.3;
-        }
-
-        .session-description {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .session-actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        /* Modern Teacher Cards */
-        .teachers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .teacher-card {
-            background: var(--accent-color);
-            border-radius: var(--border-radius-lg);
-            padding: 2.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .teacher-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%);
-        }
-
-        .teacher-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .teacher-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent-color);
-            font-size: 2.5rem;
-            font-weight: 800;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .teacher-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--secondary-color);
-        }
-
-        .teacher-title {
-            color: var(--primary-color);
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .teacher-bio {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        /* Modern Academy Section */
-        .academy {
-            background: var(--bg-light);
-            position: relative;
-        }
-
-        .academy-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .academy-text h3 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-            line-height: 1.2;
-        }
-
-        .academy-text p {
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .academy-features {
-            list-style: none;
-            display: grid;
-            gap: 1rem;
-        }
-
-        .academy-features li {
-            padding: 1rem;
-            color: var(--text-dark);
-            position: relative;
-            padding-left: 3rem;
-            background: var(--accent-color);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-sm);
-            font-weight: 500;
-        }
-
-        .academy-features li:before {
-            content: "✓";
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--accent-color);
-            background: var(--primary-color);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.8rem;
-        }
-
-        /* Modern Footer */
-        footer {
-            background: var(--secondary-color);
-            color: var(--accent-color);
-            text-align: center;
-            padding: 3rem 0;
-            position: relative;
-        }
-
-        /* Modern Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-        }
-
-        .modal-content {
-            background-color: var(--accent-color);
-            margin: 3% auto;
-            padding: 0;
-            border-radius: var(--border-radius-lg);
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            animation: modalSlideIn 0.3s ease-out;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .modal-header {
-            padding: 1.5rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color) 0%, #c50500 100%);
-            color: var(--accent-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h3 {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        .close {
-            color: var(--accent-color);
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-
-        .close:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .modal-body {
-            padding: 0;
-            height: 70vh;
-        }
-
-        .modal-body iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Enhanced Responsive Design */
-        @media (max-width: 860px) {
-            .container {
-                padding: 0 16px;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 4rem 0;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .countdown-timer {
-                flex-wrap: wrap;
-                gap: 1rem;
-            }
-
-            .countdown-item {
-                min-width: 70px;
-                padding: 0.75rem;
-            }
-
-            .countdown-number {
-                font-size: 1.75rem;
-            }
-
-            .sessions-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .session-actions {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .teachers-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .academy-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .modal-content {
-                width: 95%;
-                margin: 2% auto;
-            }
-
-            .modal-body {
-                height: 60vh;
-            }
-
-            .section-title {
-                font-size: 2.25rem;
-            }
-        }
-
-        /* Loading and Error States */
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-light);
-        }
-
-        .error {
-            text-align: center;
-            padding: 2rem;
-            color: var(--primary-color);
-            background: #fff5f5;
-            border-radius: var(--border-radius);
-            margin: 1rem 0;
-            border: 1px solid #fed7d7;
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Enhanced Animations */
-        @keyframes fadeInUp {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                transform: scale(1); 
-            }
-            50% { 
-                transform: scale(1.05); 
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* Focus States for Accessibility */
-        .btn:focus,
-        .nav-links a:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        /* Print Styles */
-        @media print {
-            .hero,
-            .modal,
-            .btn {
-                display: none !important;
-            }
-        }
+            line-height: 1.6; color: var(--text-dark); background: var(--accent-color);
+            font-feature-settings: 'kern' 1; text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        }
+        .container { max-width:1240px; margin:0 auto; padding:0 24px; }
+        header { background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-bottom:1px solid var(--border-color); position:sticky; top:0; z-index:1000; transition:var(--transition); }
+        nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 0; }
+        .logo { font-size:1.75rem; font-weight:800; background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .nav-links { display:flex; list-style:none; gap:2.5rem; }
+        .nav-links a { text-decoration:none; color:var(--text-dark); font-weight:500; font-size:0.95rem; transition:var(--transition); position:relative; }
+        .nav-links a:hover { color:var(--primary-color); }
+        .nav-links a::after { content:''; position:absolute; width:0; height:2px; bottom:-4px; left:0; background:var(--primary-color); transition:var(--transition); }
+        .nav-links a:hover::after { width:100%; }
+        .btn { display:inline-flex; align-items:center; justify-content:center; padding:14px 28px; border:none; border-radius:var(--border-radius); font-weight:600; font-size:0.95rem; text-decoration:none; text-align:center; cursor:pointer; transition:var(--transition); font-family:inherit; position:relative; overflow:hidden; min-height:48px; }
+        .btn::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition:var(--transition); }
+        .btn:hover::before { left:100%; }
+        .btn-primary { background: linear-gradient(135deg, var(--primary-color) 0%, #c50500 100%); color:var(--accent-color); box-shadow:var(--shadow-md); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow:var(--shadow-xl); }
+        .btn-outline { background:transparent; color:var(--primary-color); border:2px solid var(--primary-color); box-shadow:var(--shadow-sm); }
+        .btn-outline:hover { background:var(--primary-color); color:var(--accent-color); transform: translateY(-1px); box-shadow:var(--shadow-lg); }
+        .hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); position:relative; padding:6rem 0; text-align:center; overflow:hidden; }
+        .hero::before { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><circle cx="30" cy="30" r="1"/></g></svg>'); animation: float 20s ease-in-out infinite; }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+        .hero-content { position:relative; z-index:2; }
+        .hero h1 { font-size:3.5rem; font-weight:800; color:var(--accent-color); margin-bottom:1.5rem; text-shadow:0 2px 4px rgba(0,0,0,0.1); line-height:1.2; }
+        .hero p { font-size:1.25rem; color:rgba(255,255,255,0.9); margin-bottom:3rem; max-width:600px; margin-left:auto; margin-right:auto; font-weight:400; }
+        .countdown-card { background:rgba(255,255,255,0.95); backdrop-filter: blur(20px); border-radius:var(--border-radius-lg); padding:2.5rem; margin:3rem auto; max-width:500px; box-shadow:var(--shadow-xl); border:1px solid rgba(255,255,255,0.2); }
+        .countdown-title { font-size:1.3rem; font-weight:700; color:var(--primary-color); margin-bottom:1.5rem; }
+        .countdown-timer { display:flex; justify-content:center; gap:1.5rem; margin-bottom:1.5rem; }
+        .countdown-item { text-align:center; background:var(--bg-light); padding:1rem; border-radius:var(--border-radius); min-width:80px; }
+        .countdown-number { display:block; font-size:2.25rem; font-weight:800; color:var(--secondary-color); line-height:1; }
+        .countdown-label { font-size:0.85rem; color:var(--text-muted); font-weight:500; margin-top:0.5rem; }
+        .section { padding:5rem 0; }
+        .section-title { font-size:2.75rem; font-weight:800; text-align:center; margin-bottom:4rem; color:var(--secondary-color); position:relative; }
+        .section-title::after { content:''; position:absolute; bottom:-12px; left:50%; transform:translateX(-50%); width:60px; height:4px; background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%); border-radius:2px; }
+        .sessions-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap:2rem; margin-bottom:2rem; }
+        .session-card { background:var(--accent-color); border-radius:var(--border-radius-lg); padding:2rem; box-shadow:var(--shadow-md); border:1px solid var(--border-color); transition:var(--transition); position:relative; overflow:hidden; }
+        .session-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%); }
+        .session-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-xl); }
+        .session-date { color:var(--primary-color); font-weight:700; font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.5px; }
+        .session-title { font-size:1.4rem; font-weight:700; margin-bottom:1rem; color:var(--secondary-color); line-height:1.3; }
+        .session-description { color:var(--text-light); margin-bottom:1.5rem; line-height:1.6; }
+        .session-actions { display:flex; gap:1rem; flex-wrap:wrap; }
+        .teachers-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:2.5rem; }
+        .teacher-card { background:var(--accent-color); border-radius:var(--border-radius-lg); padding:2.5rem; text-align:center; box-shadow:var(--shadow-md); border:1px solid var(--border-color); transition:var(--transition); position:relative; overflow:hidden; }
+        .teacher-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%); }
+        .teacher-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-xl); }
+        .teacher-avatar { width:120px; height:120px; border-radius:50%; margin:0 auto 1.5rem; background: linear-gradient(135deg, var(--primary-color) 0%, #ff4757 100%); display:flex; align-items:center; justify-content:center; color:var(--accent-color); font-size:2.5rem; font-weight:800; box-shadow:var(--shadow-lg); }
+        .teacher-name { font-size:1.4rem; font-weight:700; margin-bottom:0.5rem; color:var(--secondary-color); }
+        .teacher-title { color:var(--primary-color); font-weight:600; margin-bottom:1rem; font-size:1rem; }
+        .teacher-bio { color:var(--text-light); line-height:1.6; }
+        .academy { background:var(--bg-light); position:relative; }
+        .academy-content { display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:4rem; align-items:center; }
+        .academy-text h3 { font-size:2.25rem; font-weight:800; margin-bottom:1.5rem; color:var(--secondary-color); line-height:1.2; }
+        .academy-text p { color:var(--text-light); margin-bottom:2rem; font-size:1.1rem; line-height:1.7; }
+        .academy-features { list-style:none; display:grid; gap:1rem; }
+        .academy-features li { padding:1rem; color:var(--text-dark); position:relative; padding-left:3rem; background:var(--accent-color); border-radius:var(--border-radius); box-shadow:var(--shadow-sm); font-weight:500; }
+        .academy-features li:before { content:"✓"; position:absolute; left:1rem; top:50%; transform:translateY(-50%); color:var(--accent-color); background:var(--primary-color); width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.8rem; }
+        footer { background:var(--secondary-color); color:var(--accent-color); text-align:center; padding:3rem 0; position:relative; }
+        .modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(4px); }
+        .modal-content { background-color:var(--accent-color); margin:3% auto; padding:0; border-radius:var(--border-radius-lg); width:90%; max-width:800px; max-height:90vh; overflow:hidden; box-shadow:var(--shadow-xl); animation: modalSlideIn 0.3s ease-out; }
+        @keyframes modalSlideIn { from{opacity:0; transform: translateY(-50px) scale(0.95);} to{opacity:1; transform: translateY(0) scale(1);} }
+        .modal-header { padding:1.5rem 2rem; background: linear-gradient(135deg, var(--primary-color) 0%, #c50500 100%); color:var(--accent-color); display:flex; justify-content:space-between; align-items:center; }
+        .modal-header h3 { font-weight:700; font-size:1.2rem; }
+        .close { color:var(--accent-color); font-size:28px; font-weight:bold; cursor:pointer; transition:var(--transition-fast); width:32px; height:32px; display:flex; align-items:center; justify-content:center; border-radius:50%; }
+        .close:hover { background: rgba(255,255,255,0.1); }
+        .modal-body { padding:0; height:70vh; }
+        .modal-body iframe { width:100%; height:100%; border:none; }
+        @media (max-width:860px){
+            .container{padding:0 16px;} .nav-links{display:none;} .hero{padding:4rem 0;}
+            .hero h1{font-size:2.5rem;} .hero p{font-size:1.1rem;}
+            .countdown-timer{flex-wrap:wrap; gap:1rem;} .countdown-item{min-width:70px; padding:0.75rem;}
+            .countdown-number{font-size:1.75rem;} .sessions-grid{grid-template-columns:1fr;}
+            .session-actions{flex-direction:column;} .btn{width:100%;}
+            .teachers-grid{grid-template-columns:1fr;} .academy-content{grid-template-columns:1fr; gap:2rem;}
+            .modal-content{width:95%; margin:2% auto;} .modal-body{height:60vh;} .section-title{font-size:2.25rem;}
+        }
+        .loading{ text-align:center; padding:3rem; color:var(--text-light); }
+        .error{ text-align:center; padding:2rem; color:var(--primary-color); background:#fff5f5; border-radius:var(--border-radius); margin:1rem 0; border:1px solid #fed7d7; }
+        html{ scroll-behavior:smooth; }
+        @keyframes fadeInUp { from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+        @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        .fade-in{ animation: fadeInUp 0.6s ease-out; }
+        .pulse{ animation: pulse 2s infinite; }
+        .btn:focus, .nav-links a:focus { outline:2px solid var(--primary-color); outline-offset:2px; }
+        @media print { .hero, .modal, .btn { display:none !important; } }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
         <nav class="container">
             <div class="logo">Forex Academy</div>
@@ -733,15 +132,12 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="hero" class="hero">
         <div class="container">
             <div class="hero-content">
                 <h1>สัมมนา Forex ออนไลน์ฟรี</h1>
                 <p>เรียนรู้กลยุทธ์การเทรด Forex จากผู้เชี่ยวชาญ พร้อมเทคนิคการวิเคราะห์ตลาดที่ได้ผลจริง</p>
                 <a href="#sessions" class="btn btn-primary">ดูสัมมนาทั้งหมด</a>
-                
-                <!-- Countdown Card -->
                 <div class="countdown-card">
                     <div class="countdown-title">สัมมนาถัดไป</div>
                     <div id="countdown-timer" class="countdown-timer">
@@ -764,7 +160,6 @@
         </div>
     </section>
 
-    <!-- Sessions Section -->
     <section id="sessions" class="section">
         <div class="container">
             <h2 class="section-title">สัมมนาที่กำลังจะมาถึง</h2>
@@ -774,17 +169,13 @@
         </div>
     </section>
 
-    <!-- Teachers Section -->
     <section id="teachers" class="section">
         <div class="container">
             <h2 class="section-title">วิทยากรผู้เชี่ยวชาญ</h2>
-            <div id="teachers-grid" class="teachers-grid">
-                <!-- Teachers will be rendered here -->
-            </div>
+            <div id="teachers-grid" class="teachers-grid"></div>
         </div>
     </section>
 
-    <!-- Academy Section -->
     <section id="academy" class="section academy">
         <div class="container">
             <div class="academy-content">
@@ -806,12 +197,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Forex Academy. สงวนลิขสิทธิ์ทุกประการ</p>
-        </div>
-    </footer>
+    <footer><div class="container"><p>&copy; 2024 Forex Academy. สงวนลิขสิทธิ์ทุกประการ</p></div></footer>
 
     <!-- Registration Modal -->
     <div id="registrationModal" class="modal">
@@ -821,7 +207,7 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <iframe id="typeform-iframe" src="" frameborder="0"></iframe>
+                <iframe id="typeform-iframe" allow="camera; microphone; autoplay; encrypted-media" src="" frameborder="0"></iframe>
             </div>
         </div>
     </div>
@@ -830,29 +216,15 @@
         // ======================== CONFIGURATION ========================
         const CONFIG = {
             CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTubVPWSJLK8U7J46cqasef6VF8MmXyQ7tZm5doJzBv6qqu2gB6sSGaCkR0PEP53vVQTpEcrMyu7Fcq/pub?gid=953138577&single=true&output=csv',
+            TYPEFORM_BASE_URL: 'https://form.typeform.com/to/YOUR_FORM_ID', // 後備預設表單（當 form_embed_src 空時使用）
             TIMEZONE: 'Asia/Bangkok'
         };
 
         // ======================== TEACHER DATA ========================
         const TEACHERS = [
-            {
-                name: "อาจารย์สมชาย วิเคราะห์ตลาด",
-                title: "Senior Market Analyst",
-                bio: "ผู้เชี่ยวชาญด้านการวิเคราะห์ตลาด Forex มากกว่า 15 ปี เคยทำงานในธนาคารชั้นนำและบริษัทหลักทรัพย์ระดับโลก",
-                avatar: "ส"
-            },
-            {
-                name: "อาจารย์วิภา เทรดดิ้งโปร",
-                title: "Professional Trader",
-                bio: "นักเทรด Forex มืออาชีพที่มีผลงานโดดเด่น เชี่ยวชาญเทคนิค Scalping และ Day Trading",
-                avatar: "ว"
-            },
-            {
-                name: "อาจารย์ธนา กลยุทธ์การลงทุน",
-                title: "Investment Strategist",
-                bio: "ผู้เชี่ยวชาญด้านกลยุทธ์การลงทุนระยะยาว และการจัดการพอร์ตการลงทุนแบบมืออาชีพ",
-                avatar: "ธ"
-            }
+            { name: "อาจารย์สมชาย วิเคราะห์ตลาด", title: "Senior Market Analyst", bio: "ผู้เชี่ยวชาญด้านการวิเคราะห์ตลาด Forex มากกว่า 15 ปี เคยทำงานในธนาคารชั้นนำและบริษัทหลักทรัพย์ระดับโลก", avatar: "ส" },
+            { name: "อาจารย์วิภา เทรดดิ้งโปร", title: "Professional Trader", bio: "นักเทรด Forex มืออาชีพที่มีผลงานโดดเด่น เชี่ยวชาญเทคนิค Scalping และ Day Trading", avatar: "ว" },
+            { name: "อาจารย์ธนา กลยุทธ์การลงทุน", title: "Investment Strategist", bio: "ผู้เชี่ยวชาญด้านกลยุทธ์การลงทุนระยะยาว และการจัดการพอร์ตการลงทุนแบบมืออาชีพ", avatar: "ธ" }
         ];
 
         // ======================== GLOBAL VARIABLES ========================
@@ -865,7 +237,6 @@
             const lines = text.trim().split('\n');
             const headers = parseCSVLine(lines[0]);
             const data = [];
-            
             for (let i = 1; i < lines.length; i++) {
                 if (lines[i].trim()) {
                     const values = parseCSVLine(lines[i]);
@@ -883,7 +254,6 @@
             const result = [];
             let current = '';
             let inQuotes = false;
-            
             for (let i = 0; i < line.length; i++) {
                 const char = line[i];
                 if (char === '"') {
@@ -904,11 +274,8 @@
                 const date = new Date(dateTimeStr);
                 return date.toLocaleString('th-TH', {
                     timeZone: CONFIG.TIMEZONE,
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
+                    year: 'numeric', month: 'long', day: 'numeric',
+                    hour: '2-digit', minute: '2-digit'
                 });
             } catch (error) {
                 return dateTimeStr;
@@ -918,11 +285,7 @@
         function createGoogleCalendarLink(session) {
             const startDate = new Date(session.start_datetime);
             const endDate = new Date(session.end_datetime);
-            
-            const formatGoogleDate = (date) => {
-                return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-            };
-            
+            const formatGoogleDate = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
             const params = new URLSearchParams({
                 action: 'TEMPLATE',
                 text: session.title,
@@ -930,64 +293,50 @@
                 details: session.description,
                 location: 'Online Webinar'
             });
-            
             return `https://calendar.google.com/calendar/render?${params.toString()}`;
         }
 
         function createICSFile(session) {
             const startDate = new Date(session.start_datetime);
             const endDate = new Date(session.end_datetime);
-            
-            const formatICSDate = (date) => {
-                return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-            };
-            
+            const formatICSDate = (date) => date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
             const icsContent = [
-                'BEGIN:VCALENDAR',
-                'VERSION:2.0',
-                'PRODID:-//Forex Academy//Webinar//EN',
+                'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Forex Academy//Webinar//EN',
                 'BEGIN:VEVENT',
                 `UID:${session.webinar_id}@forexacademy.com`,
                 `DTSTART:${formatICSDate(startDate)}`,
                 `DTEND:${formatICSDate(endDate)}`,
                 `SUMMARY:${session.title}`,
                 `DESCRIPTION:${session.description}`,
-                'LOCATION:Online Webinar',
-                'END:VEVENT',
-                'END:VCALENDAR'
+                'LOCATION:Online Webinar','END:VEVENT','END:VCALENDAR'
             ].join('\r\n');
-            
             const blob = new Blob([icsContent], { type: 'text/calendar' });
             const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${session.title}.ics`;
-            a.click();
+            const a = document.createElement('a'); a.href = url; a.download = `${session.title}.ics`; a.click();
             URL.revokeObjectURL(url);
         }
 
         // ======================== DATA LOADING ========================
         async function loadSessionsData() {
             try {
-                const response = await fetch(CONFIG.CSV_URL);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                
+                // 防快取：在 URL 後面加亂數參數，並要求 no-store
+                const url = `${CONFIG.CSV_URL}${CONFIG.CSV_URL.includes('?') ? '&' : '?'}cb=${Date.now()}`;
+                const response = await fetch(url, { cache: 'no-store' });
+                if (!response.ok) throw new Error('Failed to fetch data');
+
                 const csvText = await response.text();
                 const allData = parseCSV(csvText);
-                
-                // Filter only published sessions
-                sessionsData = allData.filter(session => 
-                    session.status && session.status.toLowerCase() === 'published'
+
+                // 只保留 status=published 的場次（大小寫不敏感）
+                sessionsData = allData.filter(session =>
+                    session.status && String(session.status).toLowerCase() === 'published'
                 );
-                
+
                 renderSessions();
                 setupCountdown();
-                
             } catch (error) {
                 console.error('Error loading sessions:', error);
-                document.getElementById('sessions-grid').innerHTML = 
+                document.getElementById('sessions-grid').innerHTML =
                     '<div class="error">ไม่สามารถโหลดข้อมูลสัมมนาได้ กรุณาลองใหม่อีกครั้ง</div>';
             }
         }
@@ -995,37 +344,27 @@
         // ======================== RENDERING FUNCTIONS ========================
         function renderSessions() {
             const grid = document.getElementById('sessions-grid');
-            
             if (sessionsData.length === 0) {
                 grid.innerHTML = '<div class="error">ไม่มีสัมมนาที่กำลังจะมาถึง</div>';
                 return;
             }
-            
             const sessionsHTML = sessionsData.map(session => `
                 <div class="session-card fade-in">
                     <div class="session-date">${formatDateTime(session.start_datetime)}</div>
                     <h3 class="session-title">${session.title}</h3>
                     <p class="session-description">${session.description}</p>
                     <div class="session-actions">
-                        <button class="btn btn-primary" onclick="openRegistration('${session.webinar_id}')">
-                            ลงทะเบียน
-                        </button>
-                        <button class="btn btn-outline" onclick="addToGoogleCalendar('${session.webinar_id}')">
-                            + Google Calendar
-                        </button>
-                        <button class="btn btn-outline" onclick="downloadICS('${session.webinar_id}')">
-                            ดาวน์โหลด .ics
-                        </button>
+                        <button class="btn btn-primary" onclick="openRegistration('${session.webinar_id}')">ลงทะเบียน</button>
+                        <button class="btn btn-outline" onclick="addToGoogleCalendar('${session.webinar_id}')">+ Google Calendar</button>
+                        <button class="btn btn-outline" onclick="downloadICS('${session.webinar_id}')">ดาวน์โหลด .ics</button>
                     </div>
                 </div>
             `).join('');
-            
             grid.innerHTML = sessionsHTML;
         }
 
         function renderTeachers() {
             const grid = document.getElementById('teachers-grid');
-            
             const teachersHTML = TEACHERS.map(teacher => `
                 <div class="teacher-card fade-in">
                     <div class="teacher-avatar">${teacher.avatar}</div>
@@ -1034,67 +373,60 @@
                     <p class="teacher-bio">${teacher.bio}</p>
                 </div>
             `).join('');
-            
             grid.innerHTML = teachersHTML;
         }
 
         // ======================== COUNTDOWN FUNCTIONALITY ========================
         function setupCountdown() {
             const now = new Date();
-            const futureSessions = sessionsData.filter(session => {
-                const sessionDate = new Date(session.start_datetime);
-                return sessionDate > now;
-            });
-            
+            const futureSessions = sessionsData.filter(session => new Date(session.start_datetime) > now);
             if (futureSessions.length === 0) {
                 document.getElementById('next-session-title').textContent = 'ไม่มีสัมมนาที่กำลังจะมาถึง';
                 return;
             }
-            
-            // Sort by date and get the nearest session
             futureSessions.sort((a, b) => new Date(a.start_datetime) - new Date(b.start_datetime));
             nextSession = futureSessions[0];
-            
             document.getElementById('next-session-title').textContent = nextSession.title;
-            
-            // Start countdown
             updateCountdown();
             countdownInterval = setInterval(updateCountdown, 1000);
         }
 
         function updateCountdown() {
             if (!nextSession) return;
-            
             const now = new Date();
             const sessionDate = new Date(nextSession.start_datetime);
             const timeDiff = sessionDate - now;
-            
-            if (timeDiff <= 0) {
-                // Session has started, find next session
-                clearInterval(countdownInterval);
-                setupCountdown();
-                return;
-            }
-            
+            if (timeDiff <= 0) { clearInterval(countdownInterval); setupCountdown(); return; }
             const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            
             document.getElementById('days').textContent = days;
             document.getElementById('hours').textContent = hours;
             document.getElementById('minutes').textContent = minutes;
         }
 
-        // ======================== MODAL FUNCTIONALITY ========================
+        // ======================== MODAL FUNCTIONALITY (方案B) ========================
         function openRegistration(webinarId) {
             const modal = document.getElementById('registrationModal');
             const iframe = document.getElementById('typeform-iframe');
-            
-            // Set Typeform URL with webinar_id parameter
-            iframe.src = `${CONFIG.TYPEFORM_BASE_URL}?webinar_id=${webinarId}`;
+
+            // 找到使用者點擊的那一筆 session
+            const session = sessionsData.find(s => s.webinar_id === webinarId);
+
+            // 優先使用 Google Sheet 的 form_embed_src，否則使用全域預設
+            const base = (session && session.form_embed_src) ? session.form_embed_src : CONFIG.TYPEFORM_BASE_URL;
+
+            if (!base) {
+                console.error('No form URL configured for this session.');
+                alert('ยังไม่มีลิงก์แบบฟอร์มลงทะเบียนสำหรับสัมมนานี้');
+                return;
+            }
+
+            // 帶上 webinar_id 參數（Typeform Hidden Field）
+            const url = `${base}${base.includes('?') ? '&' : '?'}webinar_id=${encodeURIComponent(webinarId)}`;
+
+            iframe.src = url;
             modal.style.display = 'block';
-            
-            // Add body class to prevent scrolling
             document.body.style.overflow = 'hidden';
         }
 
@@ -1102,8 +434,6 @@
             const modal = document.getElementById('registrationModal');
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
-            
-            // Clear iframe src
             document.getElementById('typeform-iframe').src = '';
         }
 
@@ -1118,56 +448,31 @@
 
         function downloadICS(webinarId) {
             const session = sessionsData.find(s => s.webinar_id === webinarId);
-            if (session) {
-                createICSFile(session);
-            }
+            if (session) createICSFile(session);
         }
 
         // ======================== EVENT LISTENERS ========================
         document.addEventListener('DOMContentLoaded', function() {
-            // Load data
             loadSessionsData();
             renderTeachers();
-            
-            // Modal event listeners
+
             const modal = document.getElementById('registrationModal');
             const closeBtn = document.querySelector('.close');
-            
             closeBtn.onclick = closeModal;
-            
-            window.onclick = function(event) {
-                if (event.target === modal) {
-                    closeModal();
-                }
-            };
-            
-            // ESC key to close modal
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    closeModal();
-                }
-            });
-            
-            // Smooth scrolling for navigation links
+            window.onclick = function(event) { if (event.target === modal) closeModal(); };
+            document.addEventListener('keydown', function(event) { if (event.key === 'Escape') closeModal(); });
+
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 });
             });
         });
 
-        // ======================== CLEANUP ========================
         window.addEventListener('beforeunload', function() {
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-            }
+            if (countdownInterval) clearInterval(countdownInterval);
         });
     </script>
 </body>
