@@ -217,7 +217,6 @@
         // ======================== CONFIGURATION ========================
         const CONFIG = {
             CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTubVPWSJLK8U7J46cqasef6VF8MmXyQ7tZm5doJzBv6qqu2gB6sSGaCkR0PEP53vVQTpEcrMyu7Fcq/pub?gid=953138577&single=true&output=csv',
-            // ✅ 寫死共用 Typeform 網址（不讀取 sheet 的 form_embed_src）
             TYPEFORM_BASE_URL: 'https://form.typeform.com/to/hB3SsG4W',
             TIMEZONE: 'Asia/Bangkok'
         };
@@ -321,7 +320,6 @@
         // ======================== DATA LOADING ========================
         async function loadSessionsData() {
             try {
-                // 防快取：在 URL 後面加亂數參數，並要求 no-store
                 const url = `${CONFIG.CSV_URL}${CONFIG.CSV_URL.includes('?') ? '&' : '?'}cb=${Date.now()}`;
                 const response = await fetch(url, { cache: 'no-store' });
                 if (!response.ok) throw new Error('Failed to fetch data');
@@ -329,7 +327,6 @@
                 const csvText = await response.text();
                 const allData = parseCSV(csvText);
 
-                // 只保留 status=published 的場次（大小寫不敏感）
                 sessionsData = allData.filter(session =>
                     session.status && String(session.status).toLowerCase() === 'published'
                 );
@@ -412,7 +409,6 @@
             const modal = document.getElementById('registrationModal');
             const iframe = document.getElementById('typeform-iframe');
 
-            // ✅ 一律使用寫死的 Typeform 基底網址（不讀取 sheet 欄位）
             const base = CONFIG.TYPEFORM_BASE_URL;
 
             if (!base) {
@@ -421,7 +417,6 @@
                 return;
             }
 
-            // 帶上 webinar_id 參數（Typeform Hidden Field）
             const idForParam = webinarId;
             const url = `${base}${base.includes('?') ? '&' : '?'}webinar_id=${encodeURIComponent(idForParam)}`;
 
