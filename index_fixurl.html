@@ -217,7 +217,8 @@
         // ======================== CONFIGURATION ========================
         const CONFIG = {
             CSV_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTubVPWSJLK8U7J46cqasef6VF8MmXyQ7tZm5doJzBv6qqu2gB6sSGaCkR0PEP53vVQTpEcrMyu7Fcq/pub?gid=953138577&single=true&output=csv',
-            TYPEFORM_BASE_URL: 'https://form.typeform.com/to/YOUR_FORM_ID', // 後備預設表單（當 form_embed_src 空時使用）
+            // ✅ 寫死共用 Typeform 網址（不讀取 sheet 的 form_embed_src）
+            TYPEFORM_BASE_URL: 'https://form.typeform.com/to/hB3SsG4W',
             TIMEZONE: 'Asia/Bangkok'
         };
 
@@ -406,27 +407,23 @@
             document.getElementById('minutes').textContent = minutes;
         }
 
-        // ======================== MODAL FUNCTIONALITY (方案B) ========================
+        // ======================== MODAL FUNCTIONALITY ========================
         function openRegistration(webinarId) {
             const modal = document.getElementById('registrationModal');
             const iframe = document.getElementById('typeform-iframe');
 
-            // 找到使用者點擊的那一筆 session
-            const session = sessionsData.find(s => s.webinar_id === webinarId);
-
-            // 優先使用 Google Sheet 的 form_embed_src，否則使用全域預設
-            const base = (session && session.form_embed_src) ? session.form_embed_src : CONFIG.TYPEFORM_BASE_URL;
+            // ✅ 一律使用寫死的 Typeform 基底網址（不讀取 sheet 欄位）
+            const base = CONFIG.TYPEFORM_BASE_URL;
 
             if (!base) {
-                console.error('No form URL configured for this session.');
-                alert('ยังไม่มีลิงก์แบบฟอร์มลงทะเบียนสำหรับสัมมนานี้');
+                console.error('No form URL configured.');
+                alert('ยังไม่มีลิงก์แบบฟอร์มลงทะเบียน');
                 return;
             }
 
-            // ===== 關鍵修改：自動在 URL 後面加上 ?webinar_id=該列的 webinar_id =====
-            const idForParam = (session && session.webinar_id) ? session.webinar_id : webinarId;
+            // 帶上 webinar_id 參數（Typeform Hidden Field）
+            const idForParam = webinarId;
             const url = `${base}${base.includes('?') ? '&' : '?'}webinar_id=${encodeURIComponent(idForParam)}`;
-            // =====================================================================
 
             iframe.src = url;
             modal.style.display = 'block';
