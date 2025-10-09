@@ -422,8 +422,10 @@
                 return;
             }
 
-            // 帶上 webinar_id 參數（Typeform Hidden Field）
-            const url = `${base}${base.includes('?') ? '&' : '?'}webinar_id=${encodeURIComponent(webinarId)}`;
+            // ===== 關鍵修改：自動在 URL 後面加上 ?webinar_id=該列的 webinar_id =====
+            const idForParam = (session && session.webinar_id) ? session.webinar_id : webinarId;
+            const url = `${base}${base.includes('?') ? '&' : '?'}webinar_id=${encodeURIComponent(idForParam)}`;
+            // =====================================================================
 
             iframe.src = url;
             modal.style.display = 'block';
