@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>外匯經紀商評測</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#C0392B",
+            "background-light": "#FFFFFF",
+            "background-dark": "#121212",
+            "surface-light": "#F8F9FA",
+            "surface-dark": "#1E1E1E",
+            "text-light": "#212529",
+            "text-dark": "#EAEAEA",
+            "subtext-light": "#6C757D",
+            "subtext-dark": "#9E9E9E",
+            "border-light": "#DEE2E6",
+            "border-dark": "#333333",
+          },
+          fontFamily: {
+            display: ["Noto Sans TC", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display">
+<header class="bg-background-light dark:bg-background-dark shadow-sm sticky top-0 z-50">
+<div class="bg-gray-800 text-white text-xs py-1">
+<div class="container mx-auto px-4 flex justify-between items-center">
+<div class="flex items-center space-x-4 overflow-x-auto whitespace-nowrap">
+<span class="flex items-center"><img alt="BTC icon" class="w-4 h-4 mr-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJHUv0hXTQTxAsmoMg685aZZEJQcPhXeWIXRJQydmTtAZHPRrq2hfN5gC1W-O7hR81R1PQIvSkkINXEq1SSLDsRY4xN7Syr_wCPTIW5Ss5JQYJ_wIPM0kBrACi6tDYzuhFn2gwyIemH4cZrdxzMz8XVRpC2MBrFAAtAc7KcS8HtmIO1XrAo_67XSuYs4j-aRfZrerjRDDej4bjoByMja_SOoT-6-ECRdmIiMtjlbiFnXnUyEfn654yWHPg9XlT_786PGrIjVwNtLc"/> BTC/USD <span class="text-green-400 ml-1">11,123.30</span></span>
+<span class="flex items-center"><img alt="ETH icon" class="w-4 h-4 mr-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA4BPIPJciGjfFP86olV1Q5UhwnHvgXDQMxTRVjJrbfzvdRdqMLbijlkxVaMwYGtsmEYVzocbSTS6qETKH2L7mah4XxRu-7VUuGDXhI7saT4D0wEEowjIgQNEbmmW2GAldGmugnwFEm_SgwG67gK4rgAzLIw4uRH5yw7Q4_UkZEG0jqZru1PrNTa2Muo-xwfFlDA5h0QpdBzBEd5SjIDYNMP4CsG11qLFTEjjQXYC26jB6C5lmbXrL5VT9IZ73Sw01ji_49BeBYjI"/> ETH/USD <span class="text-green-400 ml-1">4,091.21</span></span>
+<span class="flex items-center"><img alt="Gold icon" class="w-4 h-4 mr-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLl9EdsbNbr9dl5vQgK2Tndm6rhHzdeyxLTa124dWY8UY_VIVSbldwmCS5O2dwSYTdnKpoQ2Koz7NAEBnIbpmqJEeMhT8cs4uBrahXj2aWNZ-puAvjc9LULbFQEOfFXjryTM4feL5zigCKSN3d81LUGmAgCgntNgWju6A-cZpydrpIsHl9qR9Vyfl1Us3J_bSwvGJXdHV12FqoG9YQUyu8ocxa7hf0GiwSGfZiaiWH3EFzV2f3n3A6T2SmLQOgchFlAiR5ZLGF7HQ"/> GOLD <span class="text-red-400 ml-1">-783.12</span></span>
+<span class="flex items-center"><img alt="Money icon" class="w-4 h-4 mr-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmmPf8HuEUHEujhN_3m8t3dMWdubTgPvOZ2MOEwmVyhgzIyYmGFUHVNK_cAoktEuKi1AbXigXHAemtwjXywRZjnAaU84_MWf7gMQ_Co1twvfxQfptf_gw8NlvlrB36AkPoIMdc815kDmg2bPs-H8CQz13O1ToIVEBHOCqon1gzuubScu5TMz7FqeCDKjO9njO72cdsRoMzh3X9cnm4d4sAxGkyWivvWOIbNij1FSqZn_h3MWqbMYPKnE2dozSK8D_Z3f78_9SRi-0"/> USD/JPY <span class="text-green-400 ml-1">112.50</span></span>
+</div>
+</div>
+</div>
+<nav class="container mx-auto px-4 py-3">
+<div class="flex justify-between items-center">
+<div class="flex items-center">
+<img alt="logo" class="h-10 mr-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkAT-y_PYUsIIcZtMaN-wuI-DzQppLwqJPdENOxywSCKC1GXyqcK7DcL_1siM8mjGMjTnJI363ABiiKEWZYyJSkGibC4L-R7eSXXJE4jCF4BcRpaH3JVTFNTHTNzymAKzuALfWfWvMwcUjPSVOcQP-_S_9gc-ez8Fui5BuQgKfl04jN5raFkmw30961AzAKuRZQbZpLnH96XxKlt4sbcbo2t7cCn661E7T_9kgEjP3i7w8sPh_65VioZUihlbbudh81T5VP-BK8VM"/>
+</div>
+<div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+<a class="text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">外匯經紀商評測</a>
+<a class="text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">加密貨幣交易所</a>
+<a class="text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">外匯學習</a>
+<a class="text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">外匯文章</a>
+<a class="text-text-light dark:text-text-dark hover:text-primary dark:hover:text-primary transition-colors" href="#">關於我們</a>
+</div>
+<button class="md:hidden flex items-center">
+<span class="material-icons text-text-light dark:text-text-dark">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<main>
+<section class="bg-cover bg-center py-20 md:py-24" style="background-image: url('image-hero-background');">
+<div class="container mx-auto px-4 text-center text-white">
+<h1 class="text-4xl md:text-5xl font-bold mb-4">尋找最適合您的交易平台</h1>
+<p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">從數百家經紀商中，透過多維度排行榜與進階篩選，找到最安全、最優惠的選擇。</p>
+<div class="bg-white/20 dark:bg-black/30 backdrop-blur-sm p-6 rounded-lg max-w-4xl mx-auto">
+<div class="relative mb-4">
+<span class="material-icons absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-md bg-background-light dark:bg-surface-dark text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:ring-primary focus:border-primary text-lg" placeholder="輸入經紀商名稱，立即查詢..." type="text"/>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+<select class="w-full p-2 rounded-md bg-white/80 dark:bg-surface-dark/80 text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:ring-primary focus:border-primary">
+<option selected="">監管</option>
+<option>FCA</option>
+<option>ASIC</option>
+<option>CySEC</option>
+</select>
+<select class="w-full p-2 rounded-md bg-white/80 dark:bg-surface-dark/80 text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:ring-primary focus:border-primary">
+<option selected="">槓桿</option>
+<option>1:30</option>
+<option>1:100</option>
+<option>1:500</option>
+</select>
+<select class="w-full p-2 rounded-md bg-white/80 dark:bg-surface-dark/80 text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:ring-primary focus:border-primary">
+<option selected="">最低入金</option>
+<option>&lt; $100</option>
+<option>$100 - $500</option>
+<option>&gt; $500</option>
+</select>
+<select class="w-full p-2 rounded-md bg-white/80 dark:bg-surface-dark/80 text-text-light dark:text-text-dark border-border-light dark:border-border-dark focus:ring-primary focus:border-primary">
+<option selected="">點差</option>
+<option>&lt; 1.0 pips</option>
+<option>1.0 - 2.0 pips</option>
+<option>&gt; 2.0 pips</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-light dark:bg-surface-dark">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-2">四大核心功能</h2>
+<p class="text-center text-subtext-light dark:text-subtext-dark mb-12">我們為您打造的專業工具，讓交易決策更簡單</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="text-center p-6 bg-background-light dark:bg-background-dark rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<span class="material-icons text-5xl text-primary mb-4">manage_search</span>
+<h3 class="text-xl font-bold mb-2">篩選工具</h3>
+<p class="text-subtext-light dark:text-subtext-dark">多維度條件篩選，精準找到最適合您的經紀商。</p>
+</div>
+<div class="text-center p-6 bg-background-light dark:bg-background-dark rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<span class="material-icons text-5xl text-primary mb-4">compare_arrows</span>
+<h3 class="text-xl font-bold mb-2">比較工具</h3>
+<p class="text-subtext-light dark:text-subtext-dark">並列比較不同平台，優劣勢一目了然。</p>
+</div>
+<div class="text-center p-6 bg-background-light dark:bg-background-dark rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<span class="material-icons text-5xl text-primary mb-4">gpp_bad</span>
+<h3 class="text-xl font-bold mb-2">黑名單榜單</h3>
+<p class="text-subtext-light dark:text-subtext-dark">揭露違規與詐騙平台，助您遠離交易陷阱。</p>
+</div>
+<div class="text-center p-6 bg-background-light dark:bg-background-dark rounded-lg shadow-md hover:shadow-xl transition-shadow">
+<span class="material-icons text-5xl text-primary mb-4">verified_user</span>
+<h3 class="text-xl font-bold mb-2">監管驗證</h3>
+<p class="text-subtext-light dark:text-subtext-dark">快速查詢監管牌照，確保您的資金安全。</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-background-light dark:bg-background-dark">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-2">外匯工具中心</h2>
+<p class="text-center text-subtext-light dark:text-subtext-dark mb-12">一站式整合您需要的交易輔助工具</p>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+<a class="group p-4 bg-surface-light dark:bg-surface-dark rounded-lg hover:bg-primary dark:hover:bg-primary transition-all duration-300" href="#">
+<span class="material-icons text-4xl text-primary group-hover:text-white transition-colors">ssid_chart</span>
+<p class="mt-2 font-semibold text-text-light dark:text-text-dark group-hover:text-white transition-colors">即時報價</p>
+</a>
+<a class="group p-4 bg-surface-light dark:bg-surface-dark rounded-lg hover:bg-primary dark:hover:bg-primary transition-all duration-300" href="#">
+<span class="material-icons text-4xl text-primary group-hover:text-white transition-colors">event_note</span>
+<p class="mt-2 font-semibold text-text-light dark:text-text-dark group-hover:text-white transition-colors">經濟日曆</p>
+</a>
+<a class="group p-4 bg-surface-light dark:bg-surface-dark rounded-lg hover:bg-primary dark:hover:bg-primary transition-all duration-300" href="#">
+<span class="material-icons text-4xl text-primary group-hover:text-white transition-colors">currency_exchange</span>
+<p class="mt-2 font-semibold text-text-light dark:text-text-dark group-hover:text-white transition-colors">換匯計算</p>
+</a>
+<a class="group p-4 bg-surface-light dark:bg-surface-dark rounded-lg hover:bg-primary dark:hover:bg-primary transition-all duration-300" href="#">
+<span class="material-icons text-4xl text-primary group-hover:text-white transition-colors">candlestick_chart</span>
+<p class="mt-2 font-semibold text-text-light dark:text-text-dark group-hover:text-white transition-colors">槓桿模擬</p>
+</a>
+<a class="group p-4 bg-surface-light dark:bg-surface-dark rounded-lg hover:bg-primary dark:hover:bg-primary transition-all duration-300" href="#">
+<span class="material-icons text-4xl text-primary group-hover:text-white transition-colors">calculate</span>
+<p class="mt-2 font-semibold text-text-light dark:text-text-dark group-hover:text-white transition-colors">風險報酬比</p>
+</a>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-light dark:bg-surface-dark">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-2">多維度排行榜</h2>
+<p class="text-center text-subtext-light dark:text-subtext-dark mb-8 max-w-2xl mx-auto">
+                全面比較數百家外匯經紀商，從監管、點差、費用等多個維度，為您提供最真實的排名。
+            </p>
+<div class="flex justify-center mb-8 border-b border-border-light dark:border-border-dark">
+<button class="py-2 px-6 text-primary border-b-2 border-primary font-semibold text-base">人氣榜</button>
+<button class="py-2 px-6 text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary text-base">監管榜</button>
+<button class="py-2 px-6 text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary text-base">點差榜</button>
+<button class="py-2 px-6 text-subtext-light dark:text-subtext-dark hover:text-primary dark:hover:text-primary text-base">手續費榜</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-left text-subtext-light dark:text-subtext-dark min-w-[800px]">
+<thead class="text-xs text-text-light dark:text-text-dark uppercase bg-gray-200 dark:bg-gray-700">
+<tr>
+<th class="px-6 py-3 rounded-l-lg" scope="col">排名</th>
+<th class="px-6 py-3" scope="col">經紀商</th>
+<th class="px-6 py-3" scope="col">監管牌照</th>
+<th class="px-6 py-3 text-center" scope="col">綜合評分</th>
+<th class="px-6 py-3 text-center rounded-r-lg" colspan="2" scope="col">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-background-light dark:bg-background-dark border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+<td class="px-6 py-4 font-bold text-lg text-text-light dark:text-text-dark">1</td>
+<th class="px-6 py-4 font-medium text-text-light dark:text-text-dark whitespace-nowrap" scope="row">Vantage Markets</th>
+<td class="px-6 py-4">FCA, ASIC</td>
+<td class="px-6 py-4 text-center"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full">9.5/10</span></td>
+<td class="px-2 py-4"><a class="font-medium text-white bg-primary hover:bg-red-700 rounded-md py-2 px-4 inline-block w-full text-center" href="#">查看詳情</a></td>
+<td class="px-2 py-4"><a class="font-medium text-primary border border-primary hover:bg-primary/10 rounded-md py-2 px-4 inline-block w-full text-center" href="#">前往官網</a></td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+<td class="px-6 py-4 font-bold text-lg text-text-light dark:text-text-dark">2</td>
+<th class="px-6 py-4 font-medium text-text-light dark:text-text-dark whitespace-nowrap" scope="row">AvaTrade</th>
+<td class="px-6 py-4">ASIC, ADGM, FSA, FSCA</td>
+<td class="px-6 py-4 text-center"><span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full">9.2/10</span></td>
+<td class="px-2 py-4"><a class="font-medium text-white bg-primary hover:bg-red-700 rounded-md py-2 px-4 inline-block w-full text-center" href="#">查看詳情</a></td>
+<td class="px-2 py-4"><a class="font-medium text-primary border border-primary hover:bg-primary/10 rounded-md py-2 px-4 inline-block w-full text-center" href="#">前往官網</a></td>
+</tr>
+<tr class="bg-background-light dark:bg-background-dark border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+<td class="px-6 py-4 font-bold text-lg text-text-light dark:text-text-dark">3</td>
+<th class="px-6 py-4 font-medium text-text-light dark:text-text-dark whitespace-nowrap" scope="row">MiTrade</th>
+<td class="px-6 py-4">ASIC, CYSEC</td>
+<td class="px-6 py-4 text-center"><span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-full">8.8/10</span></td>
+<td class="px-2 py-4"><a class="font-medium text-white bg-primary hover:bg-red-700 rounded-md py-2 px-4 inline-block w-full text-center" href="#">查看詳情</a></td>
+<td class="px-2 py-4"><a class="font-medium text-primary border border-primary hover:bg-primary/10 rounded-md py-2 px-4 inline-block w-full text-center" href="#">前往官網</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="text-center mt-8">
+<button class="bg-primary hover:bg-red-700 text-white font-bold py-3 px-8 rounded-md transition-colors">查看完整榜單</button>
+</div>
+</div>
+</section>
+<section class="py-16 bg-background-light dark:bg-background-dark">
+<div class="container mx-auto px-4">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div>
+<h2 class="text-3xl font-bold mb-4">黑名單與監管驗證專區</h2>
+<p class="text-subtext-light dark:text-subtext-dark mb-6">輸入經紀商名稱，立即驗證其監管狀態，並查看最新的黑名單警示，保護您的交易安全。</p>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg shadow-md">
+<label class="block mb-2 font-semibold text-text-light dark:text-text-dark" for="broker-check">監管查詢工具</label>
+<div class="flex gap-2">
+<input class="flex-grow w-full px-4 py-2 rounded-md bg-background-light dark:bg-background-dark border-border-light dark:border-border-dark focus:ring-primary focus:border-primary" id="broker-check" placeholder="輸入平台名稱查詢..." type="text"/>
+<button class="bg-primary hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md transition-colors">查詢</button>
+</div>
+</div>
+</div>
+<div>
+<div class="bg-surface-light dark:bg-surface-dark p-6 rounded-lg shadow-md">
+<h3 class="font-bold text-xl mb-4 flex items-center"><span class="material-icons text-primary mr-2">gpp_bad</span>黑平台警示榜</h3>
+<ul class="space-y-3">
+<li class="flex justify-between items-center p-3 bg-background-light dark:bg-background-dark rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<div>
+<p class="font-semibold text-text-light dark:text-text-dark">FakeBrokerFX</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">原因：無法出金</p>
+</div>
+<span class="text-xs text-gray-500">2023-10-26</span>
+</li>
+<li class="flex justify-between items-center p-3 bg-background-light dark:bg-background-dark rounded-md hover:bg-gray-50 dark:hover:bg-gray-800/50">
+<div>
+<p class="font-semibold text-text-light dark:text-text-dark">ScamTrade</p>
+<p class="text-sm text-subtext-light dark:text-subtext-dark">原因：誘導投資</p>
+</div>
+<span class="text-xs text-gray-500">2023-10-24</span>
+</li>
+</ul>
+<a class="text-primary hover:underline mt-4 inline-block text-sm font-semibold" href="#">查看完整黑名單 »</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-light dark:bg-surface-dark">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-2">問答論壇入口</h2>
+<p class="text-center text-subtext-light dark:text-subtext-dark mb-12">加入我們的社群，與廣大交易者共同成長</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+<a class="group block p-8 bg-background-light dark:bg-background-dark rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:-translate-y-1" href="#">
+<span class="material-icons text-5xl text-primary mb-4">help_outline</span>
+<h3 class="text-xl font-bold mb-2">新手問答</h3>
+<p class="text-subtext-light dark:text-subtext-dark mb-4">剛入門？在這裡找到您的所有答案。</p>
+<span class="font-semibold text-primary group-hover:underline">進入版區 »</span>
+</a>
+<a class="group block p-8 bg-background-light dark:bg-background-dark rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:-translate-y-1" href="#">
+<span class="material-icons text-5xl text-primary mb-4">lightbulb</span>
+<h3 class="text-xl font-bold mb-2">策略討論</h3>
+<p class="text-subtext-light dark:text-subtext-dark mb-4">與交易高手交流，分享您的交易策略。</p>
+<span class="font-semibold text-primary group-hover:underline">進入版區 »</span>
+</a>
+<a class="group block p-8 bg-background-light dark:bg-background-dark rounded-lg shadow-md hover:shadow-xl transition-shadow transform hover:-translate-y-1" href="#">
+<span class="material-icons text-5xl text-primary mb-4">report_problem</span>
+<h3 class="text-xl font-bold mb-2">詐騙揭露</h3>
+<p class="text-subtext-light dark:text-subtext-dark mb-4">曝光詐騙手法，讓更多人免於受害。</p>
+<span class="font-semibold text-primary group-hover:underline">進入版區 »</span>
+</a>
+</div>
+</div>
+</section>
+<section class="py-16 bg-background-light dark:bg-background-dark">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">常見問題</h2>
+<div class="max-w-3xl mx-auto space-y-4">
+<div class="border border-border-light dark:border-border-dark rounded-lg">
+<details class="group p-4" open="">
+<summary class="flex justify-between items-center cursor-pointer font-semibold">
+                我該如何挑選適合我的外匯經紀商？
+                <span class="material-icons transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-subtext-light dark:text-subtext-dark">挑選經紀商時，您應考慮監管機構、交易成本(點差與手續費)、出入金方式、交易平台穩定性及客戶服務品質。建議新手優先選擇受頂級監管（如FCA、ASIC）的平台。</p>
+</details>
+</div>
+<div class="border border-border-light dark:border-border-dark rounded-lg">
+<details class="group p-4">
+<summary class="flex justify-between items-center cursor-pointer font-semibold">
+                外匯交易的最低入金門檻是多少？
+                <span class="material-icons transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-subtext-light dark:text-subtext-dark">不同經紀商的最低入金要求差異很大，從 10 美元到數千美元不等。部分平台提供美分帳戶，讓您可以用極低資金開始交易。</p>
+</details>
+</div>
+<div class="border border-border-light dark:border-border-dark rounded-lg">
+<details class="group p-4">
+<summary class="flex justify-between items-center cursor-pointer font-semibold">
+                什麼是點差 (Spread)？它如何影響我的交易？
+                <span class="material-icons transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<p class="mt-4 text-subtext-light dark:text-subtext-dark">點差是買入價和賣出價之間的差額，是經紀商的主要收入來源之一，也是您的主要交易成本。點差越低，您的交易成本就越低。</p>
+</details>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-surface-light dark:bg-surface-dark">
+<div class="container mx-auto px-4">
+<h2 class="text-3xl font-bold text-center mb-12">最新市場動態與分析</h2>
+<div class="flex justify-center mb-8">
+<div class="inline-flex rounded-md shadow-sm" role="group">
+<button class="px-4 py-2 text-sm font-medium text-white bg-primary border border-primary rounded-l-lg hover:bg-red-700" type="button">全部</button>
+<button class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark bg-background-light dark:bg-surface-dark border-t border-b border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-600" type="button">外匯</button>
+<button class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark bg-background-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-gray-100 dark:hover:bg-gray-600" type="button">加密貨幣</button>
+<button class="px-4 py-2 text-sm font-medium text-text-light dark:text-text-dark bg-background-light dark:bg-surface-dark border-t border-b border-r border-border-light dark:border-border-dark rounded-r-md hover:bg-gray-100 dark:hover:bg-gray-600" type="button">ETF</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-background-light dark:bg-background-dark rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+<img alt="News about Web3" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjCFHSIJFmuk8G6DBEG2qv_QL6u_Z-0SVieX8B_qesIpMzbGXoJhDK_Wy1G8LYmNpLnZqLyvOR6JZgEiv81t-qyHWllRuAhHmlFI3DVddu5HFZHFZ6ZnflKYuYRrhieGoZ1c4Mxhk60loOOsO5gy8AcMx7yQVh1Lf4CZq-ykIWvHwwzZpxyNwy68WCGZnyXVWw8QQPDucexg60bEO0bsVOpiyYSHE2tg_AQPqjeZBKFdMLBzWMK0fP5hMAUDB6OqFfvKRPAx6lAQg"/>
+<div class="p-6">
+<span class="text-xs bg-primary/10 text-primary font-semibold px-2 py-1 rounded">外匯分析</span>
+<h3 class="font-bold text-xl my-2">Web3 是什麼？3分鐘看懂未來趨勢</h3>
+<p class="text-subtext-light dark:text-subtext-dark text-sm mb-4">深入淺出介紹 Web3 的核心概念，以及它將如何影響未來的金融市場。</p>
+<a class="font-semibold text-primary hover:underline" href="#">閱讀更多 »</a>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+<img alt="News about DeFi" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtiV_7RbNZ4OEqphGC2H7Mx3XYz6kB_oXSNTsGFuFKFLbxJXLWvg0e3jrrsAgIStFpkEUSADYFWQH7AGt-BWfpEzFmd2f--s1OFxxtcdbVFc9KaizPCHECxTDdV7Z3wSU7T7bkJ3KY_8lQZb8KW6XWlGoAhAyjMBxzbNZBRechdLnotkYTm4hDFExmbIWhEvfhnQGzSFRudWNY7EVU4cVsVD8HkOUMLJC9wvm_3y8iBFdoI7OaJUe7YkqGS4l2Lhww6sL5Pi-6My8"/>
+<div class="p-6">
+<span class="text-xs bg-primary/10 text-primary font-semibold px-2 py-1 rounded">加密貨幣</span>
+<h3 class="font-bold text-xl my-2">DeFi 是什麼？與傳統金融的比較</h3>
+<p class="text-subtext-light dark:text-subtext-dark text-sm mb-4">探討去中心化金融 (DeFi) 的運作模式，並分析其與傳統金融體系的異同。</p>
+<a class="font-semibold text-primary hover:underline" href="#">閱讀更多 »</a>
+</div>
+</div>
+<div class="bg-background-light dark:bg-background-dark rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300">
+<img alt="News about Kraken ETF" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Cjr2yNasoY7PxnGbkDLKaE5ci3ErgB-YVz2qHFnz8TQLp0ol8kEQUTDSJQpZR8hIJh1oBGMlOXaOq2_pFPiQEMnH9pPj83al0TzmBT-bmI9uZ3RdL1AfqQSZO67AXlZ7rU_wrGd5GcTmn1wZ1CVZ6XdFGMm5f-FoOhQdCKykjzIlSBlMmq9NxkJpA-Y64H0Yg2tZUy3SyxTcxfWvoyufZsGmZJRybsn85KTv1fla7dlIQzkLG15HnfBDOTliIf2qvqUtQiGe9dk"/>
+<div class="p-6">
+<span class="text-xs bg-primary/10 text-primary font-semibold px-2 py-1 rounded">ETF</span>
+<h3 class="font-bold text-xl my-2">Kraken 該買嗎？2025 牛熊預測</h3>
+<p class="text-subtext-light dark:text-subtext-dark text-sm mb-4">分析 Kraken 交易所的未來潛力，並對其在 2025 年的市場表現進行預測。</p>
+<a class="font-semibold text-primary hover:underline" href="#">閱讀更多 »</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 bg-background-light dark:bg-background-dark">
+<div class="container mx-auto px-4 text-center">
+<h2 class="text-3xl font-bold mb-4">用戶分享與邀請推廣</h2>
+<p class="text-subtext-light dark:text-subtext-dark mb-8 max-w-2xl mx-auto">您的真實回饋是我們最寶貴的資產。分享您的經紀商使用心得，或邀請好友加入，一起建立更透明的交易社群。</p>
+<div class="flex flex-col md:flex-row justify-center gap-4">
+<button class="bg-primary hover:bg-red-700 text-white font-bold py-3 px-6 rounded-md transition-colors flex items-center justify-center space-x-2">
+<span class="material-icons">rate_review</span>
+<span>我要投稿評價</span>
+</button>
+<button class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-text-light dark:text-text-dark font-bold py-3 px-6 rounded-md transition-colors flex items-center justify-center space-x-2">
+<span class="material-icons">group_add</span>
+<span>邀請好友</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-gray-800 text-gray-300">
+<div class="container mx-auto px-4 py-12">
+<div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+<div class="col-span-2 md:col-span-1">
+<img alt="logo" class="h-10 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaZbBUINZg7b1LsjtQBXm33g53AGe-K9B-8kYZcgWmtMXruXN1pdK7aJK6GkXqbZGBkPhPRt08arIiBG4eT6yVGKiPdO9sa7ikOS8h1bfUlTWIFlGTt3rxdv4mAjX0Wy1WbjAw_MtkOsVGqK_01xNQh3jk4qBCNXh5p1gvQv382N5HwX3CZXYNA7Kn1-IyXWEdpLBdsojeWU4cPrtTu3TbZq84a1bpoPuLfiIju4eLQk5Y3g6xdFBythMcXGOwRpwZbaFdlIcIvHQ"/>
+<p class="text-sm text-gray-400">最值得信賴的<br/>一站式外匯經紀商評測網</p>
+</div>
+<div>
+<h4 class="font-bold text-white mb-4">關於我們</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">關於我們</a></li>
+<li><a class="hover:text-white transition-colors" href="#">聯繫我們</a></li>
+<li><a class="hover:text-white transition-colors" href="#">免責聲明</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-4">常用工具</h4>
+<ul class="space-y-2 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">監管查詢</a></li>
+<li><a class="hover:text-white transition-colors" href="#">經紀商排行榜</a></li>
+<li><a class="hover:text-white transition-colors" href="#">換匯計算器</a></li>
+<li><a class="hover:text-white transition-colors" href="#">經濟日曆</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-2">
+<h4 class="font-bold text-white mb-4">加入電子報</h4>
+<p class="text-sm mb-4 text-gray-400">獲取最新的市場動態與獨家評測報告。</p>
+<form class="flex">
+<input class="w-full rounded-l-md px-4 py-2 bg-gray-700 border-gray-600 text-white focus:ring-primary focus:border-primary" placeholder="您的電子郵件" type="email"/>
+<button class="bg-primary hover:bg-red-700 text-white font-bold py-2 px-4 rounded-r-md">訂閱</button>
+</form>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-gray-700 text-center text-sm text-gray-500">
+<p>© 2023 Top 10 Forex Broker. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+
+</body></html>
