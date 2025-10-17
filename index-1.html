@@ -963,7 +963,7 @@
             }
 
             // 解析標頭 (headers)
-            const headers = parseCSVLine(lines[0]);
+            const headers = parseCSVLine(lines[0]).map(h => h.replace(/\r/g, '').trim());
             console.log('Headers:', headers);
 
             for (let i = 1; i < lines.length; i++) {
@@ -983,8 +983,8 @@
                         value = value.substring(1, value.length - 1).replace(/""/g, '"');
                     }
                     
-                    // 清理回車符和換行符
-                    value = value.replace(/\r/g, '').replace(/\n/g, '\\n');
+                    // 清理回車符，但保留換行符用於顯示
+                    value = value.replace(/\r/g, '');
                     
                     // 將處理好的值對應到標頭
                     rowObject[headers[j]] = value;
@@ -1082,9 +1082,11 @@
                     console.log('Parsed data (simple):', allData);
                 }
 
-                sessionsData = allData.filter(session =>
-                    session.status && String(session.status).trim().toLowerCase() === 'published'
-                );
+                sessionsData = allData.filter(session => {
+                    const status = session.status ? String(session.status).replace(/\r/g, '').trim().toLowerCase() : '';
+                    console.log('Checking status:', session.status, '-> cleaned:', status);
+                    return status === 'published';
+                });
                 
                 console.log('Filtered sessions:', sessionsData); // 調試信息
 
