@@ -983,6 +983,9 @@
                         value = value.substring(1, value.length - 1).replace(/""/g, '"');
                     }
                     
+                    // 清理回車符和換行符
+                    value = value.replace(/\r/g, '').replace(/\n/g, '\\n');
+                    
                     // 將處理好的值對應到標頭
                     rowObject[headers[j]] = value;
                 }
@@ -1040,15 +1043,18 @@
             const lines = csvText.split('\n').filter(line => line.trim());
             if (lines.length < 2) return [];
             
-            const headers = lines[0].split(',').map(h => h.trim());
+            const headers = lines[0].split(',').map(h => h.trim().replace(/\r/g, ''));
             const result = [];
             
             for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+                const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, '').replace(/\r/g, ''));
                 if (values.length === headers.length) {
                     const rowObject = {};
                     headers.forEach((header, index) => {
-                        rowObject[header] = values[index] || '';
+                        let value = values[index] || '';
+                        // 將 \n 轉換回真正的換行符
+                        value = value.replace(/\\n/g, '\n');
+                        rowObject[header] = value;
                     });
                     result.push(rowObject);
                 }
@@ -1077,7 +1083,7 @@
                 }
 
                 sessionsData = allData.filter(session =>
-                    session.status && String(session.status).toLowerCase() === 'published'
+                    session.status && String(session.status).trim().toLowerCase() === 'published'
                 );
                 
                 console.log('Filtered sessions:', sessionsData); // 調試信息
