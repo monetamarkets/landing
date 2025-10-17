@@ -933,19 +933,39 @@
     // CSV parsing functions
         function parseCSV(csvText) {
             const result = [];
-            // 這個正規表示式可以正確地處理引號內的換行符，只在引號外的換行符進行切割
-            const lines = csvText.trim().replace(/\r/g, '').split(/\n(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+            const lines = [];
+            let currentLine = '';
+            let inQuotes = false;
+            
+            // 正確處理包含換行符的 CSV 內容
+            for (let i = 0; i < csvText.length; i++) {
+                const char = csvText[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === '\n' && !inQuotes) {
+                    if (currentLine.trim()) {
+                        lines.push(currentLine);
+                    }
+                    currentLine = '';
+                    continue;
+                }
+                currentLine += char;
+            }
+            
+            if (currentLine.trim()) {
+                lines.push(currentLine);
+            }
 
             if (lines.length < 2) return [];
 
             // 解析標頭 (headers)
-            const headers = lines[0].split(',').map(h => h.trim());
+            const headers = parseCSVLine(lines[0]);
 
             for (let i = 1; i < lines.length; i++) {
                 if (!lines[i] || !lines[i].trim()) continue;
 
-                // 這個正規表示式可以處理引號內的逗號，避免把內容裡的逗號當成分隔符
-                const values = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+                const values = parseCSVLine(lines[i]);
                 
                 if (values.length === 0) continue;
 
@@ -963,6 +983,35 @@
                 }
                 result.push(rowObject);
             }
+            return result;
+        }
+
+        // 解析單行 CSV 的函數
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                
+                if (char === '"') {
+                    if (inQuotes && line[i + 1] === '"') {
+                        // 處理雙引號轉義
+                        current += '"';
+                        i++; // 跳過下一個引號
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            result.push(current);
             return result;
         }
 
@@ -1007,8 +1056,8 @@
         // 處理換行符號的函數
         function formatTextWithLineBreaks(text) {
             if (!text) return '';
-            // 將 \n 轉換為 <br> 標籤
-            return text.replace(/\n/g, '<br>');
+            // 將 \n 和 \r\n 轉換為 <br> 標籤，並清理多餘的空白
+            return text.replace(/\r\n/g, '\n').replace(/\n/g, '<br>').trim();
         }
 
         function renderSessions() {
@@ -1034,7 +1083,7 @@
                     ${badgeSpan}
                     <div class="text-action-red font-semibold text-sm mb-2">${formatDateTime(session.start_datetime)}</div>
                     <h3 class="text-xl font-bold text-finance-black mb-3">${formatTextWithLineBreaks(session.title)}</h3>
-                    <p class="text-muted-gray mb-4">${formatTextWithLineBreaks(session.description)}</p>
+                    <div class="text-muted-gray mb-4">${formatTextWithLineBreaks(session.description)}</div>
                     <div class="space-y-2">
                         <button class="w-full bg-action-red text-base-white py-2 px-4 rounded-lg font-semibold hover:bg-hover-red transition-colors" onclick="openRegistration('${session.webinar_id}')">
                             ลงทะเบียน
