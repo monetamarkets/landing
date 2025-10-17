@@ -930,42 +930,43 @@
             if (secondsEl) secondsEl.textContent = seconds;
         }
 
-        // CSV parsing functions
-        function parseCSV(text) {
-            const lines = text.trim().split('\n');
-            const headers = parseCSVLine(lines[0]);
-            const data = [];
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim()) {
-                    const values = parseCSVLine(lines[i]);
-                    const row = {};
-                    headers.forEach((header, index) => {
-                        row[header] = values[index] || '';
-                    });
-                    data.push(row);
-                }
-            }
-            return data;
-        }
-
-        function parseCSVLine(line) {
+    // CSV parsing functions
+        function parseCSV(csvText) {
             const result = [];
-            let current = '';
-            let inQuotes = false;
-            for (let i = 0; i < line.length; i++) {
-                const char = line[i];
-                if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === ',' && !inQuotes) {
-                    result.push(current.trim());
-                    current = '';
-                } else {
-                    current += char;
+            // 這個正規表示式可以正確地處理引號內的換行符，只在引號外的換行符進行切割
+            const lines = csvText.trim().replace(/\r/g, '').split(/\n(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)/);
+
+            if (lines.length < 2) return [];
+
+            // 解析標頭 (headers)
+            const headers = lines[0].split(',').map(h => h.trim());
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i] || !lines[i].trim()) continue;
+
+                // 這個正規表示式可以處理引號內的逗號，避免把內容裡的逗號當成分隔符
+                const values = lines[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || [];
+                
+                if (values.length === 0) continue;
+
+                const rowObject = {};
+                for (let j = 0; j < headers.length; j++) {
+                    let value = (values[j] || '').trim();
+                    
+                    // 清理值：移除頭尾的引號，並將兩個連續的引號 "" 還原成一個 "
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.substring(1, value.length - 1).replace(/""/g, '"');
+                    }
+                    
+                    // 將處理好的值對應到標頭
+                    rowObject[headers[j]] = value;
                 }
+                result.push(rowObject);
             }
-            result.push(current.trim());
             return result;
         }
+
+        // 注意：舊的 parseCSVLine 函式已經不再需要，可以安全刪除
 
         function formatDateTime(dateTimeStr) {
             try {
