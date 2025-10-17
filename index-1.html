@@ -1004,6 +1004,13 @@
             }
         }
 
+        // 處理換行符號的函數
+        function formatTextWithLineBreaks(text) {
+            if (!text) return '';
+            // 將 \n 轉換為 <br> 標籤
+            return text.replace(/\n/g, '<br>');
+        }
+
         function renderSessions() {
             const grid = document.getElementById('sessions-grid');
             if (sessionsData.length === 0) {
@@ -1026,8 +1033,8 @@
                 <div class="bg-surface-white border border-hairline rounded-lg p-6 hover:shadow-lg transition-shadow relative">
                     ${badgeSpan}
                     <div class="text-action-red font-semibold text-sm mb-2">${formatDateTime(session.start_datetime)}</div>
-                    <h3 class="text-xl font-bold text-finance-black mb-3">${session.title}</h3>
-                    <p class="text-muted-gray mb-4">${session.description}</p>
+                    <h3 class="text-xl font-bold text-finance-black mb-3">${formatTextWithLineBreaks(session.title)}</h3>
+                    <p class="text-muted-gray mb-4">${formatTextWithLineBreaks(session.description)}</p>
                     <div class="space-y-2">
                         <button class="w-full bg-action-red text-base-white py-2 px-4 rounded-lg font-semibold hover:bg-hover-red transition-colors" onclick="openRegistration('${session.webinar_id}')">
                             ลงทะเบียน
