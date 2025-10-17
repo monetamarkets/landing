@@ -384,7 +384,7 @@
             <h2 class="text-4xl md:text-5xl font-bold text-finance-black text-center mb-16">
                 สัมมนาที่กำลังจะมาถึง
             </h2>
-            <div id="sessions-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="sessions-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                 <div class="text-center text-muted-gray">กำลังโหลดข้อมูลสัมมนา...</div>
             </div>
         </div>
@@ -930,42 +930,100 @@
             if (secondsEl) secondsEl.textContent = seconds;
         }
 
-        // CSV parsing functions
-        function parseCSV(text) {
-            const lines = text.trim().split('\n');
-            const headers = parseCSVLine(lines[0]);
-            const data = [];
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim()) {
-                    const values = parseCSVLine(lines[i]);
-                    const row = {};
-                    headers.forEach((header, index) => {
-                        row[header] = values[index] || '';
-                    });
-                    data.push(row);
+    // CSV parsing functions
+        function parseCSV(csvText) {
+            const result = [];
+            const lines = [];
+            let currentLine = '';
+            let inQuotes = false;
+            
+            // 正確處理包含換行符的 CSV 內容
+            for (let i = 0; i < csvText.length; i++) {
+                const char = csvText[i];
+                
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === '\n' && !inQuotes) {
+                    if (currentLine.trim()) {
+                        lines.push(currentLine);
+                    }
+                    currentLine = '';
+                    continue;
                 }
+                currentLine += char;
             }
-            return data;
+            
+            if (currentLine.trim()) {
+                lines.push(currentLine);
+            }
+
+            if (lines.length < 2) {
+                console.log('Not enough lines in CSV:', lines.length);
+                return [];
+            }
+
+            // 解析標頭 (headers)
+            const headers = parseCSVLine(lines[0]).map(h => h.replace(/\r/g, '').trim());
+            console.log('Headers:', headers);
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i] || !lines[i].trim()) continue;
+
+                const values = parseCSVLine(lines[i]);
+                console.log(`Row ${i} values:`, values);
+                
+                if (values.length === 0) continue;
+
+                const rowObject = {};
+                for (let j = 0; j < headers.length; j++) {
+                    let value = (values[j] || '').trim();
+                    
+                    // 清理值：移除頭尾的引號，並將兩個連續的引號 "" 還原成一個 "
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.substring(1, value.length - 1).replace(/""/g, '"');
+                    }
+                    
+                    // 清理回車符，但保留換行符用於顯示
+                    value = value.replace(/\r/g, '');
+                    
+                    // 將處理好的值對應到標頭
+                    rowObject[headers[j]] = value;
+                }
+                result.push(rowObject);
+            }
+            return result;
         }
 
+        // 解析單行 CSV 的函數
         function parseCSVLine(line) {
             const result = [];
             let current = '';
             let inQuotes = false;
+            
             for (let i = 0; i < line.length; i++) {
                 const char = line[i];
+                
                 if (char === '"') {
-                    inQuotes = !inQuotes;
+                    if (inQuotes && line[i + 1] === '"') {
+                        // 處理雙引號轉義
+                        current += '"';
+                        i++; // 跳過下一個引號
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
                 } else if (char === ',' && !inQuotes) {
-                    result.push(current.trim());
+                    result.push(current);
                     current = '';
                 } else {
                     current += char;
                 }
             }
-            result.push(current.trim());
+            
+            result.push(current);
             return result;
         }
+
+        // 注意：舊的 parseCSVLine 函式已經不再需要，可以安全刪除
 
         function formatDateTime(dateTimeStr) {
             try {
@@ -980,6 +1038,30 @@
             }
         }
 
+        // 簡單的 CSV 解析函數作為備用
+        function parseCSVSimple(csvText) {
+            const lines = csvText.split('\n').filter(line => line.trim());
+            if (lines.length < 2) return [];
+            
+            const headers = lines[0].split(',').map(h => h.trim().replace(/\r/g, ''));
+            const result = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, '').replace(/\r/g, ''));
+                if (values.length === headers.length) {
+                    const rowObject = {};
+                    headers.forEach((header, index) => {
+                        let value = values[index] || '';
+                        // 將 \n 轉換回真正的換行符
+                        value = value.replace(/\\n/g, '\n');
+                        rowObject[header] = value;
+                    });
+                    result.push(rowObject);
+                }
+            }
+            return result;
+        }
+
         // Load sessions data
         async function loadSessionsData() {
             try {
@@ -988,11 +1070,25 @@
                 if (!response.ok) throw new Error('Failed to fetch data');
 
                 const csvText = await response.text();
-                const allData = parseCSV(csvText);
+                console.log('CSV Text:', csvText.substring(0, 500)); // 調試信息
+                
+                let allData = parseCSV(csvText);
+                console.log('Parsed data (complex):', allData); // 調試信息
+                
+                // 如果複雜解析器失敗，使用簡單解析器
+                if (allData.length === 0) {
+                    console.log('Trying simple parser...');
+                    allData = parseCSVSimple(csvText);
+                    console.log('Parsed data (simple):', allData);
+                }
 
-                sessionsData = allData.filter(session =>
-                    session.status && String(session.status).toLowerCase() === 'published'
-                );
+                sessionsData = allData.filter(session => {
+                    const status = session.status ? String(session.status).replace(/\r/g, '').trim().toLowerCase() : '';
+                    console.log('Checking status:', session.status, '-> cleaned:', status);
+                    return status === 'published';
+                });
+                
+                console.log('Filtered sessions:', sessionsData); // 調試信息
 
                 renderSessions();
                 setupCountdown();
@@ -1001,6 +1097,13 @@
                 document.getElementById('sessions-grid').innerHTML =
                     '<div class="text-center text-muted-gray col-span-full">ไม่สามารถโหลดข้อมูลสัมมนาได้ กรุณาลองใหม่อีกครั้ง</div>';
             }
+        }
+
+        // 處理換行符號的函數
+        function formatTextWithLineBreaks(text) {
+            if (!text) return '';
+            // 將 \n 和 \r\n 轉換為 <br> 標籤，並清理多餘的空白
+            return text.replace(/\r\n/g, '\n').replace(/\n/g, '<br>').trim();
         }
 
         function renderSessions() {
@@ -1022,12 +1125,12 @@
                     : '';
                 if (badge) flaggedCount++;
                 return `
-                <div class="bg-surface-white border border-hairline rounded-lg p-6 hover:shadow-lg transition-shadow relative">
+                <div class="bg-surface-white border border-hairline rounded-lg p-6 hover:shadow-lg transition-shadow relative flex flex-col h-full">
                     ${badgeSpan}
                     <div class="text-action-red font-semibold text-sm mb-2">${formatDateTime(session.start_datetime)}</div>
-                    <h3 class="text-xl font-bold text-finance-black mb-3">${session.title}</h3>
-                    <p class="text-muted-gray mb-4">${session.description}</p>
-                    <div class="space-y-2">
+                    <h3 class="text-xl font-bold text-finance-black mb-3">${formatTextWithLineBreaks(session.title)}</h3>
+                    <div class="text-muted-gray mb-4 flex-grow">${formatTextWithLineBreaks(session.description)}</div>
+                    <div class="space-y-2 mt-auto">
                         <button class="w-full bg-action-red text-base-white py-2 px-4 rounded-lg font-semibold hover:bg-hover-red transition-colors" onclick="openRegistration('${session.webinar_id}')">
                             ลงทะเบียน
                         </button>
